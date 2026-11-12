@@ -395,10 +395,12 @@ def enemy_defense_for_pc_attack(pc, target):
     Dodge/Parry-only rule makes in the other direction) - harmless until
     now since nothing granted an enemy Vulnerable before Demon School -
     Plague Fist (T083, now Sickness Takes the Flock)."""
-    harried = target.get('harried', 0)
-    if 'Omniguard' in target.get('abilities', ()):
-        harried = 0  # "Ignore all Harried."
-    vulnerable = target.get('vulnerable', 0)
+    od = pc.get('opp_def') or 'Parry/Dodge'
+    harried = tactics.def_pen(target, 'Dodge')
+    vulnerable = tactics.def_pen(target, 'Vital')
+    # Under a luck rule the attacker gets Good Luck instead; the flip that
+    # follows picks it up in _pc_status_bad_luck.
+    target['_atk_luck'] = tactics.def_luck(target, od)
     dodge = target['dodge'] - tactics.slow_dodge(target)
     if pc.get('opp_def') == 'Dodge':
         return dodge - harried
@@ -535,10 +537,8 @@ def pc_defense_for(target, opp_def):
     only applies to the Parry/Dodge cases here, same "pure read, the
     real +1 stack is granted at the attack-roll call site" split as
     enemy_defense_for_pc_attack."""
-    vulnerable = target.get('vulnerable', 0)
-    harried = target.get('harried', 0)
-    if 'Indomitable Phalanx' in target.get('passives', ()):
-        harried = max(0, harried - 2)  # T132: "Ignore up to 2 of your stacks of Harried."
+    vulnerable = tactics.def_pen(target, 'Vital')
+    harried = tactics.def_pen(target, 'Dodge')
     wounded = 2 if tactics.pc_wounded(target) else 0  # Wounded: -2 to all Defenses
     dodge = target['dodge'] - tactics.slow_dodge(target)
     if opp_def == 'Parry/Dodge':
@@ -743,9 +743,12 @@ def _pc_status_bad_luck(pc, target):
     ta = pc.get('taunted_by') if pc.get('taunted', 0) > 0 else None
     srcs = [tactics.pc_wounded(pc), fr is not None and fr is target,
             ta is not None and ta['health'] > 0 and ta is not target, tactics.crip_bad_luck(pc)]
+    if T.CRIPPLED_RULE == 'badluck_spend' and pc.get('crippled', 0) > 0:
+        pc['crippled'] -= 1
     # rulebook.md: "For each time you have Good Luck on a flip... Bad Luck
-    # works the same": each source is a stack.
-    return sum(bool(x) for x in srcs)
+    # works the same": each source is a stack. Good Luck from the target's
+    # Harried or Vulnerable (the luck rules) comes off the count.
+    return sum(bool(x) for x in srcs) - target.pop('_atk_luck', 0)
 
 
 # ---- Fleeting effects (glossary.md [Fleeting]) ----
@@ -860,8 +863,9 @@ def _decay(unit, key):
     """One end-of-turn removal; returns the stacks removed (0 or 1)."""
     if unit.get(key, 0) <= 0:
         return 0
-    if (key, 'encounter') in (('crippled', T.CRIPPLED_RULE), ('slowed', T.SLOWED_RULE)):
-        return 0  # a rule variant: lasts the encounter
+    if (key, 'encounter') in (('crippled', T.CRIPPLED_RULE), ('slowed', T.SLOWED_RULE)) \
+            or (key, T.CRIPPLED_RULE) == ('crippled', 'badluck_spend'):
+        return 0  # a rule variant: lasts the encounter, or until attacks spend it
     if unit.pop('skip_' + key, False):
         return 0
     if unit[key] <= unit.get('curse_' + key, 0):
@@ -1424,8 +1428,15 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
         # Play styles (play_styles.py): a Skirmisher or Back-liner plans
         # where to stand and how many attacks to make; a Diver (plan None)
         # takes the usual turn below.
-        plan = (play_styles.plan_turn(pc, targets, allies, ap)
+        free_move = T.HASTED_RULE == 'move' and pc.get('hasted', 0) > 0
+        plan = (play_styles.plan_turn(pc, targets, allies, ap + free_move)
                 if (targets and movement_on and T.PLAY_STYLES and _grappled(pc) is None) else None)
+        if free_move and plan is not None:
+            if plan.pre_pos is not None and plan.pre_pos != pc['pos'] and plan.pre_moves > 0:
+                ap += 1  # Hasted's free move pays for the first one
+            else:
+                plan = play_styles.plan_turn(pc, targets, allies, ap)
+            free_move = False
         max_attacks = None
         if targets:
             if plan is not None:
@@ -1527,11 +1538,13 @@ def _take_pc_turn(pc, pcs, enemies, rnd, movement_on, trace, party_log, order=No
                         _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
                              spaces=_distance(lunge_start, pc['pos']), via='Battle Maneuver: Lunging')
                     ap_start = pc['pos']
-                    ap, in_range, moved = spend_movement_ap(pc, target, ap, _diver_reach(pc, target, ap))
+                    ap, in_range, moved = spend_movement_ap(pc, target, ap + free_move, _diver_reach(pc, target, ap))
                     if moved:
                         _log(trace, round=rnd, side='party', unit=pc['name'], action='move', pos=pc['pos'],
                              in_range=in_range, spaces=_distance(ap_start, pc['pos']))
                         _left_melee(pc, ap_start, enemies, pcs, rnd)
+                    elif free_move:
+                        ap -= 1  # no move, so no free AP
                     if in_range and _los_blocked(pc, effective_range(pc), moved):
                         ap -= T.MOVE_AP_COST
                         _log(trace, round=rnd, side='party', unit=pc['name'], action='reposition',
@@ -2777,6 +2790,8 @@ def _enemy_attack(e, prof, target, mode, rnd, pcs, enemies, movement_on, enemy_l
     if e.get('crippled', 0) > 0:
         e['crip_points'] = e.get('crip_points', 0) + e['crippled']
         bad += tactics.crip_bad_luck(e)
+        e['crippled'] -= T.CRIPPLED_RULE == 'badluck_spend'
+    good += tactics.def_luck(target, opp_def)
     # rulebook.md, Grapple: "Creatures have Good Luck on any attacks
     # against your Dodge or Parry Defense."
     if target.get('grapple') is not None and opp_def in ('Parry/Dodge', 'Dodge', 'Parry'):

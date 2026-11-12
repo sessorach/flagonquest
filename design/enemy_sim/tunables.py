@@ -522,6 +522,15 @@ DEBUFF_IGNORE_CRIPPLED = 3  # Crippled stacks at which the party leaves an enemy
 # that starts Slowed; 'dodge' -1 Speed and -1 Dodge a stack; 'encounter'
 # never decaying.
 CRIPPLED_RULE = 'base'
+# Luck in place of numbers (designer, 2026-11-12). CRIPPLED_RULE 'badluck'
+# is above; 'badluck_spend' is Bad Luck on attacks with a stack spent by
+# each attack and none at the end of the turn. Harried and Vulnerable:
+# 'goodluck' gives attackers against those Defenses Good Luck while the
+# target has any stacks, 'goodluck_n' Good Luck once a stack; no penalty
+# either way. Hasted 'move': no Speed, and the turn's first move is free.
+HARRIED_RULE = 'base'
+VULNERABLE_RULE = 'base'
+HASTED_RULE = 'base'
 SLOWED_RULE = 'base'
 # Wing Clip and Hamstring give this many times their stacks (2026-11-11 test of
 # a cheaper price per stack; 1 is the rules).

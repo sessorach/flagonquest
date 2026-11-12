@@ -472,12 +472,37 @@ def crip(u):
     n, rule = u.get('crippled', 0), T.CRIPPLED_RULE
     if rule in ('disable3', 'disable5') and n >= int(rule[-1]):
         return 99
-    return 2 * n if rule == 'x2' else 0 if rule == 'badluck' else n
+    return 2 * n if rule == 'x2' else 0 if rule in ('badluck', 'badluck_spend') else n
 
 
 def crip_bad_luck(u):
     n, rule = u.get('crippled', 0), T.CRIPPLED_RULE
-    return int(n >= 3 if rule == 'badluck3' else n > 0 and rule in ('badluck', 'badluck_plus'))
+    return int(n >= 3 if rule == 'badluck3' else n > 0 and rule in ('badluck', 'badluck_plus', 'badluck_spend'))
+
+
+def _def_stacks(u, opp_def):
+    """The stacks that weaken `u` against an attack on `opp_def`, and the
+    rule for them: Harried for Parry and Dodge, Vulnerable for the rest."""
+    if opp_def in ('Parry/Dodge', 'Dodge', 'Parry'):
+        n = u.get('harried', 0)
+        if 'Omniguard' in u.get('abilities', ()):
+            n = 0  # "Ignore all Harried."
+        if 'Indomitable Phalanx' in u.get('passives', ()):
+            n = max(0, n - 2)  # T132: "Ignore up to 2 of your stacks of Harried."
+        return n, T.HARRIED_RULE
+    return u.get('vulnerable', 0), T.VULNERABLE_RULE
+
+
+def def_pen(u, opp_def):
+    """Harried's or Vulnerable's penalty to the Defense an attack is against."""
+    n, rule = _def_stacks(u, opp_def)
+    return n if rule == 'base' else 0
+
+
+def def_luck(u, opp_def):
+    """Good Luck an attacker gets from them instead (the luck rules)."""
+    n, rule = _def_stacks(u, opp_def)
+    return 0 if rule == 'base' else n if rule == 'goodluck_n' else int(n > 0)
 
 
 def slow(u):
@@ -499,7 +524,8 @@ def _speed(unit):
     g = unit.get('grapple')
     if g is not None and g['health'] > 0 and unit['health'] > 0:
         return 0
-    return max(0, unit['speed'] + unit.get('hasted', 0) - slow(unit) - (2 if pc_wounded(unit) else 0))
+    hasted = unit.get('hasted', 0) if T.HASTED_RULE == 'base' else 0
+    return max(0, unit['speed'] + hasted - slow(unit) - (2 if pc_wounded(unit) else 0))
 
 
 def move_approach(unit, target, reach):
