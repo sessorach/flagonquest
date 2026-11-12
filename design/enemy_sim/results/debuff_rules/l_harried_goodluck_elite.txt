@@ -1,0 +1,11 @@
+Level 2, +0 Slots, 200 days a mix (1600 a carrier); base days lost 40.8%. Saved: points of days lost the investment takes off (higher is better), averaged over every carrier who can take it; per XP divides by its cost.
+
+| Investment | XP | Carriers | Days-lost points saved | Per XP | Health left after fight 2 | Best carrier |
+|---|---|---|---|---|---|---|
+| Acrobatics +1 (Accuracy) | 4.7 | 13 | +10.4 | +2.23 | +2.9 | Carrick (L2) +26.4 |
+| Melee +1 (Accuracy) | 4.2 | 5 | +7.4 | +1.76 | +3.4 | Browndog (L2) +14.9 |
+| Brawl +1 (Accuracy) | 4.7 | 9 | +7.3 | +1.57 | +2.4 | Hanforth (L2) +12.6 |
+| Sorcery +1 (Accuracy) | 5.0 | 2 | +5.3 | +1.07 | +1.5 | Beornhard (L2) +5.4 |
+| Archery +1 (Accuracy) | 5.0 | 3 | +2.3 | +0.46 | +1.7 | Sable (L2, proposed) +2.9 |
+| Battle Maneuver L2: Harrying x6 (Harried) | 6.0 | 30 | -0.2 | -0.04 | -0.1 | Carrick (L2) +1.6 |
+| Battle Maneuver L1: Harrying x3 (Harried) | 3.0 | 32 | -0.3 | -0.11 | -0.1 | Carrick (L2) +1.6 |

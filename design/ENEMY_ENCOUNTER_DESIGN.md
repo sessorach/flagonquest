@@ -5477,3 +5477,96 @@ Bleeding 3 or Protected 3; Crippled 6 is 21 stack-turns, about 3.4.
    +2.84 against 5.5 (`effect_check.py -e hasted -n 300 -m 1.75 -s
    "PARTY_TACTIC='hold the line'"`). So about half its price when the
    party stays together, nothing when the fast one runs ahead.
+
+**Luck in place of minus numbers** (designer, 2026-11-12: Crippled as
+Bad Luck on attacks, Harried and Vulnerable as Good Luck for the
+attacker, Hasted as a free move; Slowed stays; no effect borrows
+another's job). All behind `CRIPPLED_RULE`, `HARRIED_RULE`,
+`VULNERABLE_RULE`, `HASTED_RULE`, default 'base'; results in
+`results/debuff_rules/l_*` and `le_*`.
+
+Health saved a fight, party average (`effect_check.py --day --extra 1
+-n 300`; Hasted `-n 300 -m 1.75`). Columns: 1, 2, 4 stacks on the
+carrier's first hit (Hasted: first turn), then 1 stack on every hit
+(every turn).
+
+| Effect, rule | 1 | 2 | 4 | 1 every hit |
+|---|---|---|---|---|
+| Crippled, −1 a stack (now) | 0.30 ± 0.05 | 0.92 | 2.23 | 1.47 |
+| Crippled, Bad Luck while any stacks | 0.65 ± 0.18 | 1.49 | 2.19 | 3.39 |
+| Crippled, Bad Luck, an attack spends a stack | 0.56 ± 0.18 | 1.37 | 2.05 | 3.20 |
+| Harried, −1 a stack (now) | 0.83 ± 0.18 | 1.32 | 2.61 | 1.86 |
+| Harried, Good Luck while any stacks | 0 | 0 | 0 | 0 |
+| Harried, Good Luck once a stack | 1.04 ± 0.32 | 2.03 | 2.42 | 1.64 |
+| Vulnerable, −1 a stack (now) | 1.46 ± 0.25 | 2.65 | 6.56 | 4.77 |
+| Vulnerable, Good Luck while any stacks | 3.19 ± 0.40 | 4.28 | 5.99 | 9.07 |
+| Hasted, +1 Speed a stack (now), as built | −0.19 ± 0.14 | −0.14 | 0.46 | 1.56 |
+| Hasted, first move free, as built | 0.50 ± 0.27 | 0.72 | 1.30 | 2.41 |
+| Hasted, +1 Speed, hold the line | 0.43 ± 0.22 | 1.02 | 2.84 | 2.91 |
+| Hasted, first move free, hold the line | 2.44 ± 0.43 | 2.48 | 2.83 | 3.88 |
+
+Days benchmark (`xp_investments.py -L 2 -n 200`, points of days lost
+saved a XP, Level 1 / Level 2 maneuver, each ± 0.1):
+
+| Test | now | Bad Luck | Bad Luck, spent |
+|---|---|---|---|
+| Wing Clip, crowd | 0.06 / 0.12 | about 0 | −0.07 / −0.02 |
+| Wing Clip, Ogre mix | 0.35 / 0.43 | 0.34 / 0.25 | 0.39 / 0.26 |
+| Wing Clip, Ogre, plays around it | 0.81 / 1.24 | 0.44 / 0.52 | 0.50 / 0.56 |
+
+| Test | now | Good Luck, any | Good Luck a stack |
+|---|---|---|---|
+| Harrying, crowd | 0.28 / 0.23 | −0.22 / −0.10 | 0.26 / 0.23 |
+| Harrying, Ogre mix | 0.40 / 0.34 | −0.11 / −0.04 | 0.40 / 0.28 |
+| Base days lost, crowd | 26.5% | 26.3% | 26.6% |
+| Base days lost, Ogre mix | 38.4% | 40.8% | 35.4% |
+
+What it shows:
+
+- *Crippled as Bad Luck.* One stack is worth twice what it is now, four
+  stacks the same: the first stack does the work and more stacks only
+  add turns. So "Crippled 1 on a hit" becomes a fair small rider (0.65
+  Health, against about 1 for a stack of Bleeding or Protected), and
+  1 on every hit is 3.4 against 1.5. Wing Clip as written (X + [Clubs]
+  stacks in one hit) gains nothing, and loses against the Ogre played
+  around, where today's big stacks zero its attacks. Having an attack
+  spend the stack tests the same as the plain version, so the plain
+  one wins: no new rule.
+- *Harried.* "Good Luck while any stacks" makes every Harried effect
+  worth nothing, since any attack already gives a stack. Good Luck once
+  a stack is worth what −1 a stack is now, on both tests, and the game
+  around it barely moves (the Ogre mix gets 3 points easier). The cost
+  is at the table: three attacks into one enemy means the third flips
+  three cards.
+- *Vulnerable as Good Luck.* One stack doubles (3.2 against 1.5), four
+  stacks match. Same shape as Crippled: one stack is the effect, more
+  is duration.
+- *Hasted as a free first move.* Positive as built (0.5 against −0.2)
+  and 2.4 when the party holds the line, and nearly flat in stacks, so
+  it reads as "a free move a turn for N turns". Only the melee
+  characters get anything from it. 0.55 a stack is too cheap for this
+  version; about 1.5 for the first stack and 0.3 for each more fits
+  the table.
+- *Slowed* unchanged, per the designer; priced low as a tool (0.55 a
+  stack from proposal 1 still stands).
+
+Drafted text, if adopted (nothing changed in glossary.md):
+
+- Crippled [Fleeting]: "You have Bad Luck on attacks."
+- Vulnerable [Fleeting]: "Attacks against your Vital, Mental or
+  Vigilant Defense have Good Luck."
+- Harried [Fleeting]: "Attacks against your Dodge or Parry have Good
+  Luck once for each stack. Remove all stacks at the end of your turn."
+  Or leave Harried as −1 a stack: it's the one where the number is the
+  point, and it tests the same.
+- Hasted [Fleeting]: "The first time you move on your turn, it costs
+  1 AP less."
+
+Adopting Crippled and Vulnerable means every source gives fewer stacks:
+Wing Clip something like "Crippled 1 + [Clubs]" with X buying something
+else, or Crippled 1 as a cheap rider on other Features; Corrupting the
+same. The weights become a first-stack price plus a small one for each
+more (Crippled about 1 + 0.5, Vulnerable about 3 + 1 at this party's
+1.5 attacks into the target), and the enemy Abilities that give
+Crippled need the same pass. The sim's luck rules apply to PCs and
+enemies alike; Hasted's free move is PCs only so far.

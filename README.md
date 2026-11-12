@@ -13,9 +13,9 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-11-12 — Where Crippled and Slowed pay
+### 2026-11-12 — Where Crippled and Slowed pay, and luck instead of minus numbers
 
-Tested Crippled and Slowed against mixed enemy groups and different party targeting: they do little against a crowd of small enemies and as much as a skill rank against one big enemy when the party plays around them. Wrote up two proposals for the designer: two stacks a Feature point, and Techniques at 2 XP a Level.
+Tested Crippled and Slowed against mixed enemy groups: they do little against a crowd of small enemies and as much as a skill rank against one big enemy when the party plays around them. Then tried the designer's simpler versions: Crippled as Bad Luck and Vulnerable as Good Luck make one stack worth twice as much, and Hasted as a free first move works where +1 Speed didn't; all still proposals.
 
 ### 2026-11-11 — Debuffs pushed to the limit, and a tidier simulator
 
