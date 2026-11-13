@@ -5485,8 +5485,14 @@ another's job). All behind `CRIPPLED_RULE`, `HARRIED_RULE`,
 `VULNERABLE_RULE`, `HASTED_RULE`, default 'base'; results in
 `results/debuff_rules/l_*` and `le_*`.
 
-Health saved a fight, party average (`effect_check.py --day --extra 1
--n 300`; Hasted `-n 300 -m 1.75`). Columns: 1, 2, 4 stacks on the
+Measured Value (THE TABEL's unit: 1 = +1 to a flip, Health 4), party
+average (`effect_check.py --day --extra 1 -n 300`; Hasted `-n 300 -m
+1.75`). Not Health: divide by 4 for that. The Crippled, Harried and
+Vulnerable rows are a day of two fights, about 1.95 applications, so
+halve them for one application; Hasted's are one fight, one
+application. THE TABEL's price for one application: Crippled 1.5 / 4.5
+/ 15 for 1 / 2 / 4 stacks, Harried 1 / 2 / 4, Vulnerable 1 / 3 / 10,
+Hasted 0.55 / 1.65 / 5.5. Columns: 1, 2, 4 stacks on the
 carrier's first hit (Hasted: first turn), then 1 stack on every hit
 (every turn).
 
@@ -5525,9 +5531,10 @@ What it shows:
 
 - *Crippled as Bad Luck.* One stack is worth twice what it is now, four
   stacks the same: the first stack does the work and more stacks only
-  add turns. So "Crippled 1 on a hit" becomes a fair small rider (0.65
-  Health, against about 1 for a stack of Bleeding or Protected), and
-  1 on every hit is 3.4 against 1.5. Wing Clip as written (X + [Clubs]
+  add turns. One application of Crippled 1 is 0.33 Value against 0.15 now
+  (THE TABEL prices it 1.5; a stack of Bleeding measures 2.4, Protected
+  1.1, both Average), so it's a small rider, not a headline effect;
+  1 on every hit is 3.4 a day against 1.5. Wing Clip as written (X + [Clubs]
   stacks in one hit) gains nothing, and loses against the Ogre played
   around, where today's big stacks zero its attacks. Having an attack
   spend the stack tests the same as the plain version, so the plain
@@ -5538,8 +5545,8 @@ What it shows:
   around it barely moves (the Ogre mix gets 3 points easier). The cost
   is at the table: three attacks into one enemy means the third flips
   three cards.
-- *Vulnerable as Good Luck.* One stack doubles (3.2 against 1.5), four
-  stacks match. Same shape as Crippled: one stack is the effect, more
+- *Vulnerable as Good Luck.* One stack doubles (1.65 Value an application
+  against 0.76; THE TABEL's 1), four stacks match. Same shape as Crippled: one stack is the effect, more
   is duration.
 - *Hasted as a free first move.* Positive as built (0.5 against −0.2)
   and 2.4 when the party holds the line, and nearly flat in stacks, so
@@ -5566,7 +5573,7 @@ Adopting Crippled and Vulnerable means every source gives fewer stacks:
 Wing Clip something like "Crippled 1 + [Clubs]" with X buying something
 else, or Crippled 1 as a cheap rider on other Features; Corrupting the
 same. The weights become a first-stack price plus a small one for each
-more (Crippled about 1 + 0.5, Vulnerable about 3 + 1 at this party's
-1.5 attacks into the target), and the enemy Abilities that give
+more (an application: Crippled about 0.35 + 0.2 in this crowd test, where
+it pays worst; Vulnerable about 1.6 + 0.5), and the enemy Abilities that give
 Crippled need the same pass. The sim's luck rules apply to PCs and
 enemies alike; Hasted's free move is PCs only so far.
