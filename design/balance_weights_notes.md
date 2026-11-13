@@ -11237,3 +11237,102 @@ the Target). Target 10 → 9, Net +1 for a Brawl user; a Melee user is
 unchanged at Net 0. Left at +1. Beornhard and Hanforth both carry one
 with Brawl and no Melee, though neither fights with it in the sim. The
 Character Sheet now reads an "X or Y" Skill as the higher of the two.
+
+## The base stats measured from scratch, against the table (2026-11-13)
+
+The designer asked for the table rebuilt from base assumptions.
+`tools/stat_ladder.py` changes one number on a built character (or on
+all four, or on every enemy) and plays the same two-fight days as the
+untouched party, on the same shuffles. Every PC of every middle party
+at Levels 1-3 takes a turn as the carrier, 200 days a mix, on-level and
+on a hard day (one more standard attacker in each encounter). The score
+is the party's Health left after the day's second fight, 0 for a lost
+day; days lost is kept beside it as a second measure. Results are in
+`enemy_sim/results/stat_ladder/`. A test that changes nothing scores
+exactly 0, "enemies −1 Accuracy" equals "every PC +1 to every Defense"
+to the digit, and a second set of shuffles (`_s7`) agrees with the
+first within two standard errors on every row.
+
+### The fight the table assumes is the hard day
+
+| Per PC, per fight | Table | On-level L1 / L2 / L3 | Hard day L1 / L2 / L3 |
+|---|---|---|---|
+| Rounds | 5 | 6.0 / 4.6 / 5.2 | 8.5 / 7.0 / 7.7 |
+| Attacks made | 6.25 | 4.7 / 3.7 / 4.4 | 6.3 / 5.5 / 6.0 |
+| Attacks received | 3.75 | 2.4 / 1.7 / 2.1 | 4.3 / 3.3 / 4.3 |
+| Hits taken | 1.875 | 0.9 / 1.0 / 1.0 | 1.7 / 1.9 / 2.3 |
+| Health left after the day / days lost | | 28-31 / 6-10% | 13-21 / 27-53% |
+
+The table's baseline attack and hit counts match the hard day, with
+more rounds. An on-level day has about two-thirds of the attacks and
+half the hits.
+
+### In table units (one Accuracy flip = 1)
+
+A permanent +1 Accuracy is one unit per attack made, so each row is
+divided by that PC's measured +1 Accuracy per attack. First number of
+each pair is by Health left, second by days lost; ranges run over the
+three Levels.
+
+| | Table | On-level | Hard day | Verdict |
+|---|---|---|---|---|
+| Damage +1, per attack | 2 | 2.1-2.5 / 1.9-2.4 | 2.5-2.8 / 2.4-2.8 | Holds; nearer 2.5 when fights run long |
+| Second point of Damage | 2 | 1.3-1.9 / 0.9-1.5 | 1.9-2.5 / 1.7-2.3 | Holds on a hard day; overkill trims it on-level |
+| Second and third point of Accuracy | 1 | 0.8-0.9, 0.7-0.8 | 1.1, 0.8-1.2 | Holds |
+| Good Luck on one attack | 2.4 | 2.2-3.4 / 2.1-2.6 | 2.4-4.2 / 2.3-3.5 | Holds as a floor |
+| One extra attack | 5.5 | 2.9-4.2 / 1.7-3.4 | 4.7-5.4 / 4.1-4.5 | Holds on a hard day, a third high on-level |
+| Parry and Dodge +1, per attack received | 1 | 1.3-2.6 / 1.1-2.2 | 1.2-2.0 / 1.0-1.9 | Low at Levels 1 and 3, right at Level 2 |
+| Vital, Mental, Vigilant +1 | 1 each | about 0 | about 0 | Nothing in the manual attacks them often |
+| Physical Resist +1, per fight | 5 | 4.9-5.9 / 3.5-3.7 | 6.4-8.0 / 5.5-6.6 | Holds; per hit taken it's 3.4-5.9 against the 4 assumed |
+| Elemental Resist +1 (all four types), per fight | 2.5 | 1.4-4.4 / 1.0-2.9 | 2.9-6.0 / 2.6-5.6 | Swings with the enemy list; high at Level 2 |
+| Max Health +1, per fight | 4 | 5.8-8.1 / 0.5-0.9 | 3.2-4.7 / 1.1-1.3 | Depends on the measure (below) |
+| Shallow Health +1, per fight | 5 | 6.1-8.4 / 1.1-1.8 | 4.0-5.4 / 2.1-2.5 | Worth more than plain Health on both measures, as priced |
+| Speed +1, per fight | 2.54 | 0.3-1.9 / 0.4-2.3 | 0.7-1.1 / 0.8-1.1 | High; about 1 |
+| Reflex +1, per fight | 1.35 a place | 1.1-2.5 / 0.4-1.9 | 1.2-2.2 / 0.6-2.0 | Consistent; worth most at Level 3 |
+| Hand size +1, per fight | 2.7 a card | 2.0-3.4 / 1.9-2.9 | 3.0-4.5 / 3.0-3.8 | Holds |
+
+### What holds
+
+- **Damage is two Accuracy.** The gambling trade is fair on-level and
+  slightly favours Damage on a hard day (2.5-2.8).
+- **Good Luck, a card, an extra attack and Physical Resist** all land
+  on or near their prices once the fight is as long as the table
+  assumes.
+- **Accuracy is close to linear** out to +3, and −1 costs what +1 gains.
+- **Shallow Health is worth more than plain Health.**
+- **Enemy-side and PC-side changes mirror.** Enemies −1 Accuracy is
+  worth 0.9-1.5 times all four PCs +1 Accuracy.
+
+### What needs another look
+
+- **Health at 4.** The price comes from "a point of enemy Health is a
+  point of your own": Damage 2 ÷ 0.5 hit chance. By Health left on a
+  hard day a point of max Health is 3.2-4.7, which agrees. On-level it
+  reads 6-8 only because the unspent point is counted where it sits.
+  By days lost it's 0.5-1.3 at every size of day, while Damage keeps
+  its 2-2.8. So Health is priced right as "Health you end with" and
+  about four times too high as "days you survive". Taking 1 Health off
+  every enemy saves 4-6 times as many days as adding 1 Health to every
+  PC.
+- **Defense equal to Accuracy.** A point of Parry and Dodge is worth
+  1.2-2.6 flips per attack received at Levels 1 and 3. It's at 1 only
+  at Level 2, where more attacks go at other Defenses or other damage
+  types. Parry carries it at Level 1 (0.67 against Dodge's 0.13); by
+  Level 3 they're even.
+- **Vital, Mental and Vigilant Defense** are worth nothing against the
+  manual as it stands. Either the price for those three drops or the
+  enemies need more attacks that target them.
+- **Permanent Speed at 2.54.** About 1 per fight here and 0.15 in the
+  earlier Average case. Already Pencil; it should come down.
+- **Elemental Resist's share.** The table splits it 2/15 Fire and 1/15
+  each for the rest. The manual's enemies deal more than that at
+  Level 2 (worth nearly as much as Physical Resist there) and less at
+  Level 3.
+- **The baseline fight.** If on-level is the fight to price for, every
+  per-encounter count in the table (6.25 attacks, 1.875 hits, 5
+  rounds) is about a third too big, and anything priced per fight
+  (extra attack, Resist, Speed) comes down with it. If the hard day is
+  the fight to price for, the counts stand.
+
+Not yet tested this way: conditions, Techniques, and AP (the sim sets
+AP for everyone at once).

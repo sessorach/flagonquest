@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-13 — Checking the value table from the ground up
+
+Measured what a point of each base stat is worth by changing it on a character and replaying the same days, then held the results against the balance table. Damage being worth two Accuracy holds, and so do Good Luck, extra attacks and Physical Resist on a hard day; Health, Defense and Speed prices need another look.
+
 ### 2026-11-12 — Where Crippled and Slowed pay, and luck instead of minus numbers
 
 Tested Crippled and Slowed against mixed enemy groups: they do little against a crowd of small enemies and as much as a skill rank against one big enemy when the party plays around them. Then tried the designer's simpler versions: Crippled as Bad Luck and Vulnerable as Good Luck make one stack worth twice as much, and Hasted as a free first move works where +1 Speed didn't; all still proposals.
