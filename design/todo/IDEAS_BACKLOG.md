@@ -257,6 +257,10 @@ cut, not just backfilled at a point in time.
   designer: healing always costs something, and a Style can be sat in
   out of combat to top everyone off. Wellspring (T207) took its place.
 
+- **Beginner's Mind** (downtime Meditation, 2026-11-14) — "make one
+  check with a chosen Skill using your Meditation Skill Total instead."
+  Declined by the designer: no Skill stands in for another.
+
 ## Style coverage by archetype (2026-10-05)
 
 Per the designer: each combat archetype should have a few **early**
