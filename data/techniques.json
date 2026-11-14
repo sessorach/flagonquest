@@ -9872,5 +9872,173 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T208",
+    "name": "Quick Step",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": null,
+    "description": "A hard push off the back foot, and you're somewhere else before anyone has finished deciding what to do about you.",
+    "condition": null,
+    "action": "0 AP",
+    "cost": "Discard a card",
+    "target": null,
+    "effects": "Move up to your Speed. If the discarded card was a Spade, Shift that far instead.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Athletics 2",
+    "relevant_skills": "Athletics",
+    "use_cards": true,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Athletics"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T209",
+    "name": "Roll With It",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": null,
+    "description": "You can't always get out of the way, but you can usually make sure the worst of it lands somewhere that doesn't matter.",
+    "condition": null,
+    "action": "0 AP - Interrupt (an attack is declared against your Dodge or Parry Defense, before cards are flipped)",
+    "cost": "Discard a card",
+    "target": null,
+    "effects": "The attack has Bad Luck.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Acrobatics or Awareness) 2",
+    "relevant_skills": "Acrobatics, Awareness",
+    "use_cards": true,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Acrobatics",
+          "Awareness"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T210",
+    "name": "Shake It Off",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": null,
+    "description": "A deep breath, a roll of the shoulders, and whatever they did to you a moment ago is someone else's problem.",
+    "condition": null,
+    "action": "0 AP",
+    "cost": "Discard a card",
+    "target": null,
+    "effects": "Remove up to 2 stacks of Crippled, Frightened, Slowed, Taunted, or Vulnerable from yourself, or up to 3 if the discarded card was a Club.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Resilience or Composure) 2",
+    "relevant_skills": "Resilience, Composure",
+    "use_cards": true,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Resilience",
+          "Composure"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T211",
+    "name": "Focused Casting",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": null,
+    "description": "For one breath there's nothing in the world but the shape of the working and the place it has to go.",
+    "condition": null,
+    "action": "0 AP - Interrupt (you declare a Spell or Discipline attack)",
+    "cost": "Discard a card",
+    "target": null,
+    "effects": "You have Good Luck on one flip of the attack, then choose one: have Good Luck a second time on that flip; or add the discarded card to the attack's suit pool.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Meditation, Sorcery, or Theurgy) 3",
+    "relevant_skills": "Meditation, Sorcery, Theurgy",
+    "use_cards": true,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation",
+          "Sorcery",
+          "Theurgy"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

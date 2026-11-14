@@ -13,9 +13,9 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-11-14 — Two late Styles for the Theurgist
+### 2026-11-14 — Back to content: two Theurgist Styles and four ways to spend a card
 
-Went back to content: added Warding Circle (Level 3, a Ward each turn for you and nearby allies) and Wellspring (Level 4, your paid heals spill over onto a second ally), which finishes the Styles pass for every archetype.
+Finished the Styles pass with Warding Circle and Wellspring for the Theurgist, then added four cheap Techniques that give any character something to spend a card on: Quick Step (a free move), Roll With It (Bad Luck on an attack against you), Shake It Off (clear debuffs) and Focused Casting (Good Luck on a spell).
 
 ### 2026-11-13 — Checking the value table from the ground up
 

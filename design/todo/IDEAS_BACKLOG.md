@@ -350,10 +350,17 @@ Shugen pass.
 ## More generic card-spending Techniques
 
 Per the designer (2026-09-28): characters should have a couple of ways
-to spend cards even at creation, like Second Wind (0 AP, discard a card,
-heal 1 or 2 on a Heart). Add a few more generic ones at Levels 1-2. All
-of Meditation lacked one as of this note; the Oak review is adding the
-first two (a debuff-clearing card sink and a heal-over-time).
+to spend cards even at creation. Quick Step, Roll With It, Shake It Off
+and Focused Casting went in on 2026-11-14 (movement, defense, debuffs,
+spell attacks). Two more were drafted with them and not taken, still
+usable if a slot wants one:
+
+- **Rallying Shout** (Level 2, (Performance, Presence, or Rapport) 3):
+  1 AP, discard a card; an ally who can hear you gains Protected twice,
+  three times on a Heart. Net about 1.3.
+- **Bear Down** (Level 2, Might 3): 0 AP Interrupt on a weapon hit,
+  discard a card; +1 damage, +2 on a Club. Net about 2.3, the strongest
+  of the six; without the Club bonus about 1.3.
 
 ## Check when reviewing Poison Techniques
 

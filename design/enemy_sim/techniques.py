@@ -581,6 +581,10 @@ def _second_wind(pc, c):
 DEFERRED = {
     "T206": "Warding Circle: a Ward stack a turn for the caster and allies within 3 meters; needs the element picked against the enemies' damage",
     "T207": "Wellspring: a second ally heals 1 Shallow Health per card discarded on a heal",
+    "T208": "Quick Step: a card for a free move (a Shift on a Spade)",
+    "T209": "Roll With It: a card for Bad Luck on an attack against the PC's Dodge or Parry",
+    "T210": "Shake It Off: a card to clear 2 debuff stacks (3 on a Club)",
+    "T211": "Focused Casting: Perfect Strike for Spell and Discipline attacks",
 }
 
 

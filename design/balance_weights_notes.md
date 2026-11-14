@@ -9199,6 +9199,36 @@ fires once a cast, and consumables add nothing. It scales with what's
 paid, not with a Skill or a flip, so it stays inside "prefer a fixed
 payout". Not in the sim yet (`techniques.DEFERRED`).
 
+## Generic card-spending Techniques (2026-11-14)
+
+The designer's ask from 2026-09-28: a couple of ways to spend cards from
+creation. Before this the cheap ones covered weapon attacks (Perfect
+Strike), self-healing (Second Wind) and a few archetype-specific uses.
+Priced like Perfect Strike: the effect's Value less the card (2.7),
+aiming for a small positive net per use (Perfect Strike 0.9, Second
+Wind about 3.5). All four are 0 AP.
+
+- **Quick Step (T208), Level 1, Athletics 2.** Move up to your Speed; a
+  Spade makes it a Shift. A move is 1 AP, 2.75: **net about 0**.
+- **Roll With It (T209), Level 1, (Acrobatics or Awareness) 2.**
+  Interrupt on an attack against your Dodge or Parry, before the flip:
+  it has Bad Luck. Bad Luck 2.2-2.3: **net about −0.4**. Left a bit
+  weak on purpose (designer): it's the only card use on defense and the
+  player picks the attack.
+- **Shake It Off (T210), Level 1, (Resilience or Composure) 2.** Remove
+  2 stacks of Crippled, Frightened, Slowed, Taunted or Vulnerable from
+  yourself, 3 on a Club. Two stacks are 2-3: **net about 0**. No
+  Bleeding: two stacks of that are about 8, better than Second Wind a
+  Level lower, and Lay On Hands clears it at Level 4.
+- **Focused Casting (T211), Level 2, (Meditation, Sorcery or Theurgy)
+  3.** Perfect Strike for Spell and Discipline attacks, on one flip so
+  an area spell doesn't get Good Luck on every target: **net 0.9**.
+
+Drafted and not taken: Rallying Shout (1 AP and a card, an ally gains
+Protected twice) and Bear Down (a card for +1 damage on a hit); both
+are in IDEAS_BACKLOG. None of the four is in the sim yet
+(`techniques.DEFERRED`).
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

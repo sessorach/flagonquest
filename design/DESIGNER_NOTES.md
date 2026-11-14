@@ -133,7 +133,7 @@ list. The full reasoning lives in the originals in
 - **A Technique can name a suit directly** regardless of Skill (Slowed scales with Spades). Otherwise the matching suit is the Skill's. (rulebook, "The Suit Pool")
 - **Card-sharing is a throughline.** Players should want to hand each other cards. The Play rule already allows it on any willing ally's flip; Ritual Magic lets an ally discard to pay your Spell costs. (→ archive RULES_DESIGN, "Card-sharing as a deliberate design throughline")
 - **A patient doesn't spend their own cards on their own healing.** Pressure Point Revitalization keeps that as its one unique trick. (→ archive RULES_DESIGN, "Things considered and deliberately not done")
-- **Characters need a couple of ways to spend cards from creation.** More generic Level 1-2 card sinks like Second Wind (0 AP, discard, heal 1 or 2 on a Heart). (2026-09-28, → archive IDEAS_BACKLOG, "More generic card-spending Techniques")
+- **Characters need a couple of ways to spend cards from creation.** More generic Level 1-2 card sinks like Second Wind (0 AP, discard, heal 1 or 2 on a Heart). (2026-09-28, → archive IDEAS_BACKLOG, "More generic card-spending Techniques") Four generic ones added 2026-11-14 (Quick Step, Roll With It, Shake It Off, Focused Casting); Roll With It is a bit weak on purpose (→ balance_weights_notes, "Generic card-spending Techniques").
 - **Embolden and Bolstered stay cut.** GM rulings cover Taunted/Frightened case by case, and Wounded clears on any healing. Warpath (Level 4 Barbarian Style) is the one place that ignores Taunted, Frightened and Wounded, because a Style is where non-stacking rule-breaks go. (2026-09-28, → archive RULES_DESIGN, "Suits")
 
 ### Character building
