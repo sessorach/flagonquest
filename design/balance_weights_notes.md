@@ -9162,6 +9162,43 @@ on-hit Style. Crippled is 1.5 a stack and builds on a focused target
 **~12.5, ~116%** of 10.8. Hits only would be ~69%. (Acrobatics or
 Archery) 4, Awareness 3. Tagged Archer, Scout.
 
+
+### Warding Circle (T206, new) — Level 3 (2026-11-14)
+
+"At the start of your turn, choose Fire, Frost, Brilliant, or Shadow.
+You and each ally within 3 meters gain that Ward." Aura of Death's
+shape, aimed at your own side; the first Style for the Ward Techniques.
+Target 10.8 (Level 3 × 3.6). Value on the measured Average Ward weights:
+five stacks over a fight is about 3.3 a creature (Fire 4 stacks 3.4,
+the others 2.2, scaled to five), across the caster and about 1.5
+allies in range: **about 8, Net about −3**. On the table's own Ward
+weights (2.0 a stack absorbed plus the Resist part) it's about 29, and
+picking the element each turn pushes it above Average, so under Target
+on Average is where it should sit. It does nothing in a fight with no
+elemental damage. If it plays strong, trim to the caster plus one ally.
+Not in the sim yet (`techniques.DEFERRED`).
+
+### Wellspring (T207, new) — Level 4 (2026-11-14)
+
+"When you discard cards for a Technique that heals, one other ally
+within 3 meters of a creature it heals also heals 1 Shallow Health for
+each card discarded." Target 14.4 (Level 4 × 3.6). A healer discards
+about two to four cards on heals in a fight: +2 to +4 Shallow Health at
+5 a point is **10 to 20, Net about 0**. Two versions were dropped on
+the way, both by the designer:
+
+- A free heal each turn. Healing always costs a resource, and a Style
+  can be sat in out of combat.
+- A flat +1 per heal. A one-card heal gained 80% (1.25 to 2.25) where a
+  four-card heal healing 7 gained 14%, and tick or multi-target heals
+  (Rejuvenate, Sap Seals the Wound, Bolstering Refrain) fired it three
+  or four times a cast.
+
+Per card, every card buys the same bonus whatever the heal's size, it
+fires once a cast, and consumables add nothing. It scales with what's
+paid, not with a Skill or a flip, so it stays inside "prefer a fixed
+payout". Not in the sim yet (`techniques.DEFERRED`).
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

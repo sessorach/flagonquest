@@ -578,7 +578,10 @@ def _second_wind(pc, c):
 # Techniques knowingly not modeled yet, {ID: why} (2026-10-27): a build
 # naming one stops with the reason, the same as an unknown one, but the
 # list says what each would need.
-DEFERRED = {}
+DEFERRED = {
+    "T206": "Warding Circle: a Ward stack a turn for the caster and allies within 3 meters; needs the element picked against the enemies' damage",
+    "T207": "Wellspring: a second ally heals 1 Shallow Health per card discarded on a heal",
+}
 
 
 def get(tid):

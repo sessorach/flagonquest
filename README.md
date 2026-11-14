@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-14 — Two late Styles for the Theurgist
+
+Went back to content: added Warding Circle (Level 3, a Ward each turn for you and nearby allies) and Wellspring (Level 4, your paid heals spill over onto a second ally), which finishes the Styles pass for every archetype.
+
 ### 2026-11-13 — Checking the value table from the ground up
 
 Measured what a point of each base stat is worth by changing it on a character and replaying the same days, then held the results against the balance table. Damage being worth two Accuracy holds, and so do Good Luck, extra attacks and Physical Resist on a hard day; Health, Defense and Speed prices need another look.

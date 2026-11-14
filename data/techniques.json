@@ -9769,5 +9769,108 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T206",
+    "name": "Warding Circle",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Style",
+    "description": "You keep a ward turning around you like a slow wheel, and anyone standing close enough stands inside it.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "At the start of your turn, choose Fire, Frost, Brilliant, or Shadow. You and each ally within 3 meters gain that Ward.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Sorcery or Theurgy) 4, Academics 3",
+    "relevant_skills": "Sorcery, Theurgy, Academics",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Sorcery",
+          "Theurgy"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Academics"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T207",
+    "name": "Wellspring",
+    "level_min": 4,
+    "level_max": 4,
+    "tags": "Style",
+    "description": "The spirits you've tended don't wait to be asked any more. Whatever you give to one of your friends spills over onto the next.",
+    "condition": null,
+    "action": "Passive (Style)",
+    "cost": null,
+    "target": null,
+    "effects": "When you discard cards for a Technique that heals, one other ally within 3 meters of a creature it heals also heals 1 Shallow Health for each card discarded.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "(Medicine, Performance, or Theurgy) 5, Rapport 4",
+    "relevant_skills": "Medicine, Performance, Theurgy, Rapport",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Medicine",
+          "Performance",
+          "Theurgy"
+        ],
+        "threshold": {
+          "base": 5
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Rapport"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

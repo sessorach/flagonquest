@@ -252,6 +252,11 @@ cut, not just backfilled at a point in time.
   is Swatting Paw's payoff made passive, on Inexhaustible Guardian's
   trigger.
 
+- **Healing aura Style** (2026-11-14) — "At the start of your turn, one
+  ally within 3 meters heals 1 Shallow Health." Declined by the
+  designer: healing always costs something, and a Style can be sat in
+  out of combat to top everyone off. Wellspring (T207) took its place.
+
 ## Style coverage by archetype (2026-10-05)
 
 Per the designer: each combat archetype should have a few **early**
@@ -272,9 +277,9 @@ A Style tagged with several archetypes counts for each.
 | Archer | 4 | 2 (Suppressing Fire, Doubleshot) | done for this pass |
 | Barbarian | 3 | 2 (Adrenaline High, Warpath) | — |
 | Sorcerer | 4 | 2 (Pack Leader, Twin Spell) | done for this pass |
-| Theurgist | 3 | 0 | +2 late |
+| Theurgist | 3 | 2 (Warding Circle, Wellspring) | done for this pass |
 | Leader | 4 (Oppressive Presence, Forward!, Lead by Example, Command the Tempo) | 1 (Commander's Gambit) | done for this pass |
-| Healer | 1 (Field Medic) | 1 (Lifeward) | done for this pass |
+| Healer | 1 (Field Medic) | 2 (Lifeward, Wellspring) | done for this pass |
 | Druid | 2 (Forward!, Grasping Earth) | 1 (Pack Leader) | done for this pass |
 | Scout | 2 (Seize the Moment, Lie in Wait) | 1 (Ambush Predator) | done for this pass |
 | Face (combat) | 1 (Intimidating Presence) | 1 (Dread Reputation) | done for this pass |
