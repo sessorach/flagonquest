@@ -319,7 +319,7 @@ list. The full reasoning lives in the originals in
 
 - Presence's suit: Hearts now, Clubs argued. Flagged as the least certain call in the suit table.
 - How far the Ritual Magic "ally pays your cost" pattern spreads beyond Spells.
-- Social Maneuver (T057) and its Features need a redesign for the Pressure system; A Perfectly Good Explanation is unpriced.
+- Favorite Face and Rumormonger are under budget on their social-encounter effect alone (41-57% of a Level 2's 12 a day); whether their out-of-encounter effects cover the rest. Single Out and Upstage are costed by estimate. (→ todo/IDEAS_BACKLOG, "Social Techniques: what's left")
 - Rules that would unlock more Styles: combat Support (Leader), a Hidden keyword (Scout, Rogue; unaware attacks already skip Shallow Health), flanking, per-element Resists on enemies (the GM guide gives every element the same Resist).
 - Elemental Blend (spell element swap): parked for a more interesting idea.
 - A steal-an-item-on-a-melee-hit Technique, maybe a Level 5 capstone.

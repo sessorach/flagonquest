@@ -368,22 +368,20 @@ Old Growth Digs Deep (T165) clears named Common Effects from yourself and should
 touch Poisons. Confirm the Poison rules say only specific effects clear
 a Poison, so a list like its own can't be read as including them.
 
-## Techniques with stale "Social Contest"-era mechanics, need real rework
+## Social Techniques: what's left after the 2026-10-04 rework
 
-Mostly resolved 2026-10-04. Challenge, Cry of Victory and Exert
-Pressure lost their "while in front, on a Charismatic statement"
-Specials: their Presence attack already works in a social encounter,
-and Taunted/Frightened apply to an NPC's Pressure-adding check, which is
-an attack against the party. A Perfectly Good Explanation now prevents
-Pressure instead of Concessions (still unpriced against the Social
-Encounter Baseline). One of Many Faces and Dominate Mind say "Statement"
-instead of "Strategic statement".
+The Social Contest-era wording is gone from every Technique and Feature
+(checked 2026-11-14). Social Maneuver (T057) was rebuilt to modify a
+Statement and its Features were costed against the Social Encounter
+Baseline; A Perfectly Good Explanation was priced per day and left as
+written. Detail: balance_weights_notes.md, "Social Maneuver Features
+priced against the Social Encounter Baseline". Still open, all small:
 
-Still open: **Social Maneuver (T057)** and its Features. Its base
-effect is just a Statement now, and F025 (Charismatic), F028/F029
-(Concessions), F030 (front), F031/F033 (statement types, the other
-party's turn) and F032 (Support already gives Good Luck) are dead. Being
-redesigned.
+- **Single Out and Upstage** are costed by estimate (about 1 point):
+  the Baseline has no opposing Pressure checks to measure them on.
+- **Favorite Face and Rumormonger** are well under a Level 2's 12 a
+  day on their social-encounter effect alone (41-57%); their
+  out-of-encounter effects may make up the rest. The designer's call.
 
 ## Source material to mine: cut FlagonQuest content in `archive/`
 
