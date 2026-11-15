@@ -273,6 +273,13 @@ cut, not just backfilled at a point in time.
   "Empty the Cup" half (shed an effect altering your thoughts or
   feelings) was never drafted further.
 
+- **Haggle** (Persuasion, 2026-11-15) — a check to shift a price.
+  Declined by the designer: the only way players move the gold economy
+  is crafting.
+- **Talk Them Down** (Persuasion, 2026-11-15) — 2 AP against Vigilant
+  Defense to make a creature hesitate in a fight. Declined: Presence is
+  the talking Skill in combat; Persuasion stays largely out of it.
+
 ## Style coverage by archetype (2026-10-05)
 
 Per the designer: each combat archetype should have a few **early**

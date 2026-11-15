@@ -184,6 +184,8 @@ Each Skill has a closely guarded core and some fuzzy edges (designer, 2026-11-15
 | Theurgy | Indirect and spirit magic (penciled) | Identifying magic effects of any origin, shared with Sorcery |
 
 - **Meditation outside a fight is the weird one** (designer, 2026-11-15). Mastery of your own body and spirit, and beyond that the esoteric: tapping into a larger weave of energy that the user grasps only by intuition. Walk Without Footprints is the direction. It never finds, senses or knows things; those belong to other Skills. It needs more Techniques drafted to fill it out.
+- **Presence is the talking Skill in a fight** (designer, 2026-11-15): Taunt and Frighten and alternatives to them. Persuasion and Rapport are largely out of combat, each with its own uses; a mostly social Technique can still be expended for a minor effect in a fight, the way Challenge works the other way round.
+- **No haggling.** (designer, 2026-11-15) Players change what things cost them only through crafting: loot turned into materials makes items cheaper than buying them. Nothing else moves prices.
 - **The thinnest Skills are the ones to protect:** Persuasion has 1 Technique, Masquerade 4, Streetwise 5, Stealth 7, against Brawl's 42. New out-of-combat ideas should mostly land there.
 - **Rulebook wording brought into line 2026-11-15:** Athletics no longer says "raw strength", and Stealth names sleight of hand. Might's description still doesn't mention breaking or shoving things.
 
