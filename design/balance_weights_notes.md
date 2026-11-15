@@ -9302,6 +9302,34 @@ conversation: a story effect's Level is set by comparison with existing
 Techniques, since the narrative-utility convention (a third of Target)
 comes out under Target at any Level and can't confirm one.
 
+## Persuasion's standalone Techniques (2026-11-15)
+
+Three that don't modify a single Statement (that's Social Maneuver's
+job). Levels on the two story effects are by comparison.
+
+- **Stall (T216), Level 1, Persuasion 2, passive.** A Persuasion attack
+  against Vigilant Defense keeps a non-hostile creature talking for up
+  to [Persuasion Skill Total] minutes, with Bad Luck to notice anything
+  else; once per creature per scene. Worded like Distraction (Stealth,
+  Level 1) so both run the same way; this lasts minutes and you stand
+  there in plain view. Passive, not AP, per the designer.
+- **Cover Story (T217), Level 2, Persuasion 3, 10 minutes.** The
+  party's tellings never contradict, and the first Pressure from the
+  story each social encounter is prevented. Preventing 1 Pressure once
+  is +26.15pp in the social model: 9.4 to 13 a day at the two anchors
+  (0.36 and 0.5 a point) against a Level 2's 12. **On Target** where
+  the story is under strain, nothing otherwise. The first draft gave
+  Good Luck on every telling; the designer wanted it to stop the party
+  slipping up instead. Kept independent of Straight Face.
+- **The Long Con (T218), Level 3, Persuasion 4 and Insight 3,
+  passive.** A Persuasion lie believed for a full day is settled fact
+  until the target is shown proof. Beside Social Maneuver's Resolution
+  effects. No limit on how many lies (designer: not worried about the
+  bookkeeping). Masquerade disguises don't count.
+
+Left as seeds in IDEAS_BACKLOG: In Writing, Benefit of the Doubt,
+Holding You to That.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

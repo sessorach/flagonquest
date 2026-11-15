@@ -13,9 +13,13 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-11-15 — What each Skill is for, and three odd things Meditation can do
+### 2026-11-15 — What each Skill is for, with new Techniques for Meditation and Persuasion
 
-Wrote down a guarded core for every Skill so new Techniques land in the right one, and fixed the Athletics and Stealth descriptions to match. Meditation got its out-of-combat identity and three Level 1-3 Techniques to go with it: Walk Without Footprints (send a visible image of yourself to talk at a distance), Still as Stone (a trance that passes for death) and Thread Between Us (two people who feel when the other is hurt).
+Wrote down a guarded core for every Skill so new Techniques land in the right one, then started filling the thinnest Skills. Meditation got an out-of-combat identity and three odd Techniques; Persuasion, which had almost nothing of its own, got four Techniques and two Social Maneuver Features.
+
+- Meditation: Walk Without Footprints (send a visible image of yourself to talk at a distance), Still as Stone (a trance that passes for death), Thread Between Us (two people who feel when the other is hurt), and Minor Oracle can now be done with it.
+- Persuasion: Straight Face, Stall, Cover Story and The Long Con, plus Foot in the Door and Plant the Idea as Social Maneuver Features.
+- Fixed the Athletics and Stealth descriptions to match their identities.
 
 ### 2026-11-14 — Back to content: two Theurgist Styles and four ways to spend a card
 

@@ -10223,5 +10223,137 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T216",
+    "name": "Stall",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Social",
+    "description": "It doesn't matter what you're saying, as long as you haven't quite finished saying it.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "You may stall a creature that can hear and understand you and isn't hostile to you. Make a Persuasion attack against its Vigilant Defense. If it hits, the target stays in conversation with you for up to [Persuasion Skill Total] minutes, as long as you keep talking, and has Bad Luck on flips to notice anything else. This ends early if the target is threatened. You can only try this on a given creature once per scene.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Persuasion 2",
+    "relevant_skills": "Persuasion",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Persuasion"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T217",
+    "name": "Cover Story",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Social",
+    "description": "\"We were at the Gilded Hen all night. You had the fish. You hated the fish.\"",
+    "condition": null,
+    "action": "10 minutes",
+    "cost": null,
+    "target": "Up to [half your Persuasion Skill Total] willing allies",
+    "effects": "You and the targets agree on a story. Until your next full night's rest, your tellings of it never contradict each other, even when you're questioned apart. The first time in each social encounter that your party would gain Pressure from the story, it doesn't.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Persuasion 3",
+    "relevant_skills": "Persuasion",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Persuasion"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T218",
+    "name": "The Long Con",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Social",
+    "description": "A lie is only a lie for the first day. After that it's just something everybody knows.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "When a creature has believed one of your Persuasion lies for a full day, it becomes settled fact to them. They don't question it until they are shown proof.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Persuasion 4, Insight 3",
+    "relevant_skills": "Persuasion, Insight",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Persuasion"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

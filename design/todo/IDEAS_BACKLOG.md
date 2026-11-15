@@ -370,6 +370,19 @@ effects of extreme heat and cold, and hold your breath for [Skill
 Total] minutes"); it belongs to Resilience, as a passive. Level 1,
 Resilience 2 or so. Not drafted in that form yet.
 
+## Persuasion seeds not yet drafted (2026-11-15)
+
+Standalone ideas the designer didn't pick in the first batch (Stall,
+Cover Story and The Long Con went in):
+
+- **In Writing** (Level 2): a letter makes one Persuasion check or
+  Statement for you when it's read, at your Skill Total.
+- **Benefit of the Doubt** (Level 1): Good Luck on your first Persuasion
+  check against a stranger. Close to Favorite Face's Rapport version.
+- **Holding You to That** (Level 3): someone who agrees after you win a
+  social encounter won't go back on it unless their circumstances
+  change.
+
 ## Downtime Meditation Techniques
 
 Meditation Techniques that aren't martial: meditate for ten minutes or
