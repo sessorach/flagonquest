@@ -13,9 +13,9 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-11-15 — A spirit walk for talking at a distance
+### 2026-11-15 — What each Skill is for, and three odd things Meditation can do
 
-Added Walk Without Footprints, a Level 3 meditation that sends a visible image of you to a friend or a place you've rested so you can talk there, and wrote down two standing rules that shaped it: no Skill stands in for another, and nothing should hand out what the scouting Skills do.
+Wrote down a guarded core for every Skill so new Techniques land in the right one, and fixed the Athletics and Stealth descriptions to match. Meditation got its out-of-combat identity and three Level 1-3 Techniques to go with it: Walk Without Footprints (send a visible image of yourself to talk at a distance), Still as Stone (a trance that passes for death) and Thread Between Us (two people who feel when the other is hurt).
 
 ### 2026-11-14 — Back to content: two Theurgist Styles and four ways to spend a card
 

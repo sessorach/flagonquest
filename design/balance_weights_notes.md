@@ -9255,6 +9255,21 @@ Distant Scroll Cases (Level 2, any distance, objects). This is the only
 one with sight and a face-to-face talk at any distance, and it costs
 the use of your body while it lasts.
 
+## Still as Stone and Thread Between Us (T213, T214, new) — Level 1 (2026-11-15)
+
+Two more downtime Meditation Techniques, both 10 minutes and free. Per
+the designer both are niche on purpose: fun to have in the rules for
+whoever finds a use, so Level 1. Each is Target 3, Value 1 by the
+narrative-utility convention, **Net −2**.
+
+- **Still as Stone:** a trance with no breath, warmth or pulse; you hear
+  but can't see or move; a Medicine check at 10 + [Meditation Skill
+  Total] tells you're alive (the designer raised it from 7).
+- **Thread Between Us:** you and a willing creature feel it when the
+  other loses Health or is Downed, with a vague sense of direction and
+  of distance to the nearest step of 1, 10, 100 or 1,000 meters (the
+  designer's addition). One bond at a time.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

@@ -10090,5 +10090,96 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T213",
+    "name": "Still as Stone",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Discipline",
+    "description": "The breath slows, then stops, and the monk goes on sitting there, patient as a headstone.",
+    "condition": null,
+    "action": "10 minutes",
+    "cost": null,
+    "target": null,
+    "effects": "You enter a trance that lasts until you end it or you lose Health. While in it you have no breath, warmth, or pulse, and you don't need air, food, or water. You can hear what happens around you, but you can't see or move. Anyone examining you believes you are dead, unless they succeed on a Medicine check with a difficulty of 10 + [Meditation Skill Total].",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 2",
+    "relevant_skills": "Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T214",
+    "name": "Thread Between Us",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Discipline",
+    "description": "You can't say where the thread runs or what it's made of, only that when it's pulled, you feel it.",
+    "condition": null,
+    "action": "10 minutes",
+    "cost": null,
+    "target": "A willing creature you are touching",
+    "effects": "Until your next full night's rest, you and the target each feel it when the other loses Health or is Downed, at any distance. Each of you also has a vague sense of which way the other is and how far, to the nearest step of 1, 10, 100, or 1,000 meters: \"that way, somewhere between 100 and 1,000 meters\". You may only have one such bond at a time.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 2, Rapport 1",
+    "relevant_skills": "Meditation, Rapport",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Rapport"
+        ],
+        "threshold": {
+          "base": 1
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
