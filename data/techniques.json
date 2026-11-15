@@ -10578,5 +10578,46 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T224",
+    "name": "Ear to the Ground",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Social",
+    "description": "Every city talks to itself all day long. You've just learned which corners to stand on.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "When you Search a settlement, you may look for a specific person, or for someone who deals in a kind of goods or work, by asking around for an hour. On a success you learn where to find them. For each Extra Success, choose one: you learn whether anyone else has been asking about them, and who; you learn the name of someone they trust or answer to; you learn where they will be at a time you name; word of your asking doesn't get back to them.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Streetwise 3",
+    "relevant_skills": "Streetwise",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Streetwise"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

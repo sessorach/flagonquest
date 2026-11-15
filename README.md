@@ -20,7 +20,7 @@ Wrote down a guarded core for every Skill so new Techniques land in the right on
 - Meditation: Walk Without Footprints (send a visible image of yourself to talk at a distance), Still as Stone (a trance that passes for death), Thread Between Us (two people who feel when the other is hurt), and Minor Oracle can now be done with it.
 - Persuasion: Straight Face, Stall, Cover Story and The Long Con, plus Foot in the Door and Plant the Idea as Social Maneuver Features.
 - Masquerade: Dead Ringer, for passing as a real, specific person, and Wear It Well, which makes a prepared disguise quick to put on and hard to slip out of.
-- Streetwise: Read the Room, I Know a Guy and Safe House, for the people side of a city.
+- Streetwise: Read the Room, I Know a Guy, Safe House and Ear to the Ground, for the people side of a city.
 - Fixed the Athletics and Stealth descriptions to match their identities.
 
 ### 2026-11-14 — Back to content: two Theurgist Styles and four ways to spend a card

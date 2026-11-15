@@ -9371,6 +9371,19 @@ comparison.
   a place to lie low for the party, and Bad Luck for anyone searching
   the settlement for someone hiding there.
 
+## Streetwise: Ear to the Ground (T224, new) — Level 2 (2026-11-15)
+
+Search a settlement for a specific person, or for someone who deals in
+a kind of goods or work, by asking around for an hour. A success gives
+where to find them; each Extra Success buys one of: who else has been
+asking, someone they trust or answer to, where they'll be at a named
+time, or word of your asking not getting back to them. The first draft
+copied Wisdom of the Woods (Good Luck to Search, in a settlement); the
+designer didn't want Streetwise mirroring Survival, so the Good Luck
+went and it works through people. The pick-list follows Analyze
+Stance's pattern and is the designer's ask for Extra Successes to
+scale it. A story effect, Level 2 beside Wisdom of the Woods.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

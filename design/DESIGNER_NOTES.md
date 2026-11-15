@@ -170,8 +170,8 @@ Each Skill has a closely guarded core and some fuzzy edges (designer, 2026-11-15
 | Insight | Reading motives and the sixth sense, noticing an ambush coming to you (jumped in a tavern); Reflex; Vigilant Defense | |
 | Masquerade | Being someone else: disguise, acting in character | Blending into a street crowd, if you have a disguise or a way to blend in; shared with Stealth |
 | Persuasion | Convincing someone of what you're saying, true or not | |
-| Streetwise | Survival for cities: finding people and trails there, knowing who to talk to | |
-| Survival | The wilderness: finding and following tracks (core), foraging, reading the land | |
+| Streetwise | Survival for cities, working through people: who knows whom, who owes whom, who runs what. Finds things by asking around, which leaves ripples; builds contacts, favors and a reputation | |
+| Survival | The wilderness, working from the land: finding and following tracks (core), foraging, terrain, weather, plants and animals. Alone and quiet, from signs left behind; builds knowledge of a region | |
 | Academics | Book learning, and recall no other Skill covers (penciled) | |
 | Composure | Resisting fear, compulsion and manipulation; Mental Defense; staying power in a social encounter (penciled) | |
 | Craft | Making and manipulating objects: locks, traps, mechanisms. Working a lock open without breaking it is Craft, not Stealth | |
@@ -186,6 +186,7 @@ Each Skill has a closely guarded core and some fuzzy edges (designer, 2026-11-15
 - **Meditation outside a fight is the weird one** (designer, 2026-11-15). Mastery of your own body and spirit, and beyond that the esoteric: tapping into a larger weave of energy that the user grasps only by intuition. Walk Without Footprints is the direction. It never finds, senses or knows things; those belong to other Skills. It needs more Techniques drafted to fill it out.
 - **Presence is the talking Skill in a fight** (designer, 2026-11-15): Taunt and Frighten and alternatives to them. Persuasion and Rapport are largely out of combat, each with its own uses; a mostly social Technique can still be expended for a minor effect in a fight, the way Challenge works the other way round.
 - **No haggling.** (designer, 2026-11-15) Players change what things cost them only through crafting: loot turned into materials makes items cheaper than buying them. Nothing else moves prices.
+- **Survival and Streetwise shouldn't mirror each other** (designer, 2026-11-15). Same job in different places, but Survival reads the land and Streetwise reads people, so a Streetwise Technique shouldn't be a Survival one with the nouns changed. Ear to the Ground was first drafted as Wisdom of the Woods for cities and was rebuilt around asking around.
 - **The thinnest Skills are the ones to protect:** Persuasion has 1 Technique, Masquerade 4, Streetwise 5, Stealth 7, against Brawl's 42. New out-of-combat ideas should mostly land there.
 - **Rulebook wording brought into line 2026-11-15:** Athletics no longer says "raw strength", and Stealth names sleight of hand. Might's description still doesn't mention breaking or shoving things.
 
