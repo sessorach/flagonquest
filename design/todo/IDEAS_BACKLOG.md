@@ -383,6 +383,19 @@ Cover Story and The Long Con went in):
   social encounter won't go back on it unless their circumstances
   change.
 
+## Masquerade seeds not yet drafted (2026-11-15)
+
+Dead Ringer and Wear It Well went in. Left over:
+
+- **Borrowed Authority** (Level 3): disguised as someone with rank,
+  each person who answers to that rank follows your first order to them
+  without a check. Needs that tight a trigger to stay easy to rule on.
+- **Understudy** (Level 2): disguise a willing ally with your own
+  Masquerade check for their appearance; acting the part is still
+  theirs. Bends "no Skill stands in for another" a little; the
+  designer hasn't ruled on it.
+- **A floor on the disguise flip** (treat a card under 7 as a 7).
+
 ## Downtime Meditation Techniques
 
 Meditation Techniques that aren't martial: meditate for ten minutes or

@@ -9341,6 +9341,18 @@ the step between Practiced Persona (1) and One of Many Faces (4).
 Face in the Crowd (Good Luck to blend into a crowd) was dropped: a
 fitting Practiced Persona and One of Many Faces already cover it.
 
+## Masquerade: Wear It Well (T220, new) — Level 2 (2026-11-15)
+
+Makes disguising more reliable (the designer's brief), merging two
+seeds, Quick Change and Deep Cover. Spend an hour to prepare one
+disguise; put it on in a few moments (about 4 AP in a fight) unseen;
+never break character by accident; no new check from day to day. A
+story effect: Level 2 beside Air of Mystery, which protects you after
+a disguise fails where this keeps it from failing. The hour, the
+one-at-a-time limit and the 4 AP are the designer's. Not taken: a
+floor of 7 on the disguise flip, which would be a numeric boost on top
+and likely a Level 3 or its own Technique.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

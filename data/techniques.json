@@ -10405,5 +10405,46 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T220",
+    "name": "Wear It Well",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Social",
+    "description": "An amateur puts a disguise on. A professional just stops being the other person for a while.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "You can spend an hour preparing a disguise ahead of time, and may only have one prepared at a time. You can put on a prepared disguise in a few moments (about 4 AP in a fight), as long as no one is watching. While disguised, you never break character by accident, even when surprised, Wounded, or asleep, and a disguise you keep up needs no new check from one day to the next.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Masquerade 3",
+    "relevant_skills": "Masquerade",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Masquerade"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
