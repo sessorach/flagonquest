@@ -9353,6 +9353,24 @@ one-at-a-time limit and the 4 AP are the designer's. Not taken: a
 floor of 7 on the disguise flip, which would be a numeric boost on top
 and likely a Level 3 or its own Technique.
 
+## Streetwise: Read the Room, I Know a Guy, Safe House (T221-T223, new) (2026-11-15)
+
+Streetwise had navigation, rumors and Preparation, and nothing for the
+people side of a city. All three are story effects, Levels by
+comparison.
+
+- **Read the Room, Level 1, Streetwise 2.** A Streetwise check against
+  11 on entering a gathering place names who holds the most sway, plus
+  one person who answers to them per Extra Success. Beside Practiced
+  Persona and Distraction.
+- **I Know a Guy, Level 2, Streetwise 3 and Rapport 2.** Once per
+  settlement of town size or more, declare a contact in a trade or
+  faction; the GM decides who and what they want. Preparation (Level 3)
+  does a similar thing on demand for a card.
+- **Safe House, Level 3, Streetwise 4.** After a week in a settlement,
+  a place to lie low for the party, and Bad Luck for anyone searching
+  the settlement for someone hiding there.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

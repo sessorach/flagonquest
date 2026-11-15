@@ -10446,5 +10446,137 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T221",
+    "name": "Read the Room",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Social",
+    "description": "Watch who laughs first, and who waits to see if they should.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "When you enter a gathering place such as a tavern, a court, or a guildhall, you may make a Streetwise check against a difficulty of 11. On a success you learn who holds the most sway there, plus one person who answers to them for each Extra Success.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Streetwise 2",
+    "relevant_skills": "Streetwise",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Streetwise"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T222",
+    "name": "I Know a Guy",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": "Social",
+    "description": "\"He owes me a favor. Well. I owe him one. Either way, he'll open the door.\"",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "Once in each settlement at least as large as a town, you may declare that you know someone there in a trade or faction you name. The GM decides who they are and what they want in return for helping.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Streetwise 3, Rapport 2",
+    "relevant_skills": "Streetwise, Rapport",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Streetwise"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Rapport"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
+  },
+  {
+    "id": "T223",
+    "name": "Safe House",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": null,
+    "description": "Every city has a room nobody asks about. The trick is being the sort of person who gets told where it is.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "In any settlement where you have spent at least a week, you have a place to lie low with room for your party. Anyone searching the settlement for someone hiding there has Bad Luck.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Streetwise 4",
+    "relevant_skills": "Streetwise",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Streetwise"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
