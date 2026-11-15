@@ -260,6 +260,11 @@ cut, not just backfilled at a point in time.
 - **Beginner's Mind** (downtime Meditation, 2026-11-14) — "make one
   check with a chosen Skill using your Meditation Skill Total instead."
   Declined by the designer: no Skill stands in for another.
+  The reworked version (Good Luck twice on one check with a chosen
+  Skill) was dropped too: it isn't what Meditation is for.
+- **Listening Stillness** (downtime Meditation, 2026-11-15) — sense
+  living creatures nearby after 10 minutes of meditation. Dropped:
+  that's Awareness's job.
 
 ## Style coverage by archetype (2026-10-05)
 
@@ -353,11 +358,13 @@ Resilience 2 or so. Not drafted in that form yet.
 
 ## Downtime Meditation Techniques
 
-Meditation Techniques that aren't martial at all: meditate for ten
-minutes or so and get an out-of-combat benefit. Astral projection,
-learning something new, that kind of utility. Pranic Nourishment
-(T085) is the only one like it so far. Not for now; comes after the
-Shugen pass.
+Meditation Techniques that aren't martial: meditate for ten minutes or
+so and get an out-of-combat benefit. Per the designer (2026-11-15),
+they should be weird and esoteric: mastery of your own body and
+spirit, or tapping a larger weave of energy the user only grasps by
+intuition. Never finding, sensing or knowing things, and never another
+Skill's total. Live: Pranic Nourishment (T085), Walk Without
+Footprints (T212). More wanted; see DESIGNER_NOTES, "Skill identities".
 
 ## More generic card-spending Techniques
 

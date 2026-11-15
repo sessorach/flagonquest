@@ -227,7 +227,7 @@ Close-quarters combat with melee weapons. It can be used to determine Parry Defe
 
 #### Stealth
 
-Sneaking, hiding, and generally avoiding notice. Whenever you are trying to keep silent, stay out of sight, or do something without someone seeing or hearing you, Stealth comes into play. Stealth is governed by Diamonds.
+Sneaking, hiding, sleight of hand, and generally avoiding notice. Whenever you are trying to keep silent, stay out of sight, palm a coin or lift a purse, or do something without someone seeing or hearing you, Stealth comes into play. Stealth is governed by Diamonds.
 
 ### Body
 
@@ -239,7 +239,7 @@ Body determines your damage with heavier weapons, how fast you heal when resting
 
 #### Athletics
 
-Climbing, jumping, swimming, and other strength-based exercises. Whenever you are engaged in a physical feat that relies on your raw strength, Athletics is what you use. Athletics is governed by Clubs.
+Climbing, jumping, swimming, and other athletic exercises. Whenever you are engaged in a physical feat that relies on your training and conditioning, Athletics is what you use. Athletics is governed by Clubs.
 
 #### Awareness
 

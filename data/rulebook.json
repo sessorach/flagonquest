@@ -179,7 +179,7 @@
     "level": 4,
     "title": "Stealth",
     "supplement": "Base Game",
-    "body": "Sneaking, hiding, and generally avoiding notice. Whenever you are trying to keep silent, stay out of sight, or do something without someone seeing or hearing you, Stealth comes into play. Stealth is governed by Diamonds."
+    "body": "Sneaking, hiding, sleight of hand, and generally avoiding notice. Whenever you are trying to keep silent, stay out of sight, palm a coin or lift a purse, or do something without someone seeing or hearing you, Stealth comes into play. Stealth is governed by Diamonds."
   },
   {
     "id": "body",
@@ -193,7 +193,7 @@
     "level": 4,
     "title": "Athletics",
     "supplement": "Base Game",
-    "body": "Climbing, jumping, swimming, and other strength-based exercises. Whenever you are engaged in a physical feat that relies on your raw strength, Athletics is what you use. Athletics is governed by Clubs."
+    "body": "Climbing, jumping, swimming, and other athletic exercises. Whenever you are engaged in a physical feat that relies on your training and conditioning, Athletics is what you use. Athletics is governed by Clubs."
   },
   {
     "id": "awareness",

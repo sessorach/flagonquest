@@ -176,15 +176,15 @@ Each Skill has a closely guarded core and some fuzzy edges (designer, 2026-11-15
 | Craft | Making and manipulating objects: locks, traps, mechanisms. Working a lock open without breaking it is Craft, not Stealth | |
 | Medicine | Treating other people's injuries, poisons and diseases (penciled) | |
 | Mixology | Making and identifying alchemical goods (penciled) | |
-| Meditation | Your own spiritual energy; the supernatural martial Schools. Outside a fight: open, see below | Trained toughness overlaps Resilience |
+| Meditation | Your own spiritual energy; the supernatural martial Schools. Outside a fight: mastery of your own body and spirit (trance, rest, sending your spirit out), never finding, sensing or knowing things | Trained toughness overlaps Resilience |
 | Performance | Entertaining or inspiring an audience: music, speeches, stories | |
 | Rapport | Being liked: friendliness, first impressions, smoothing things over (penciled) | |
 | Sorcery | Direct magic (penciled) | Identifying magic effects of any origin, shared with Theurgy |
 | Theurgy | Indirect and spirit magic (penciled) | Identifying magic effects of any origin, shared with Sorcery |
 
-- **Open: what Meditation is for outside a fight.** Its rulebook description is all combat, and it has the most Techniques of any Skill. Penciled: mastery of your own body and spirit (trance, rest, sending your spirit out), never finding, sensing or knowing things.
+- **Meditation outside a fight is the weird one** (designer, 2026-11-15). Mastery of your own body and spirit, and beyond that the esoteric: tapping into a larger weave of energy that the user grasps only by intuition. Walk Without Footprints is the direction. It never finds, senses or knows things; those belong to other Skills. It needs more Techniques drafted to fill it out.
 - **The thinnest Skills are the ones to protect:** Persuasion has 1 Technique, Masquerade 4, Streetwise 5, Stealth 7, against Brawl's 42. New out-of-combat ideas should mostly land there.
-- **Rulebook wording that doesn't match yet:** Athletics says "raw strength" (that's Might's), and Stealth doesn't mention sleight of hand.
+- **Rulebook wording brought into line 2026-11-15:** Athletics no longer says "raw strength", and Stealth names sleight of hand. Might's description still doesn't mention breaking or shoving things.
 
 ### Techniques and Styles
 

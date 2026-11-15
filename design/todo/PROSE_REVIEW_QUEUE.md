@@ -220,3 +220,8 @@ things off in order.
 - **`#### [Potion]`** (glossary.md) — new sentence: instead of drinking
   it yourself, you may feed a Potion to a willing or Downed creature
   adjacent to you, and it gets the effect. Commit `27244b1`.
+- **`#### Athletics` and `#### Stealth`** (Stats and Skills) — Athletics
+  is "athletic exercises... training and conditioning" in place of
+  "raw strength" (that's Might); Stealth names sleight of hand, with
+  "palm a coin or lift a purse" as the example. 2026-11-15, the commit
+  "Skill descriptions: Athletics and Stealth match their identities".
