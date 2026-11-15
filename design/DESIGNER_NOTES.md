@@ -150,6 +150,42 @@ list. The full reasoning lives in the originals in
 - **Calculated statistics.** Health 5 Shallow + 5 Deep. Speed 1 + Agility. Reflex = Insight Skill Total. Cards per day = twice (Cunning + Mind). Rest healing = Body. Every Resist starts at Essence. (rulebook, "Calculated Statistics")
 - **(penciled) Archetype prereq Skills.** Many Techniques need only their main Skill. A secondary prereq is flavor, mostly on combat Techniques and Styles. Monk: Brawl/Meditation, secondary per School. Duelist: Melee/Acrobatics/Archery, Insight (Tiger: Acrobatics). Barbarian: Might, Resilience. Guardian: Resilience/Melee/Brawl/Presence, Might. Archer: Archery (Acrobatics for thrown), Awareness. Sorcerer: Sorcery, Resilience (pencil). Theurgist: Theurgy, none settled. Druid: Theurgy, Survival. Healer: Medicine/Theurgy, Composure (pencil). Leader: Performance/Presence, Rapport (pencil). Face: Presence/Rapport/Persuasion, Insight (pencil). Rogue: Stealth/Masquerade/Streetwise, Acrobatics (pencil). Scout: Survival/Athletics/Awareness, Athletics (pencil). Crafter: Craft/Mixology, Academics (pencil). Scholar: Academics, Insight (pencil). If Guardian and Barbarian need pulling apart, Guardian's defense could lead with Composure. (2026-09-30, → archive RULES_DESIGN, "Archetype prereq Skills")
 
+### Skill identities
+
+Each Skill has a closely guarded core and some fuzzy edges (designer, 2026-11-15). The core is that Skill's alone: no Technique or item hands it to another Skill. The edges can be argued for more than one Skill at the table, and small jobs don't need an owner (identifying a magic effect is either Sorcery or Theurgy, whatever its origin). Rows marked (penciled) are Claude's reading of the rulebook, not yet ruled on.
+
+| Skill | Guarded core | Fuzzy edges and neighbours |
+|---|---|---|
+| Acrobatics | Balance, tumbling, nimble movement; Dodge; thrown weapons | Athletics is calisthenics, Acrobatics is the nimble things |
+| Archery | Bows and other ranged weapons (penciled) | |
+| Brawl | Unarmed fighting and grappling; Dodge and Parry | Does a lot, and pays for it with weaker weapons |
+| Melee | Melee weapons; Parry (penciled) | |
+| Stealth | Going unnoticed, doing things quietly, and sleight of hand (nothing else maps to manual dexterity) | Moving through a busy street unseen, shared with Masquerade |
+| Athletics | Calisthenics: climbing, jumping, swimming | Feats of raw strength are Might's |
+| Awareness | The physical senses: spotting what's hidden, searching, noticing an ambush you're walking into | Vague hints of tracks at best |
+| Might | Raw strength: lifting, carrying, heavy gear, breaking down a door, a shoving match | |
+| Presence | You yourself being imposing or inspiring: intimidating, commanding | A speech to rally people can be argued; Performance does it for sure |
+| Resilience | Being tough by nature: poison, disease, exhaustion, hardship; Vital Defense | Meditation can train toughness, some overlap |
+| Insight | Reading motives and the sixth sense, noticing an ambush coming to you (jumped in a tavern); Reflex; Vigilant Defense | |
+| Masquerade | Being someone else: disguise, acting in character | Blending into a street crowd, if you have a disguise or a way to blend in; shared with Stealth |
+| Persuasion | Convincing someone of what you're saying, true or not | |
+| Streetwise | Survival for cities: finding people and trails there, knowing who to talk to | |
+| Survival | The wilderness: finding and following tracks (core), foraging, reading the land | |
+| Academics | Book learning, and recall no other Skill covers (penciled) | |
+| Composure | Resisting fear, compulsion and manipulation; Mental Defense; staying power in a social encounter (penciled) | |
+| Craft | Making and manipulating objects: locks, traps, mechanisms. Working a lock open without breaking it is Craft, not Stealth | |
+| Medicine | Treating other people's injuries, poisons and diseases (penciled) | |
+| Mixology | Making and identifying alchemical goods (penciled) | |
+| Meditation | Your own spiritual energy; the supernatural martial Schools. Outside a fight: open, see below | Trained toughness overlaps Resilience |
+| Performance | Entertaining or inspiring an audience: music, speeches, stories | |
+| Rapport | Being liked: friendliness, first impressions, smoothing things over (penciled) | |
+| Sorcery | Direct magic (penciled) | Identifying magic effects of any origin, shared with Theurgy |
+| Theurgy | Indirect and spirit magic (penciled) | Identifying magic effects of any origin, shared with Sorcery |
+
+- **Open: what Meditation is for outside a fight.** Its rulebook description is all combat, and it has the most Techniques of any Skill. Penciled: mastery of your own body and spirit (trance, rest, sending your spirit out), never finding, sensing or knowing things.
+- **The thinnest Skills are the ones to protect:** Persuasion has 1 Technique, Masquerade 4, Streetwise 5, Stealth 7, against Brawl's 42. New out-of-combat ideas should mostly land there.
+- **Rulebook wording that doesn't match yet:** Athletics says "raw strength" (that's Might's), and Stealth doesn't mention sleight of hand.
+
 ### Techniques and Styles
 
 - **STANDING RULE: what belongs in a Style.** Fun, powerful effects that break a fundamental rule and mustn't stack: defensive options too good stacked, raw stat boosts, Good Luck, always-on oddities (elemental Unarmed). One Style at a time keeps them from interacting in ways nobody planned. Every archetype should have at least one Style it wants. (2026-09-28, → archive RULES_DESIGN, "What belongs in a Style")
