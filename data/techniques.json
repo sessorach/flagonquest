@@ -10182,5 +10182,46 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T215",
+    "name": "Straight Face",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Social",
+    "description": "Wrong, certainly. Misinformed, perhaps. But lying? You look wounded at the very idea.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "When a Persuasion check or Statement of yours fails, the target believes you were honestly mistaken, not lying.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Persuasion 2",
+    "relevant_skills": "Persuasion",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Persuasion"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

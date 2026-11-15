@@ -468,6 +468,32 @@
     "prereq": "Rapport 3"
   },
   {
+    "id": "F083",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Foot in the Door",
+    "tier": "Basic",
+    "point_cost": 1,
+    "max_copies": null,
+    "bonus_points": null,
+    "description": null,
+    "effects": "If the Statement succeeds, your party’s next Statement against the same target has Good Luck.",
+    "prereq": "Persuasion 2"
+  },
+  {
+    "id": "F084",
+    "technique_id": "T057",
+    "technique_name": "Social Maneuver",
+    "feature_name": "Plant the Idea",
+    "tier": "Advanced",
+    "point_cost": 2,
+    "max_copies": null,
+    "bonus_points": null,
+    "description": null,
+    "effects": "(Resolution) If the Statement succeeds, note its target. If your party wins the social encounter, that person believes the outcome was their own idea, and remembers it that way. You may only apply one Resolution feature at a time.",
+    "prereq": "Persuasion 3"
+  },
+  {
     "id": "F038",
     "technique_id": "T104",
     "technique_name": "Spirit Blessing",

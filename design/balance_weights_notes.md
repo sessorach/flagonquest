@@ -9277,6 +9277,31 @@ yes-or-no question overlapped Minor Oracle (T191), so Meditation became
 a third Skill for it, in the prereq and the flip. Nothing else about it
 changed, so its price didn't.
 
+## Persuasion: Straight Face and two Social Maneuver Features (2026-11-15)
+
+Persuasion had one Technique, shared with Rapport. Three additions:
+
+- **Straight Face (T215), Level 1, Persuasion 2, passive.** When a
+  Persuasion check or Statement of yours fails, the target believes you
+  were honestly mistaken, not lying. A story effect; Level 1 by
+  comparison with Practiced Persona and Ventriloquy. No card cost
+  (designer): insurance on one Skill's failures is narrow enough.
+- **Foot in the Door (F083), Basic, 1 point, Persuasion 2.** If the
+  Statement succeeds, your party's next Statement against the same
+  target has Good Luck. Careful Delivery (Good Luck on this Statement)
+  is 1.0 point by the social model; this is the same Good Luck a
+  Statement later and only on a success, so a little under 1. Not run
+  through the model.
+- **Plant the Idea (F084), Advanced, 2 points, Persuasion 3.** A
+  Resolution Feature: the target believes the outcome was their own
+  idea. Costed like the other three Resolutions (story effects, 2).
+
+Both Features were drafted as standalone Techniques first; the designer
+moved them into Social Maneuver. A note on method from the same
+conversation: a story effect's Level is set by comparison with existing
+Techniques, since the narrative-utility convention (a third of Target)
+comes out under Target at any Level and can't confirm one.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn
