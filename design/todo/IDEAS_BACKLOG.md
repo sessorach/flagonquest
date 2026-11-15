@@ -343,6 +343,14 @@ Suggested order: Healer and Scout first (most common combat roles with
 nothing), then decide combat Support (it shapes Leader), then caster
 and Duelist/Archer late Styles.
 
+## Stone in the River, as a Resilience passive
+
+Per the designer (2026-11-15): good idea, wrong Skill. Drafted as a
+10-minute Meditation ("until your next full night's rest, ignore the
+effects of extreme heat and cold, and hold your breath for [Skill
+Total] minutes"); it belongs to Resilience, as a passive. Level 1,
+Resilience 2 or so. Not drafted in that form yet.
+
 ## Downtime Meditation Techniques
 
 Meditation Techniques that aren't martial at all: meditate for ten
