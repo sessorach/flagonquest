@@ -10417,7 +10417,7 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "You can spend an hour preparing a disguise ahead of time, and may only have one prepared at a time. You can put on a prepared disguise in a few moments (about 4 AP in a fight), as long as no one is watching. While disguised, you never break character by accident, even when surprised, Wounded, or asleep, and a disguise you keep up needs no new check from one day to the next.",
+    "effects": "You can spend an hour preparing a disguise ahead of time, and may only have one prepared at a time. You can put on a prepared disguise in a few moments (about 4 AP in a fight), as long as no one is watching. While wearing your prepared disguise, you never break character by accident, even when surprised, Wounded, or asleep, and it needs no new check from one day to the next.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Masquerade 3",
