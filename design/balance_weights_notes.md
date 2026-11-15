@@ -9229,6 +9229,32 @@ Protected twice) and Bear Down (a card for +1 damage on a hit); both
 are in IDEAS_BACKLOG. None of the four is in the sim yet
 (`techniques.DEFERRED`).
 
+## Walk Without Footprints (T212, new) — Level 3 (2026-11-15)
+
+A downtime Meditation Technique: 10 minutes, no cost, your spirit
+appears beside a creature you've met (who may refuse) or a place you've
+rested, at any distance, to see, hear and speak. Target 9; Value 3 by
+the narrative-utility convention (a third of Target, a labelled guess);
+**Net −6**, where that convention always lands. How it got here, all
+from the designer:
+
+- The first draft was an unseen spirit that walked through walls. That
+  scouts without Stealth, Survival or Streetwise, so it became a visible
+  presence for talking at a distance, on a leash of [Meditation Skill
+  Total] meters from where it appears.
+- A person knows who's asking and may refuse, so it can't be used to
+  drop in on an enemy.
+- The spirit can't defend itself and is dispersed by any damage, with
+  no harm to the meditator.
+- No card cost: it's narrow, and the 10 minutes keeps it out of fights
+  and makes it an encounter ability in practice.
+
+Against what exists: Headband of Telepathy (Level 1, 20 meters),
+Telepathic Link (Level 2, [Mind] km, a group, usable in a fight),
+Distant Scroll Cases (Level 2, any distance, objects). This is the only
+one with sight and a face-to-face talk at any distance, and it costs
+the use of your body while it lasts.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

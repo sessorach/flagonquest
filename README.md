@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-15 — A spirit walk for talking at a distance
+
+Added Walk Without Footprints, a Level 3 meditation that sends a visible image of you to a friend or a place you've rested so you can talk there, and wrote down two standing rules that shaped it: no Skill stands in for another, and nothing should hand out what the scouting Skills do.
+
 ### 2026-11-14 — Back to content: two Theurgist Styles and four ways to spend a card
 
 Finished the Styles pass with Warding Circle and Wellspring for the Theurgist, then added four cheap Techniques that give any character something to spend a card on: Quick Step (a free move), Roll With It (Bad Luck on an attack against you), Shake It Off (clear debuffs) and Focused Casting (Good Luck on a spell).

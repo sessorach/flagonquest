@@ -10040,5 +10040,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T212",
+    "name": "Walk Without Footprints",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Discipline",
+    "description": "The body sits where you left it. The rest of you has gone to see a friend.",
+    "condition": null,
+    "action": "10 minutes",
+    "cost": null,
+    "target": "A creature you have met, or a place where you have had a full night's rest, at any distance",
+    "effects": "Your spirit appears beside the target, as a faint image of you that anyone can see and hear; if the target is a person, they are aware that you are trying to contact them and may refuse, which causes this to fail. Through it you can see, hear, and speak as though you stood there, but it can't touch anything or move more than [Meditation Skill Total] meters from where it appeared. The spirit can't defend itself: if it would take any damage it is dispersed, which doesn't harm you. This lasts as long as you keep meditating. Your body is unaware of its surroundings until you return, and you return at once if your spirit is dispersed or your body loses Health.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Meditation 4, Rapport 3",
+    "relevant_skills": "Meditation, Rapport",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Rapport"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
