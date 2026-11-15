@@ -9270,6 +9270,13 @@ narrative-utility convention, **Net −2**.
   of distance to the nearest step of 1, 10, 100 or 1,000 meters (the
   designer's addition). One bond at a time.
 
+## Minor Oracle takes Meditation (2026-11-15)
+
+Per the designer: a drafted Meditation Technique for asking the weave a
+yes-or-no question overlapped Minor Oracle (T191), so Meditation became
+a third Skill for it, in the prereq and the flip. Nothing else about it
+changed, so its price didn't.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

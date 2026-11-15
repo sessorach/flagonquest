@@ -177,7 +177,7 @@ Each Skill has a closely guarded core and some fuzzy edges (designer, 2026-11-15
 | Craft | Making and manipulating objects: locks, traps, mechanisms. Working a lock open without breaking it is Craft, not Stealth | |
 | Medicine | Treating other people's injuries, poisons and diseases (penciled) | |
 | Mixology | Making and identifying alchemical goods (penciled) | |
-| Meditation | Your own spiritual energy; the supernatural martial Schools. Outside a fight: mastery of your own body and spirit (trance, rest, sending your spirit out), never finding, sensing or knowing things | Trained toughness overlaps Resilience |
+| Meditation | Your own spiritual energy; the supernatural martial Schools. Outside a fight: mastery of your own body and spirit (trance, rest, sending your spirit out), never finding, sensing or knowing things | Trained toughness overlaps Resilience; telling fortunes (Minor Oracle), shared with Sorcery and Theurgy |
 | Performance | Entertaining or inspiring an audience: music, speeches, stories | |
 | Rapport | Being liked: friendliness, first impressions, smoothing things over (penciled) | |
 | Sorcery | Direct magic (penciled) | Identifying magic effects of any origin, shared with Theurgy |

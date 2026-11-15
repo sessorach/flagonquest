@@ -266,6 +266,13 @@ cut, not just backfilled at a point in time.
   living creatures nearby after 10 minutes of meditation. Dropped:
   that's Awareness's job.
 
+- **Unwritten Step** (downtime Meditation, 2026-11-15) — ask a yes-or-no
+  about a course of action, the GM answers "toward" or "away", Sift 2.
+  Dropped: it overlapped Minor Oracle (T191) almost entirely, so
+  Meditation was added as a third Skill for Minor Oracle instead. Its
+  "Empty the Cup" half (shed an effect altering your thoughts or
+  feelings) was never drafted further.
+
 ## Style coverage by archetype (2026-10-05)
 
 Per the designer: each combat archetype should have a few **early**

@@ -9009,11 +9009,11 @@
     "action": "1 minute",
     "cost": null,
     "target": "A willing creature adjacent to you",
-    "effects": "Choose a divining tool and something in the target's near future to read, then make a Sorcery or Theurgy flip in secret. The difficulty depends on how much is riding on it: 7 for everyday fortunes, 11 for current events, 15 for events that shape kingdoms, and 19 for the end of the world. On a success you learn something true about it, and each Extra Success adds more detail. On a failure the fortune is vague and generic. The first time each day you tell a creature's fortune, it may Sift 2 cards.",
+    "effects": "Choose a divining tool and something in the target's near future to read, then make a Meditation, Sorcery, or Theurgy flip in secret. The difficulty depends on how much is riding on it: 7 for everyday fortunes, 11 for current events, 15 for events that shape kingdoms, and 19 for the end of the world. On a success you learn something true about it, and each Extra Success adds more detail. On a failure the fortune is vague and generic. The first time each day you tell a creature's fortune, it may Sift 2 cards.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Insight 1, (Survival or Academics) 1, (Sorcery or Theurgy) 1",
-    "relevant_skills": "Sorcery, Theurgy, Insight",
+    "prereqs": "Insight 1, (Survival or Academics) 1, (Meditation, Sorcery, or Theurgy) 1",
+    "relevant_skills": "Meditation, Sorcery, Theurgy, Insight",
     "use_cards": true,
     "healing": null,
     "features": null,
@@ -9048,6 +9048,7 @@
       {
         "type": "skill",
         "options": [
+          "Meditation",
           "Sorcery",
           "Theurgy"
         ],
