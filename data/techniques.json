@@ -10355,5 +10355,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T219",
+    "name": "Dead Ringer",
+    "level_min": 3,
+    "level_max": 3,
+    "tags": "Social",
+    "description": "The walk is the hard part. Anyone can borrow a face; it takes a week of watching to borrow the way a man carries his shoulders.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "After observing a real person for at least 10 minutes, you may disguise yourself as them. The disguise holds even against people who know them, though anyone who knows them well has Good Luck on flips to see through it. You can only have one person studied this way at a time.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Masquerade 4, Insight 3",
+    "relevant_skills": "Masquerade, Insight",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Masquerade"
+        ],
+        "threshold": {
+          "base": 4
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Insight"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

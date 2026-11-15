@@ -9330,6 +9330,17 @@ job). Levels on the two story effects are by comparison.
 Left as seeds in IDEAS_BACKLOG: In Writing, Benefit of the Doubt,
 Holding You to That.
 
+## Masquerade: Dead Ringer (T219, new) — Level 3 (2026-11-15)
+
+Masquerade had nothing for impersonating a real person (Practiced
+Persona forbids it) and nothing at Level 3. After 10 minutes observing
+someone you can disguise yourself as them; it holds against people who
+know them, those who know them well get Good Luck to see through it,
+and you keep one person studied at a time. A story effect: Level 3 as
+the step between Practiced Persona (1) and One of Many Faces (4).
+Face in the Crowd (Good Luck to blend into a crowd) was dropped: a
+fitting Practiced Persona and One of Many Faces already cover it.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

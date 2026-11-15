@@ -26,6 +26,7 @@ OUT_OF_COMBAT.update({
     "T213": "Still as Stone", "T214": "Thread Between Us",
     "T215": "Straight Face",
     "T216": "Stall", "T217": "Cover Story", "T218": "The Long Con",
+    "T219": "Dead Ringer",
     "T095": "Placeholder's Tender Telekinesis", "T096": "Placeholder's Wizardly Witchlight",
     # Follower (T059) is out of combat, so its knacks are too. Squire and
     # Magical Adept would touch a fight, through a follower the sim doesn't
