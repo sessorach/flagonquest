@@ -1165,6 +1165,12 @@ Two recurring environment quirks worth knowing:
   changes, settle it, then show the next. A table of five at once is
   harder for them to respond to. A short list of seed ideas to pick
   from is still fine.
+- **In any Technique review, check its suits** (designer, 2026-11-16).
+  A suit named on the card (a `[Suit]` bonus, "if you discarded a
+  Spade") should match the governing suit of the Skill it's tied to,
+  per `SUIT_SKILLS` in `index.html`. Some cards predate the current
+  suit list: Shadow's Path and Cloak and Dagger both said Spades for
+  Stealth, which is Diamonds.
 - For rules/design prose specifically: draft in chat, matching voice per
   this file's Rulebook/Glossary prose guidance, get confirmation, then
   commit — one focused commit per section. No in-file review markers;
