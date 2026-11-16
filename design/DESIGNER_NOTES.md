@@ -161,7 +161,7 @@ Each Skill has a closely guarded core and some fuzzy edges (designer, 2026-11-15
 | Archery | Bows and other ranged weapons (penciled) | |
 | Brawl | Unarmed fighting and grappling; Dodge and Parry | Does a lot, and pays for it with weaker weapons |
 | Melee | Melee weapons; Parry (penciled) | |
-| Stealth | Going unnoticed, doing things quietly, and sleight of hand (nothing else maps to manual dexterity) | Moving through a busy street unseen, shared with Masquerade |
+| Stealth | Going unnoticed, doing things quietly, and every kind of sleight of hand: stealing, planting, swapping, palming (nothing else maps to manual dexterity; all of it works without a Technique, designer 2026-11-16) | Moving through a busy street unseen, shared with Masquerade |
 | Athletics | Calisthenics: climbing, jumping, swimming | Feats of raw strength are Might's |
 | Awareness | The physical senses: spotting what's hidden, searching, noticing an ambush you're walking into | Vague hints of tracks at best |
 | Might | Raw strength: lifting, carrying, heavy gear, breaking down a door, a shoving match | |

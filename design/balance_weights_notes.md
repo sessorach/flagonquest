@@ -9384,6 +9384,14 @@ went and it works through people. The pick-list follows Analyze
 Stance's pattern and is the designer's ask for Extra Successes to
 scale it. A story effect, Level 2 beside Wisdom of the Woods.
 
+## Stealth: Up Your Sleeve (T225, new) — Level 1 (2026-11-16)
+
+Keep one small object hidden on your person: Bad Luck for anyone
+searching you to find it, and it comes to hand for 0 AP. A story
+effect, Level 1 beside Distraction. The 0 AP draw has a small use in a
+fight (a hidden knife in hand at once), which the designer was fine
+with.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

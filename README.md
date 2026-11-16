@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-16 — Stealth gets a hidden pocket
+
+Started on Stealth's missing pieces with Up Your Sleeve, a Level 1 trick for keeping one small thing hidden on you and producing it in an instant, and settled that any sleight of hand is a plain Stealth check with no Technique needed.
+
 ### 2026-11-15 — What each Skill is for, with new Techniques for Meditation and Persuasion
 
 Wrote down a guarded core for every Skill so new Techniques land in the right one, then started filling the thinnest Skills. Meditation got an out-of-combat identity and three odd Techniques; Persuasion, which had almost nothing of its own, got four Techniques and two Social Maneuver Features.

@@ -10619,5 +10619,46 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T225",
+    "name": "Up Your Sleeve",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": null,
+    "description": "Search me, by all means. Take your time.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "You can keep one small object hidden on your person. Anyone searching you has Bad Luck on flips to find it, and you can bring it to hand for 0 AP.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Stealth 2",
+    "relevant_skills": "Stealth",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Stealth"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

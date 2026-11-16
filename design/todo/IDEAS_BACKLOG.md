@@ -280,6 +280,11 @@ cut, not just backfilled at a point in time.
   Defense to make a creature hesitate in a fight. Declined: Presence is
   the talking Skill in combat; Persuasion stays largely out of it.
 
+- **Light Fingers** (Stealth, 2026-11-16) — a Technique to let sleight
+  of hand plant or swap an object as well as steal one. Not needed: per
+  the designer, Stealth covers any kind of legerdemain without a
+  Technique.
+
 ## Style coverage by archetype (2026-10-05)
 
 Per the designer: each combat archetype should have a few **early**
