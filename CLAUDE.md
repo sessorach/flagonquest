@@ -1160,6 +1160,11 @@ Two recurring environment quirks worth knowing:
   wholesale *without* that precondition would silently discard any CSV
   edits `main` gained after that branch was cut. The rules-overhaul
   merge that released v1.1 was resolved exactly this way.
+- **Review Technique drafts one at a time** (designer, 2026-11-16).
+  When there's a batch to go through, show one, take the designer's
+  changes, settle it, then show the next. A table of five at once is
+  harder for them to respond to. A short list of seed ideas to pick
+  from is still fine.
 - For rules/design prose specifically: draft in chat, matching voice per
   this file's Rulebook/Glossary prose guidance, get confirmation, then
   commit — one focused commit per section. No in-file review markers;
