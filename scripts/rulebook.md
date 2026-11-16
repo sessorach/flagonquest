@@ -433,6 +433,10 @@ Adventures are more or less divided up into separate encounters, which can invol
 
 Encounters are the building block of an adventuring day, each representing a separate scene in which the GM and the players narrate the story back and forth. There isn’t a rule for exactly when one encounter ends and another begins, but they usually won’t last longer than 10 minutes or so, and will be separated by a narrative transition of time passing or the party moving to a new location. As many abilities refresh and are available for use again when a new encounter begins, this is a good way to gauge when a new encounter begins - if the party gets a chance to catch their breath and regroup (and refresh their abilities), that’s a new encounter.
 
+## Combat
+
+A fight is the most detailed kind of encounter, played out turn by turn with Action Points.
+
 ### Taking Turns
 
 When an encounter gets tense and everyone is doing things at the same time, such as in a fight, characters take turns acting. This is often done in fast-paced situations, where a turn might be a few seconds, but doesn’t always mean the encounter is as hectic as a full-on combat scenario.
@@ -481,17 +485,27 @@ Example: Felix needs to leap across a wide chasm, six spaces across. His Athleti
 
 ### Making an Attack
 
-An attack is a check, made against a difficulty equal to the target’s Defense, that deals damage or other ill effects if it hits. It works the same as any other check - flip a card, add your Skill Total, and compare the result to the difficulty - but combat wraps its own pacing around it. An attack has 3 steps: declaring it, making the flip, and resolving the effects, and like any other action on your turn it costs AP.
+An attack is a check, made against a difficulty equal to the target’s Defense, that deals damage or other ill effects if it hits. It works the same as any other check - flip a card, add your Skill Total, and compare the result to the difficulty - and like any other action on your turn it costs AP. Every attack goes through three steps in order: declaring it, making the flip, and resolving its effects.
 
-When you declare an attack, determine which creature(s) it targets - you must be aware of a creature to target it. Abilities and items will state what they target, and a normal weapon attack targets a single creature within the weapon’s range. You also decide how many times, if any, you’re Gambling on the attack at this stage, the same as declaring Gambling before any other flip.
+#### Declaring the Attack
 
-The Skill used for the flip will be stated by the ability or item in question, with regular weapon attacks using one of the weapon’s relevant Skills of your choice - that Skill’s suit is also what matters for Extra Successes. The source of the attack also states the Defense the target used, with weapon attacks using the target’s Dodge or Parry Defense. If multiple Defenses are stated, the target chooses which to use. The target may choose not (or be unable) to apply any Defenses against an attack, in which case it is considered to be 8. If there are multiple targets for an attack, make separate flips for each target.
+- Choose the creature or creatures it targets. Abilities and items state what they target, and a normal weapon attack targets a single creature within the weapon’s range.
+- You must be aware of a creature to target it.
+- Decide how many times, if any, you’re Gambling on the attack, the same as declaring Gambling before any other flip.
 
-Regardless of the attack’s result, a target who applied their Parry or Dodge Defense against it is Harried once.
+#### Making the Flip
 
-If the flip fails, the attack misses. In this case, a target who used Parry Defense is considered to have Parried the attack, and a target who used Dodge Defense is considered to have Dodged the attack.
+- **The Skill**: The ability or item states which Skill to flip. A normal weapon attack uses one of the weapon’s relevant Skills, your choice. That Skill’s suit is also what matters for Extra Successes.
+- **The Defense**: The source of the attack states which Defense it goes against. A weapon attack goes against the target’s Dodge or Parry Defense. If more than one Defense is listed, the target chooses which to use.
+- **No Defense**: The target may choose not to apply a Defense, or be unable to. In that case the difficulty is 8.
+- **Multiple targets**: Make a separate flip for each target.
+- **Harried**: A target who applies their Parry or Dodge Defense is Harried once, whether the attack hits or not.
 
-If the flip succeeds, the attack hits, and earns successes the same way any check does: 1 for succeeding, plus an Extra Success for each time you Gambled and for each card in your suit pool matching the attack’s Skill. Abilities and items will state what happens when an attack hits. Normal weapon attacks deal Physical damage equal to the weapon’s Damage, and all damaging attacks deal +1 damage for each Extra Success.
+#### Hitting and Missing
+
+- **A miss**: If the flip fails, the attack misses. A target who used Parry Defense has Parried the attack, and a target who used Dodge Defense has Dodged it.
+- **A hit**: If the flip succeeds, the attack hits, and earns successes the same way any check does: 1 for succeeding, plus an Extra Success for each time you Gambled and for each card in your suit pool matching the attack’s Skill.
+- **The effects**: Abilities and items state what happens when an attack hits. A normal weapon attack deals Physical damage equal to the weapon’s Damage, and every damaging attack deals +1 damage for each Extra Success.
 
 Example: Jackal is fighting off a pack of wolves. She spends 2 AP to attack one with her spear, a Melee weapon governed by Spades, Gambling once before she flips. Her Skill Total is +8, and she flips a 9, so with the -2 from Gambling her result is 8 + 9 - 2 = 15, clearing the wolf’s Dodge Defense of 12. That’s 1 success for the hit, plus 1 Extra Success from Gambling. The card she flipped wasn’t a Spade, so no suit match this time, but the Gamble alone is enough for +1 damage on top of her spear’s Damage.
 

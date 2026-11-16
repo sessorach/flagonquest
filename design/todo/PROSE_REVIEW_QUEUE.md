@@ -225,3 +225,13 @@ things off in order.
   "raw strength" (that's Might); Stealth names sleight of hand, with
   "palm a coin or lift a purse" as the example. 2026-11-15, the commit
   "Skill descriptions: Athletics and Stealth match their identities".
+- **`## Combat`** (new heading) and **`### Making an Attack`** (rewritten)
+  — the eight combat sections (Taking Turns through Combat Maneuvers)
+  moved out from under Encounter Basics to their own Combat heading,
+  with a one-sentence lead-in. Making an Attack is the same rules laid
+  out as three sub-headings (Declaring the Attack, Making the Flip,
+  Hitting and Missing) with bullets; the Harried rule moved into the
+  flip step and the multiple-targets rule got its own bullet.
+  2026-11-16, the commit "Rulebook: a Combat heading, and Making an
+  Attack laid out in steps". The designer approved the draft in chat
+  and asked to read it over again later.

@@ -13,9 +13,9 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-11-16 — Stealth gets a hidden pocket
+### 2026-11-16 — Stealth gets a hidden pocket, and combat gets its own chapter heading
 
-Started on Stealth's missing pieces with Up Your Sleeve, a Level 1 trick for keeping one small thing hidden on you and producing it in an instant, and settled that any sleight of hand is a plain Stealth check with no Technique needed.
+Added Up Your Sleeve for Stealth and settled that any sleight of hand is a plain Stealth check. In the rulebook, the fighting rules now sit under their own Combat heading, and Making an Attack is laid out as three steps with bullets so it's easier to follow.
 
 ### 2026-11-15 — What each Skill is for, with new Techniques for Meditation and Persuasion
 
