@@ -9392,6 +9392,32 @@ effect, Level 1 beside Distraction. The 0 AP draw has a small use in a
 fight (a hidden knife in hand at once), which the designer was fine
 with.
 
+## Stealth review: Legerdemain, Shadow's Path, Distraction, Vanish (2026-11-16)
+
+A one-by-one read of the live Stealth Techniques with the designer.
+
+- **Legerdemain (T034):** its protection covers any sleight of hand, not
+  only theft, and the lock timing reads "a few moments (about 4 AP in a
+  fight)". Kept as one Technique (locks are Craft's, hence the Craft 2
+  prereq) though a split was offered.
+- **Shadow's Path (T042):** the "[Spades] extra successes" clause went.
+  Stealth is Diamonds and every check already earns Extra Successes
+  from its suit and from Gambling. "Into or out of places" is the line
+  between infiltrating and just doing something sneakily.
+- **Distraction (T144):** same rules in four sentences; the immunity
+  clause is "already watching for you or focused on a task".
+- **Vanish (T052): Level 3 to Level 2, Stealth 4 to 3, escape only.**
+  The designer's split: Cloak and Dagger is the strike in a fight,
+  Vanish is the disappearing act when you're caught. A target hit
+  "loses track of you" for a round (can't target you, and you can hide
+  in plain sight), ending if you attack it. Not "unaware": that would
+  hand out the sneak attack (difficulty 8, Deep Health only), which is
+  Cloak and Dagger's. Level 2 because its fight value is small: a PC is
+  attacked two to four times over five to eight rounds, so a round
+  untargetable saves about half an attack, and that mostly lands on an
+  ally. A rough estimate from the fight counts, not measured. Target 6
+  plus 2.75 for the AP.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

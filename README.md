@@ -13,9 +13,9 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-11-16 — Stealth gets a hidden pocket, and combat gets its own chapter heading
+### 2026-11-16 — A read through Stealth, and combat gets its own chapter heading
 
-Added Up Your Sleeve for Stealth and settled that any sleight of hand is a plain Stealth check. In the rulebook, the fighting rules now sit under their own Combat heading, and Making an Attack is laid out as three steps with bullets so it's easier to follow.
+Went through the Stealth Techniques one at a time: tidied Legerdemain, Shadow's Path and Distraction, added Up Your Sleeve, and made Vanish a Level 2 escape so it no longer does the same job as Cloak and Dagger. In the rulebook, the fighting rules now sit under their own Combat heading, with Making an Attack laid out as three steps.
 
 ### 2026-11-15 — What each Skill is for, with new Techniques for Meditation and Persuasion
 

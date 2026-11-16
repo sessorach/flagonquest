@@ -2461,18 +2461,18 @@
   {
     "id": "T052",
     "name": "Vanish",
-    "level_min": 3,
-    "level_max": 3,
+    "level_min": 2,
+    "level_max": 2,
     "tags": "Encounter",
     "description": "With a smoke bomb, great wave of a cloak, or some other obscuring act, you vanish from sight and disappear entirely from view.",
     "condition": null,
     "action": "1 AP",
     "cost": null,
     "target": "All onlookers who can see you",
-    "effects": "Make a Stealth attack against the Vigilant Defense of each target. If it hits, the target cannot see you for 1 round or until you declare an attack against them. After this time you may hide as normal, with targets alerted to your likely presence.",
+    "effects": "Make a Stealth attack against the Vigilant Defense of each target. If it hits, the target loses track of you for 1 round: it knows you're there, but not where, and it can't target you. You can make a Stealth check to hide from it, even in plain sight. This ends for a target if you attack it.",
     "builder_notes": null,
     "special": "You may discard a card at any time to regain a use of this Technique.",
-    "prereqs": "Stealth 4",
+    "prereqs": "Stealth 3",
     "relevant_skills": "Stealth",
     "use_cards": true,
     "healing": null,
@@ -2484,7 +2484,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": "1.1",
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",
@@ -2492,7 +2492,7 @@
           "Stealth"
         ],
         "threshold": {
-          "base": 4
+          "base": 3
         }
       }
     ],
