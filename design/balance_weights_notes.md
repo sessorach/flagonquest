@@ -9417,6 +9417,13 @@ A one-by-one read of the live Stealth Techniques with the designer.
   untargetable saves about half an attack, and that mostly lands on an
   ally. A rough estimate from the fight counts, not measured. Target 6
   plus 2.75 for the AP.
+- **Cloak and Dagger (T079):** its own "not more than once per attack"
+  line went; one use per trigger is now the general Interrupt rule. The
+  Good Luck card is a Diamond, Stealth's suit (it said Spade from when
+  Stealth was Spades).
+- **Lie in Wait (T193):** Good Luck once for each place you actually
+  moved down, so a character already last in the order gets nothing.
+  The sim already played it per place waited.
 
 ## Turn-order Styles in the simulator (2026-10-06)
 
