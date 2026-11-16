@@ -2036,7 +2036,7 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "You have Good Luck on Stealth checks to sneak into or out of places. In a group Stealth check, you may flip first; you may Gamble, gaining [Spades] extra successes. For each success, you may give an ally Good Luck on their Stealth flip. You may not benefit someone also using this Technique.",
+    "effects": "You have Good Luck on Stealth checks to sneak into or out of places. In a group Stealth check, you may flip first. For each success you earn, you may give one ally Good Luck on their Stealth flip. You can't give it to someone also using this Technique.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Stealth 3",
@@ -2051,7 +2051,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",
