@@ -235,3 +235,8 @@ things off in order.
   2026-11-16, the commit "Rulebook: a Combat heading, and Making an
   Attack laid out in steps". The designer approved the draft in chat
   and asked to read it over again later.
+- **`### Actions on a Turn`** (rulebook) and **`#### Interrupt`**
+  (glossary) — one new sentence each: a triggering action gives you one
+  chance to use a given Interrupt. The "at any time" sentence in the
+  rulebook says it isn't limited that way. 2026-11-16, the commit
+  "Interrupts: one use per trigger is a general rule now".

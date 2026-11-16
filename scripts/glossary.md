@@ -265,7 +265,7 @@ Short for Action Points — the time and effort you have to take actions on your
 
 #### Interrupt
 
-Some abilities let you act on other turns, interrupting their actions with your own. These are listed as Interrupts, and will list a triggering action — when that action is declared, but before any of its effects happen, you may use the Interrupt ability, which resolves before the triggering action.
+Some abilities let you act on other turns, interrupting their actions with your own. These are listed as Interrupts, and will list a triggering action — when that action is declared, but before any of its effects happen, you may use the Interrupt ability, which resolves before the triggering action. Each triggering action gives you one chance to use a given Interrupt.
 
 #### Gambling
 

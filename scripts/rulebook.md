@@ -451,9 +451,9 @@ During your turn, you get a certain amount of time and effort to take actions, r
 
 Most normal actions that involve a bit of effort, like making an attack, take 2 AP to do. Quick actions that only take a little effort, like dashing a quick distance or drawing a weapon, only take 1 AP.
 
-Some abilities let you act on other turns, and interrupt their actions with your own. These are listed as Interrupts, and will list a triggering action - when such an action is declared, but before any if its effects happen, you may use the Interrupt ability. The entirety of the ability is then resolved before the triggering action, which may alter the outcome of the triggering action.
+Some abilities let you act on other turns, and interrupt their actions with your own. These are listed as Interrupts, and will list a triggering action - when such an action is declared, but before any if its effects happen, you may use the Interrupt ability. The entirety of the ability is then resolved before the triggering action, which may alter the outcome of the triggering action. Each triggering action gives you one chance to use a given Interrupt - you can’t use the same Interrupt more than once in response to it.
 
-As a shorthand, some effects are usable “at any time” - this may be treated as an Interrupt with no condition on its use.
+As a shorthand, some effects are usable “at any time” - this may be treated as an Interrupt with no condition on its use, so it isn’t limited to once per trigger.
 
 Example: Browndog is in the middle of a hectic fight. She spends 1 AP to move into melee with a skeleton, then 2 AP to attack it. With her remaining 1 AP, she uses a special ability to force another enemy to focus on her instead of her allies. That’s all her AP for the turn, so she ends her turn and regains 4 AP to use on her next turn (or for Interrupts until then!).
 

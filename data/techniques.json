@@ -3699,7 +3699,7 @@
     "action": "0 AP - Interrupt (you declare a weapon attack with a close-range weapon that isn't Heavy or two-handed)",
     "cost": "Discard a card",
     "target": null,
-    "effects": "Make a Stealth attack against the Vigilant Defense of a target of the weapon attack (Good Luck if you discarded a Spade). If it hits, that target is unaware of the attack. You may not use this against a target more than once per attack.",
+    "effects": "Make a Stealth attack against the Vigilant Defense of a target of the weapon attack (Good Luck if you discarded a Spade). If it hits, that target is unaware of the attack.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Stealth 4",
@@ -3714,7 +3714,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": "1.1",
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",

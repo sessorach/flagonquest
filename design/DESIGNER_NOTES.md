@@ -221,6 +221,7 @@ Each Skill has a closely guarded core and some fuzzy edges (designer, 2026-11-15
 
 ### Combat and effect keywords
 
+- **An Interrupt can be used once per triggering action** (designer, 2026-11-16; rulebook "Actions on a Turn", glossary Interrupt). "At any time" effects aren't limited this way. Technique text doesn't need to repeat it; Cloak and Dagger's own "not more than once per attack" line was removed.
 - **STANDING RULE: Bleeding is Health loss over time.** It goes around Resist. When it decays, half the stacks come off, rounded up, and the bearer loses that much Health. It always decays at the end of the bearer's turn, even the turn it was gained. Protected stops a tick like any Health loss. Leftover stacks keep decaying after a fight. Rare as a main tool, otherwise small add-ons. Was one stack per turn until 2026-10-19. (2026-10-07, reworked 2026-10-19, → archive RULES_DESIGN, "Bleeding is Health loss over time")
 - **Cashing in Bleeding stays rare.** Turning stacks into Health loss at once (Reign of Blood, Circling Vulture) stays in a few lanes: Sorcerer's War Magic, maybe a Style. No weapon-user version (Open the Wound was declined). (2026-10-17, → archive RULES_DESIGN, "Bleeding is Health loss over time")
 - **Spending Bleeding is plain cost wording.** Spent stacks are gone and cause no Health loss; "for each" counts only what's actually spent. An ability that spends Bleeding gives something in its own lane (Barbarian gains Protected, Duelist Harries the target). (2026-10-20, → archive RULES_DESIGN, "Spending Bleeding")
