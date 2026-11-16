@@ -1679,7 +1679,7 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "Picking a lock never takes more than 4 AP. You may treat any rigid object that fits in the keyhole as a lockpick. When you successfully steal through sleight of hand, onlookers have Bad Luck on flips to notice its absence for the encounter. When you fail to pick a pocket, neither victim nor onlookers know who is responsible.",
+    "effects": "Picking a lock never takes you more than a few moments (about 4 AP in a fight). You may treat any rigid object that fits in the keyhole as a lockpick. When you succeed at sleight of hand, onlookers have Bad Luck on flips to notice what you did for the encounter. When you fail, neither your target nor onlookers know who is responsible.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Stealth 2, Craft 2",
@@ -1694,7 +1694,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",
