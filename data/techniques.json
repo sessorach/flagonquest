@@ -6740,7 +6740,7 @@
     "action": "1 AP",
     "cost": null,
     "target": "Choose a point within 10 meters; this Technique targets all creatures within 5 meters of that point.",
-    "effects": "Make a Stealth attack against the Vigilant Defense of each target. If it hits, the target is distracted for 3 rounds (roughly 10-15 seconds - a brief moment to investigate), plus 1 additional round for each Extra Success. A creature stops being distracted only if an imminent threat or the start of combat draws their attention away - not simply by any other distraction. While distracted, a creature has Bad Luck on any flips to notice anything other than the distraction. A creature already paying close or specific attention to something when the attack is made is immune to this Technique.",
+    "effects": "Make a Stealth attack against the Vigilant Defense of each target. If it hits, the target is distracted for 3 rounds (a brief moment to investigate), plus 1 round for each Extra Success, and has Bad Luck on flips to notice anything else. It ends early only if a threat or the start of a fight draws their attention. It doesn't work on a creature that is already watching for you or focused on a task.",
     "builder_notes": null,
     "special": "You may discard a card at any time to regain a use of this Technique.",
     "prereqs": "Stealth 2",
@@ -6755,7 +6755,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": "1.1",
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",
