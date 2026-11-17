@@ -9424,6 +9424,15 @@ A one-by-one read of the live Stealth Techniques with the designer.
 - **Lie in Wait (T193):** Good Luck once for each place you actually
   moved down, so a character already last in the order gets nothing.
   The sim already played it per place waited.
+- **Part of the Scenery (T226, new), Level 2, Stealth 3.** While you
+  stay still, flips to see or find you treat your cover as one step
+  heavier (none as Light, Light as Heavy). Drafted as Bad Luck for
+  searchers while hidden; the designer found that too narrow, so it
+  was tied to the cover rules, which makes it work in plain sight and
+  in a fight. It stops at Heavy, and doesn't touch attacks against
+  your Defenses. A story effect; Level 2 beside Shadow's Path. An
+  "adjacent ally too" clause was offered and left out.
+- **Quiet Work:** benched (backlog).
 
 ## Turn-order Styles in the simulator (2026-10-06)
 

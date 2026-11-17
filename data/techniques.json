@@ -10660,5 +10660,46 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T226",
+    "name": "Part of the Scenery",
+    "level_min": 2,
+    "level_max": 2,
+    "tags": null,
+    "description": "Stay still long enough and people stop seeing a person and start seeing a place where nothing is happening.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "While you stay still, flips to see or find you treat your cover as one step heavier: no cover counts as Light Cover, and Light Cover counts as Heavy Cover.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Stealth 3",
+    "relevant_skills": "Stealth",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Stealth"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
