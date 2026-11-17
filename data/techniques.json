@@ -9774,18 +9774,18 @@
   {
     "id": "T206",
     "name": "Warding Circle",
-    "level_min": 3,
-    "level_max": 3,
+    "level_min": 2,
+    "level_max": 2,
     "tags": "Style",
     "description": "You keep a ward turning around you like a slow wheel, and anyone standing close enough stands inside it.",
     "condition": null,
     "action": "Passive (Style)",
     "cost": null,
     "target": null,
-    "effects": "At the start of your turn, choose Fire, Frost, Brilliant, or Shadow. You and each ally within 3 meters gain that Ward.",
+    "effects": "At the start of your turn, choose Fire, Frost, Brilliant, or Shadow. You and each ally within 3 meters who has no stacks of that Ward gain one.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "(Sorcery or Theurgy) 4, Academics 3",
+    "prereqs": "(Sorcery or Theurgy) 3, Academics 2",
     "relevant_skills": "Sorcery, Theurgy, Academics",
     "use_cards": null,
     "healing": null,
@@ -9806,7 +9806,7 @@
           "Theurgy"
         ],
         "threshold": {
-          "base": 4
+          "base": 3
         }
       },
       {
@@ -9815,7 +9815,7 @@
           "Academics"
         ],
         "threshold": {
-          "base": 3
+          "base": 2
         }
       }
     ],

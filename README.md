@@ -13,9 +13,9 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-11-17 — Stealth review finished
+### 2026-11-17 — Stealth review finished, and a check on the new Techniques' Levels
 
-Finished the one-at-a-time read of Stealth: Part of the Scenery makes a character who keeps still much harder to spot, and Quiet Work was benched.
+Finished the one-at-a-time read of Stealth (Part of the Scenery in, Quiet Work and Second Shadow benched), then checked the Levels of everything added this week. Warding Circle dropped to Level 2 with no stacking, and cards spent on cheap card-spending Techniques are now priced as the spare cards they usually are.
 
 ### 2026-11-16 — A read through Stealth, and combat gets its own chapter heading
 

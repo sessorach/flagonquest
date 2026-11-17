@@ -9178,6 +9178,14 @@ on Average is where it should sit. It does nothing in a fight with no
 elemental damage. If it plays strong, trim to the caster plus one ally.
 Not in the sim yet (`techniques.DEFERRED`).
 
+**Relevelled to Level 2 (designer, 2026-11-17).** The review put it at
+about 75% of a Level 3. The designer didn't want Wards piling up, so
+it stays at one stack, now only for a creature with no stacks of the
+chosen Ward, and drops a Level: Target 7.2, Value about 7 to 8 (a
+little under the 8 above, since the caster can no longer build a
+second stack on their own turn). On Target. Prereqs (Sorcery or
+Theurgy) 3, Academics 2.
+
 ### Wellspring (T207, new) — Level 4 (2026-11-14)
 
 "When you discard cards for a Technique that heals, one other ally
@@ -9433,6 +9441,34 @@ A one-by-one read of the live Stealth Techniques with the designer.
   your Defenses. A story effect; Level 2 beside Shadow's Path. An
   "adjacent ally too" clause was offered and left out.
 - **Quiet Work:** benched (backlog).
+
+## Card sinks: the card is the one you'd have thrown away (2026-11-17)
+
+Per the designer: a card spent on a card-sink Technique is generally
+one that wasn't useful for anything else, so its cost is discounted,
+and card sinks should land on Target. Hand Filtering already says a
+card under rank 9 is "fungible Technique-discard fuel". Held against a
+future flip, a rank 1-8 card is worth 0.81 on average (keep the better
+of it and the natural flip, exact 52-card math, less the 7 baseline;
+rank 1 0.0, rank 8 2.15), against 2.15 for an average card and the
+Card weight's 2.7. **A sink's card is priced at about 0.8** (Claude's
+figure from that math).
+
+Net per use, then per fight at 1.5 uses (an assumption: about 10 cards
+a day, roughly 6 of them under rank 9, two fights a day plus other
+uses):
+
+| Technique | Level, Target | Effect | Net per use | Per fight at 1.5 uses |
+|---|---|---|---|---|
+| Quick Step | 1, 3 | A move, 2.75 | 1.95 | 2.9 (97%) |
+| Roll With It | 1, 3 | Bad Luck, 2.2-2.3 | 1.45 | 2.2 (73%, weak on purpose) |
+| Shake It Off | 1, 3 | Two debuff stacks, 2-3 | 1.2-2.2 | 1.8-3.3 (60-110%) |
+| Focused Casting, Perfect Strike | 2, 6 | Good Luck twice, 3.6 | 2.8 | 4.2 (70%); 5.6 (93%) at 2 uses |
+
+Second Wind (Level 2) is 2.8 to 3.4 per use less 0.8 on this footing,
+about 3.4 a fight at 1.5 uses against 6: under, where at the old card
+price it read as the strongest sink. Uses per fight is the soft number
+in all of this.
 
 ## Turn-order Styles in the simulator (2026-10-06)
 
