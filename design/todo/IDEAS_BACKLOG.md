@@ -401,6 +401,13 @@ Dead Ringer and Wear It Well went in. Left over:
   designer hasn't ruled on it.
 - **A floor on the disguise flip** (treat a card under 7 as a 7).
 
+## Stealth seeds benched (2026-11-17)
+
+- **Quiet Work** (Level 2): while no one is aware of you, a check other
+  than an attack doesn't give you away, success or failure. Benched by
+  the designer as too specific: at the table, doing something sneakily
+  already means a check of each Skill (the task's and Stealth).
+
 ## Downtime Meditation Techniques
 
 Meditation Techniques that aren't martial: meditate for ten minutes or
