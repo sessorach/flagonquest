@@ -407,6 +407,11 @@ Dead Ringer and Wear It Well went in. Left over:
   than an attack doesn't give you away, success or failure. Benched by
   the designer as too specific: at the table, doing something sneakily
   already means a check of each Skill (the task's and Stealth).
+- **Second Shadow** (Level 2): tailing someone. Drafted as one Stealth
+  check for the whole journey, which only changes how often the GM
+  calls for checks. The rework on the table when it was benched: Good
+  Luck on Stealth checks to follow a creature unnoticed, and on a
+  failure it knows it's being followed but not by whom.
 
 ## Downtime Meditation Techniques
 
