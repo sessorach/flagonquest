@@ -9465,9 +9465,11 @@ uses):
 | Shake It Off | 1, 3 | Two debuff stacks, 2-3 | 1.2-2.2 | 1.8-3.3 (60-110%) |
 | Focused Casting, Perfect Strike | 2, 6 | Good Luck twice, 3.6 | 2.8 | 4.2 (70%); 5.6 (93%) at 2 uses |
 
-Second Wind (Level 2) is 2.8 to 3.4 per use less 0.8 on this footing,
-about 3.4 a fight at 1.5 uses against 6: under, where at the old card
-price it read as the strongest sink. Uses per fight is the soft number
+Second Wind (Level 2) heals 1.25 Shallow Health a use on average (2 on
+a Heart): 5 to 6.25 at Health's 4 or Shallow's 5, less 0.8, so 4.2 to
+5.45 a use and 6.3 to 8.2 a fight at 1.5 uses against 6, a little
+over. It's the one sink the discount pushes past Target, and like every
+heal it moves with the open question of how Health is priced. Uses per fight is the soft number
 in all of this.
 
 ## Turn-order Styles in the simulator (2026-10-06)
