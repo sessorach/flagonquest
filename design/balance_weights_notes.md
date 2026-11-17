@@ -9207,6 +9207,15 @@ fires once a cast, and consumables add nothing. It scales with what's
 paid, not with a Skill or a flip, so it stays inside "prefer a fixed
 payout". Not in the sim yet (`techniques.DEFERRED`).
 
+**Re-checked 2026-11-17, kept as is (designer).** The first pricing
+counted only fights. After a fight, where healers spend most cards,
+each card heals two people, roughly halving the cards needed to top
+the party up: about 6 more Shallow Health a day, ~30, for a day total
+near 50 against ~29 for two fights (~170%, rough). The designer kept
+it: spreading the healing around (one ally, 1 Shallow per card, only
+someone near the heal) tamps the value down. "Only in a fight" and
+"half as much" were offered and not taken.
+
 ## Generic card-spending Techniques (2026-11-14)
 
 The designer's ask from 2026-09-28: a couple of ways to spend cards from
