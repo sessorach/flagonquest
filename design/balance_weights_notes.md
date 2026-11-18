@@ -9481,6 +9481,33 @@ over. It's the one sink the discount pushes past Target, and like every
 heal it moves with the open question of how Health is priced. Uses per fight is the soft number
 in all of this.
 
+## Mighty Mixologist reworked to scale (2026-11-18)
+
+Per the designer, its job is to keep an alchemist's goods level with a
+damage caster as the game goes on: alchemy items are fixed by the Level
+they're made at, and an alchemist puts points into Mixology, not Mind
+(spell damage) or Body (Grenade range). Before: +1 damage on damaging
+Grenades of Level 3 or lower, and Body counted 1 higher for range if
+under 5. Now: +1 damage on any damaging Grenade, +2 at a Mixology Skill
+Total of 8 or more; range +[half your Mixology Skill Total] meters for
+everyone. The Poison Concentration floor is unchanged.
+
+The yardstick is War Magic's 2 + [Mind], which gains about +2 over the
+game. Jackal's Mixology Skill Totals run 6, 8, 9 at Levels 1-3: +1,
++2, +2 damage, +3, +4, +4 meters (9, 10, 13 meters at her Body). An
+uncapped [half the Total] − 2 was drafted first; the designer found +3
+at the top too much.
+
+Checked for breakage: there's no damaging Grenade below Level 2, and
+damaging Grenades deal 7-9 at every Level 2-5 (the higher ones are
+worth more for riders and areas), so a flat bonus doesn't change which
+Grenade is best; a late Bottled Fire at 10 sits about level with a
+tier-5 caster's Level 2 War Magic. Area Grenades gain it per creature
+hit, as War Magic's area spells gain Mind. The volume comes from
+Bottomless Bottles: about 6 spare cards a day as Grenades is 3 a fight,
++1 over the old bonus each, ~6 Value a fight at 2 a point (an
+assumption-heavy upper case). The sim plays the new bonus.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

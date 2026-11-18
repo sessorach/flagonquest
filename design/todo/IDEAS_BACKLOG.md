@@ -444,6 +444,10 @@ Old Growth Digs Deep (T165) clears named Common Effects from yourself and should
 touch Poisons. Confirm the Poison rules say only specific effects clear
 a Poison, so a list like its own can't be read as including them.
 
+Also re-check **Mighty Mixologist (T035)** once the Poison review is
+done (designer, 2026-11-18): its Concentration floor is the alchemist's
+poison accuracy, and the Grenade bonus was reworked the same day.
+
 ## Social Techniques: what's left after the 2026-10-04 rework
 
 The Social Contest-era wording is gone from every Technique and Feature

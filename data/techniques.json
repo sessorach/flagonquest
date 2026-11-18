@@ -1729,7 +1729,7 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "When you attack with a damaging Grenade item of Level 3 or lower, it deals +1 damage. If your Body is lower than 5, you may treat it as 1 higher for Grenade attack range. Whenever you use a Poison created with Mixology, its Concentration becomes +[your Mixology Skill Total] if it would be lower.",
+    "effects": "When you attack with a damaging Grenade, it deals +1 damage, or +2 if your Mixology Skill Total is 8 or higher. Your Grenades' range increases by [half your Mixology Skill Total] meters. Whenever you use a Poison created with Mixology, its Concentration becomes +[your Mixology Skill Total] if it would be lower.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Mixology 3",
@@ -1744,7 +1744,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",

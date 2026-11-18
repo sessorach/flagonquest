@@ -781,12 +781,12 @@ def _pc_dict(sheet, index, good_luck):
     bottled_fire_profile = None
     bottled_fire_uses = None
     if "Bottomless Bottles" in card_techniques:
-        # Mighty Mixologist (T035): +1 damage with a damaging Grenade of
-        # Level 3 or lower - Bottled Fire is Level 2. Its Grenade-range
-        # rider isn't modeled (Range isn't overlaid for Bottled Fire at
-        # all, see above).
+        # Mighty Mixologist (T035): +1 damage with a damaging Grenade, +2
+        # at a Mixology Skill Total of 8 or more. Its range rider isn't
+        # modeled (Range isn't overlaid for Bottled Fire at all, see above).
+        mixologist = (2 if skill_total(stats, skills, "Mixology") >= 8 else 1) if "Mighty Mixologist" in passives else 0
         bottled_fire_profile = dict(skill_total=skill_total(stats, skills, "Acrobatics"),
-                                     damage=8 + (1 if "Mighty Mixologist" in passives else 0),
+                                     damage=8 + mixologist,
                                      dmg_type="Fire", opp_def="Dodge", skill="Acrobatics")
         item_cost = T.BOTTLED_FIRE_GOLD_COST
         # `Bottles Item` (2026-10-09): Acidic Flask (I028, Level 1, 2 Gold)

@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-18 — Alchemists keep pace
+
+Started Mixology's review: Mighty Mixologist now grows with your Mixology, giving Grenades +1 damage (+2 at higher Mixology) and more range, so an alchemist's bombs keep up with a spellcaster's damage later in the game.
+
 ### 2026-11-17 — Stealth review finished, and a check on the new Techniques' Levels
 
 Finished the one-at-a-time read of Stealth (Part of the Scenery in, Quiet Work and Second Shadow benched), then checked the Levels of everything added this week. Warding Circle dropped to Level 2 with no stacking, and cards spent on cheap card-spending Techniques are now priced as the spare cards they usually are.
