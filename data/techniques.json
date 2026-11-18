@@ -2513,7 +2513,7 @@
     "effects": "You create items with a total Gold cost of no more than [four times X], requiring no materials. Items must have Mixology as their Relevant Skill and you must meet all creation requirements. These items last until you get a full night's rest, then fade away.",
     "builder_notes": null,
     "special": null,
-    "prereqs": "Mixology 3, Resilience 2, (Streetwise, Academics, or Medicine) 2",
+    "prereqs": "Mixology 3, (Streetwise, Academics, or Medicine) 3, Resilience 2",
     "relevant_skills": "Mixology, Resilience, Streetwise, Academics, Medicine",
     "use_cards": true,
     "healing": null,
@@ -2525,7 +2525,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",
@@ -2539,18 +2539,18 @@
       {
         "type": "skill",
         "options": [
-          "Resilience"
+          "Streetwise",
+          "Academics",
+          "Medicine"
         ],
         "threshold": {
-          "base": 2
+          "base": 3
         }
       },
       {
         "type": "skill",
         "options": [
-          "Streetwise",
-          "Academics",
-          "Medicine"
+          "Resilience"
         ],
         "threshold": {
           "base": 2
