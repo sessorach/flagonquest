@@ -285,6 +285,14 @@ cut, not just backfilled at a point in time.
   the designer, Stealth covers any kind of legerdemain without a
   Technique.
 
+- **A Splash of Something** (Mixology, 2026-11-19) — 0 AP Interrupt when
+  you throw a Grenade or use a Potion made with Mixology: discard a card
+  and the suit adds a rider (Hearts Protected once, Clubs Bleeding once,
+  Spades Slowed three times, Diamonds your pick). Declined by the
+  designer as a card sink: nine alchemists in ten take Bottomless
+  Bottles as theirs, so Mixology doesn't need another. The "add an
+  effect on the fly" idea itself is still wanted, without a card cost.
+
 ## Style coverage by archetype (2026-10-05)
 
 Per the designer: each combat archetype should have a few **early**
