@@ -9545,6 +9545,17 @@ some waste. Level 1 (6 of 10 cards) is 95% / 72%; Level 3 (10 of 16)
 capped by the cards themselves, and later characters have other sinks
 competing for spare cards. The sim plays 3 Gold a card.
 
+## Reformulate (T227, new) — Level 1 (2026-11-19)
+
+For alchemist flexibility in the field (designer's ask). Encounter, 1
+AP: a consumable made with Mixology that you're holding becomes
+another of the same Level or lower that you know how to make. Drafted
+at Level 2 with a card cost; the designer swapped the card for
+Encounter. Worth the difference between two items, not a whole one:
+about half a Level 2 consumable (~3) when it matters, against a Level
+1's 3. A judgment, not measured; much of its use is between fights,
+where the AP doesn't count.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

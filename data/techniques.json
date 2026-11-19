@@ -10701,5 +10701,46 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T227",
+    "name": "Reformulate",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": "Encounter",
+    "description": "A pinch of this, a splash of that, a hard shake, and the healing draught in your hand is now something that explodes.",
+    "condition": null,
+    "action": "1 AP",
+    "cost": null,
+    "target": null,
+    "effects": "Choose a consumable item made with Mixology that you're holding. It becomes another item made with Mixology of the same Level or lower, which you know how to make.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Mixology 2",
+    "relevant_skills": "Mixology",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Mixology"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]

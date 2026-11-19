@@ -30,6 +30,7 @@ OUT_OF_COMBAT.update({
     "T221": "Read the Room", "T222": "I Know a Guy", "T223": "Safe House", "T224": "Ear to the Ground",
     "T225": "Up Your Sleeve (the 0 AP draw isn't played)",
     "T226": "Part of the Scenery (enemies don't search for PCs in the sim)",
+    "T227": "Reformulate (the sim's alchemist carries one kind of item)",
     "T095": "Placeholder's Tender Telekinesis", "T096": "Placeholder's Wizardly Witchlight",
     # Follower (T059) is out of combat, so its knacks are too. Squire and
     # Magical Adept would touch a fight, through a follower the sim doesn't

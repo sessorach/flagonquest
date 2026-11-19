@@ -13,9 +13,9 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
-### 2026-11-19 — Bottomless Bottles costs a little more
+### 2026-11-19 — Alchemists get cheaper bottles and a way to change their minds
 
-Bottomless Bottles now makes 3 Gold of alchemy items per card instead of 4, which brings it close to what a Level 4 Technique should be worth over a day, and its prereqs moved so an alchemist can still take it at character creation.
+Bottomless Bottles now makes 3 Gold of alchemy items per card instead of 4, bringing it close to what a Level 4 Technique should be worth over a day, with prereqs low enough to take at character creation. New Level 1 Technique Reformulate turns one potion or Grenade you're holding into another once a fight, for the alchemist who packed the wrong thing.
 
 ### 2026-11-18 — Alchemists keep pace
 
