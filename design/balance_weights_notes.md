@@ -9508,6 +9508,43 @@ Bottomless Bottles: about 6 spare cards a day as Grenades is 3 a fight,
 +1 over the old bonus each, ~6 Value a fight at 2 a point (an
 assumption-heavy upper case). The sim plays the new bonus.
 
+## Bottomless Bottles: 3 Gold a card (2026-11-18 to 11-19)
+
+A beginner keystone (DESIGNER_NOTES): Level 4 for its value, prereqs
+low so an alchemist can have it at creation. Prereqs now Mixology 3,
+(Streetwise, Academics, or Medicine) 3, Resilience 2. Balance point
+(designer): a day's ordinary use about pays back its Level 4 XP (12 a
+fight, ~24 a day), a little under for the flexibility.
+
+A card bought 4 Gold of items, one Level 2 consumable (~6.25; 1.56 a
+Gold). The sim has Jackal put two-thirds of her daily cards in (2 ×
+(Cunning + Mind): 10, 12, 16 at Levels 1-3). At 4 Gold that was 134%,
+174%, 223% of 24 with every item used; 103%, 132%, 171% with 20%
+wasted. A daily cap of [half your Mixology Skill Total] cards was
+offered and declined (no more mechanics). Now **3 Gold a card**: Gold
+pools across a sitting, so 2 cards make a Level 3 item or a Level 2
+and a Level 1, and little is lost.
+
+Cards cost more the more you spend. Spending the lowest first from a
+12-card hand (100,000 deals, each card valued as what it would add to
+a later flip): 0.05, 0.18, 0.39, 0.67, 1.03, 1.47, 1.98, 2.56, 3.22,
+3.96, 4.78, 5.57. At 3 Gold (item ~4.7, or ~3.75 with 20% wasted):
+
+| Cards | Card cost | Of 24, all used | Of 24, 20% wasted |
+|---|---|---|---|
+| 4 | 1.3 | 73% | 57% |
+| 6 | 3.8 | 101% | 78% |
+| 8 | 8.3 | 122% | 90% |
+| 10 | 15.5 | 131% | 92% |
+| 12 | 25.9 | 127% | 80% |
+
+The top cards are worth more than what they'd buy, so it levels off
+around 9-10 cards: about 130% with every item used, about 90% with
+some waste. Level 1 (6 of 10 cards) is 95% / 72%; Level 3 (10 of 16)
+158% / 119%, since a bigger hand has more low cards. Over late, but
+capped by the cards themselves, and later characters have other sinks
+competing for spare cards. The sim plays 3 Gold a card.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

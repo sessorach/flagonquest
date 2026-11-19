@@ -2510,7 +2510,7 @@
     "action": "10 minutes",
     "cost": "Discard X cards",
     "target": null,
-    "effects": "You create items with a total Gold cost of no more than [four times X], requiring no materials. Items must have Mixology as their Relevant Skill and you must meet all creation requirements. These items last until you get a full night's rest, then fade away.",
+    "effects": "You create items with a total Gold cost of no more than [three times X], requiring no materials. Items must have Mixology as their Relevant Skill and you must meet all creation requirements. These items last until you get a full night's rest, then fade away.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Mixology 3, (Streetwise, Academics, or Medicine) 3, Resilience 2",

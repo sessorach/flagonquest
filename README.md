@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-19 — Bottomless Bottles costs a little more
+
+Bottomless Bottles now makes 3 Gold of alchemy items per card instead of 4, which brings it close to what a Level 4 Technique should be worth over a day, and its prereqs moved so an alchemist can still take it at character creation.
+
 ### 2026-11-18 — Alchemists keep pace
 
 Started Mixology's review: Mighty Mixologist now grows with your Mixology, giving Grenades +1 damage (+2 at higher Mixology) and more range, so an alchemist's bombs keep up with a spellcaster's damage later in the game.

@@ -1,18 +1,18 @@
-# Latest replays (2026-11-13)
+# Latest replays (2026-11-19)
 
-Base stats measured from scratch against the value table (no rules change)
+Mighty Mixologist scales with Mixology; Bottomless Bottles makes 3 Gold a card
 
 ## partyS_L1_vs_L1_manual1.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Manual 1 (Blast Mage@1, Glaive Dancer@1, Glaive Dancer@1, Glaive Dancer@1)
-- This fight (seed 11): party won in 5 rounds, 85% party HP left
-- Matchup average over 1000 fights: 99.0% wins, 4.9 rounds, 80% HP left on a win
+- This fight (seed 8): party won in 6 rounds, 78% party HP left
+- Matchup average over 1000 fights: 97.4% wins, 5.8 rounds, 78% HP left on a win
 
 ## partyU_L1_vs_L1_manual2.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
 - Enemies: Level 1 Manual 2 (Ironbranch Warden@1, Ironbranch Warden@1, Thornhide Brute@1, Warpriest@1)
 - This fight (seed 1): party won in 7 rounds, 100% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 7.3 rounds, 92% HP left on a win
+- Matchup average over 1000 fights: 100.0% wins, 7.2 rounds, 92% HP left on a win
 
 ## partyT_L1_vs_L1_manual3.html
 - Party: Browndog, Hanforth, Sable, Beornhard
@@ -29,28 +29,28 @@ Base stats measured from scratch against the value table (no rules change)
 ## bleed_party_L1_vs_L1_frontline.html
 - Party: Hilde (Bleed), Felix (Bleed), Jackal (Bleed), Beornhard (Bleed)
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
-- This fight (seed 2): party won in 5 rounds, 55% party HP left
-- Matchup average over 1000 fights: 85.2% wins, 5.4 rounds, 55% HP left on a win
+- This fight (seed 30): party won in 6 rounds, 75% party HP left
+- Matchup average over 1000 fights: 83.2% wins, 5.5 rounds, 56% HP left on a win
 
 ## cash_party_L1_vs_L1_frontline.html
 - Party: Hilde (Bleed), Felix (Cash), Jackal (Bleed), Beornhard (Cash)
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 2): party won in 6 rounds, 55% party HP left
-- Matchup average over 1000 fights: 78.8% wins, 5.7 rounds, 60% HP left on a win
+- Matchup average over 1000 fights: 76.0% wins, 5.9 rounds, 62% HP left on a win
 - Picked from fights with cashed above 0
 
 ## bleed_party_L1_vs_L1_warband.html
 - Party: Hilde (Bleed), Felix (Bleed), Jackal (Bleed), Beornhard (Bleed)
 - Enemies: Level 1 Warband (Brute, Skulking Footpad, Skulking Footpad, Warpriest)
-- This fight (seed 4): party won in 6 rounds, 80% party HP left
-- Matchup average over 1000 fights: 96.7% wins, 6.4 rounds, 73% HP left on a win
+- This fight (seed 14): party won in 7 rounds, 55% party HP left
+- Matchup average over 1000 fights: 96.6% wins, 6.9 rounds, 73% HP left on a win
 - Picked from fights with pc_bleed_taken above 0
 
 ## partyA_L1_vs_chief_frontline.html
 - Party: Hilde, Browndog, Carrick, Sable
 - Enemies: Level 1 Chief's Frontline (Brute Chief, Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 10): party won in 7 rounds, 65% party HP left
-- Matchup average over 1000 fights: 89.0% wins, 6.9 rounds, 68% HP left on a win
+- Matchup average over 1000 fights: 87.6% wins, 6.9 rounds, 68% HP left on a win
 
 ## partyB_L3_vs_L3_frontline.html
 - Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)
@@ -68,14 +68,14 @@ Base stats measured from scratch against the value table (no rules change)
 ## partyB_L2_frost_vs_L2_warband.html
 - Party: Hilde (L2), Browndog (L2), Jackal (L2), Beornhard (L2, Frost)
 - Enemies: Level 2 Warband (Brute (L2), Skulking Footpad (L2), Skulking Footpad (L2), Warpriest (L2))
-- This fight (seed 1): party won in 3 rounds, 95% party HP left
+- This fight (seed 5): party won in 3 rounds, 84% party HP left
 - Matchup average over 1000 fights: 100.0% wins, 3.1 rounds, 92% HP left on a win
 
 ## partyB_L3_flurry_piercing_vs_L3_frontline.html
 - Party: Hilde (L3, Flurry), Browndog (L3), Jackal (L3), Beornhard (L3, Piercing)
 - Enemies: Level 3 Frontline (Brute (L3), Brute (L3), Grave Caller (L3), Grave Caller (L3))
 - This fight (seed 1): party won in 2 rounds, 100% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 2.2 rounds, 85% HP left on a win
+- Matchup average over 1000 fights: 100.0% wins, 2.2 rounds, 84% HP left on a win
 
 ## partyD_L3_vs_L3_frontline.html
 - Party: Browndog (L3), Hanforth (L3), Hilde (L3), Beornhard (L3)
@@ -86,14 +86,14 @@ Base stats measured from scratch against the value table (no rules change)
 ## manual_L1_brutes_archers.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Manual: brutes and archers (Brute@1, Brute@1, Marsh Archer@1, Hunting Hound@1)
-- This fight (seed 4): party won in 5 rounds, 88% party HP left
-- Matchup average over 1000 fights: 99.4% wins, 4.8 rounds, 85% HP left on a win
+- This fight (seed 2): party won in 5 rounds, 100% party HP left
+- Matchup average over 1000 fights: 98.8% wins, 5.4 rounds, 84% HP left on a win
 
 ## manual_L3_ogre_leads.html
 - Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)
 - Enemies: Level 3 Manual: Gravel Ogre leads (Gravel Ogre@3, Goblin Cutthroat@3, Marsh Archer@3)
 - This fight (seed 1): party won in 2 rounds, 100% party HP left
-- Matchup average over 1000 fights: 100.0% wins, 2.2 rounds, 93% HP left on a win
+- Matchup average over 1000 fights: 100.0% wins, 2.3 rounds, 93% HP left on a win
 
 ## manual_L3_new_tricks.html
 - Party: Browndog (L3), Hanforth (L3), Hilde (L3), Beornhard (L3)

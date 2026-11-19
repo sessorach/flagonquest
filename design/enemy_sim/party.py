@@ -766,12 +766,12 @@ def _pc_dict(sheet, index, good_luck):
     # Bottles PC needs a different one.
     #
     # How many per fight: T053's own Effects text is "items with a total
-    # Gold cost of no more than [4 x X]" for X cards discarded (its own
+    # Gold cost of no more than [three times X]" for X cards discarded (its own
     # Cost, chosen at use, not tied to the Technique's own XP-Level).
     # The designer's own framing - spend 2/3 of a day's cards on this
     # (X = hand_size x 2 // 3), all toward Bottled Fire, then a single
     # fight gets half of whatever a full day's Gold budget buys - turns
-    # into: gold_budget = 4 x X, daily_count = gold_budget //
+    # into: gold_budget = 3 x X (4 x X before 2026-11-19), daily_count = gold_budget //
     # T.BOTTLED_FIRE_GOLD_COST (items.csv's own real Cost - 4 Gold, the
     # designer's general "alchemy items default to 2 x Level Gold"
     # rule), bottled_fire_uses = daily_count // 2. A separate counter
@@ -799,7 +799,7 @@ def _pc_dict(sheet, index, good_luck):
                                          effect=("bleeding", T.ACID_FLASK_STACKS, "Clubs"), item="Acidic Flask")
             item_cost = game_data.item_gold("I028")
         cards_for_gold = hand_size * 2 // 3
-        gold_budget = 4 * cards_for_gold
+        gold_budget = 3 * cards_for_gold  # T053's "[three times X]"
         daily_count = int(gold_budget // item_cost)
         bottled_fire_uses = daily_count // 2
 
