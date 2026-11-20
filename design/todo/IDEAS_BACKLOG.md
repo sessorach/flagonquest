@@ -421,6 +421,19 @@ Dead Ringer and Wear It Well went in. Left over:
   Luck on Stealth checks to follow a creature unnoticed, and on a
   failure it knows it's being followed but not by whom.
 
+## Compound, the alchemist's Bespoke Masterpieces (shelved 2026-11-20)
+
+Per the designer, compelling but on the shelf. When you make a
+consumable, fold in a second recipe you know of the same kind (two
+Potions, or two Grenades), paying both recipes' materials and Gold; its
+Level is the two added together, capped like Bespoke Masterpieces'.
+One drink or one throw delivers both. Materials stay honest, it's
+prepared ahead, and it's the only way to get a two-effect consumable,
+the same "only you can do this" place layering powers holds for
+smiths. A passive around Level 3. The designer's reservation: combining
+things is the smith's trick, so it's less the alchemist's own than
+Mutagens.
+
 ## Downtime Meditation Techniques
 
 Meditation Techniques that aren't martial: meditate for ten minutes or
