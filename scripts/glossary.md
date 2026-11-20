@@ -132,7 +132,7 @@ A Potion can be consumed to provide the imbiber with an effect. It takes 1 AP to
 
 #### [Mutagen]
 
-A Mutagen is a Potion that only a creature who knows Mutagenesis can make or drink. Its effects last for the encounter, and you can only be under one Mutagen at a time - drinking another ends the first.
+A Mutagen is a Potion that only a creature who knows Mutagenesis can make, and only the creature who made it can drink. Its effects last for the encounter, and you can only be under one Mutagen at a time - drinking another ends the first.
 
 #### [Duplicate]
 

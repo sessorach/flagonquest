@@ -9576,8 +9576,9 @@ stats outside your usual loadout. Structure, per the designer:
   Training opening a School; the power is in the items.
 - **[Mutagen]** (glossary): a Potion only a creature who knows
   Mutagenesis can make or drink; lasts for the encounter; one at a
-  time. The first draft made them drinkable only by their maker; the
-  designer tied drinking to knowing the Technique instead.
+  time; only the creature who made a Mutagen can drink it (the
+  designer: flavorful, the mad alchemist brewing their own weird
+  thing, and parties mostly share generic potions and materials anyway).
 - **Each Mutagen is an item** (Potion, Tags Mutagen) with its own Main
   Material, Level, 2 Gold per Level, and its own creation requirements
   where they differ from the Potion recipe (items.csv overrides
