@@ -240,3 +240,8 @@ things off in order.
   chance to use a given Interrupt. The "at any time" sentence in the
   rulebook says it isn't limited that way. 2026-11-16, the commit
   "Interrupts: one use per trigger is a general rule now".
+- **`#### [Mutagen]`** (glossary, new, after [Potion]) — a Potion only a
+  creature who knows Mutagenesis can make or drink; lasts for the
+  encounter; one at a time. The designer approved the structure in chat
+  (2026-11-20); this exact wording is mine. Commit "Mutagens: the
+  Mutagenesis Technique and the [Mutagen] keyword".

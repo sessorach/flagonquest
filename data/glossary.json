@@ -96,6 +96,10 @@
     "description": "A Potion can be consumed to provide the imbiber with an effect. It takes 1 AP to use a Potion, and it must be in your hand to use. Instead of drinking it yourself, you may feed it to a willing or Downed creature adjacent to you - it gets the Potion’s effect instead of you."
   },
   {
+    "term": "Mutagen",
+    "description": "A Mutagen is a Potion that only a creature who knows Mutagenesis can make or drink. Its effects last for the encounter, and you can only be under one Mutagen at a time - drinking another ends the first."
+  },
+  {
     "term": "Duplicate",
     "description": "Abilities with this tag can be learned more than once, and generally have special features based on how many times you learn them. (Noun, not the verb)"
   },

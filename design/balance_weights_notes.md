@@ -9564,6 +9564,28 @@ make. Now the item changes until the end of the encounter and turns
 back if it hasn't been used. Its value in a fight is unchanged; the
 remix between fights now only lasts that scene.
 
+## Mutagens (2026-11-20)
+
+The designer wanted an alchemist's signature that's their own (layering
+two recipes, Compound, was shelved as too close to the smith's
+Bespoke Masterpieces). Mutagens: quick consumables that opt you into
+stats outside your usual loadout. Structure, per the designer:
+
+- **Mutagenesis (T228), Level 1, Mixology 2 and Resilience 1:** "You
+  can make and drink Mutagens." A recipe unlock, like Artisanal
+  Training opening a School; the power is in the items.
+- **[Mutagen]** (glossary): a Potion only a creature who knows
+  Mutagenesis can make or drink; lasts for the encounter; one at a
+  time. The first draft made them drinkable only by their maker; the
+  designer tied drinking to knowing the Technique instead.
+- **Each Mutagen is an item** (Potion, Tags Mutagen) with its own Main
+  Material, Level, 2 Gold per Level, and its own creation requirements
+  where they differ from the Potion recipe (items.csv overrides
+  crafting_recipes field by field). Bottomless Bottles can make them.
+- **Pricing:** "a bit more efficient than usual potions" (designer). A
+  consumable is about one use of a Technique of its Level, Level x 3;
+  a Mutagen can sit a little above that.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

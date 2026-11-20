@@ -10742,5 +10742,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T228",
+    "name": "Mutagenesis",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": null,
+    "description": "Every alchemist tastes their work eventually. You just stopped spitting it out.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "You can make and drink Mutagens.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Mixology 2, Resilience 1",
+    "relevant_skills": "Mixology, Resilience",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.2",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Mixology"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Resilience"
+        ],
+        "threshold": {
+          "base": 1
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
