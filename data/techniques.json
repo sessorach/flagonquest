@@ -10713,7 +10713,7 @@
     "action": "1 AP",
     "cost": null,
     "target": null,
-    "effects": "Choose a consumable item made with Mixology that you're holding. It becomes another item made with Mixology of the same Level or lower, which you know how to make.",
+    "effects": "Choose a consumable item made with Mixology that you're holding. Until the end of the encounter, it becomes another item made with Mixology of the same Level or lower, which you know how to make. If it hasn't been used by then, it turns back.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Mixology 2",

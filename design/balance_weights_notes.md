@@ -9556,6 +9556,14 @@ about half a Level 2 consumable (~3) when it matters, against a Level
 1's 3. A judgment, not measured; much of its use is between fights,
 where the AP doesn't count.
 
+**Made temporary (designer, 2026-11-20).** As first written the change
+was permanent, which let an alchemist launder materials: Bottled Fire
+needs Fire material and a Healing Potion needs Bone, so turning one
+into the other for good erases the separation between what materials
+make. Now the item changes until the end of the encounter and turns
+back if it hasn't been used. Its value in a fight is unchanged; the
+remix between fights now only lasts that scene.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn
