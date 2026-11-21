@@ -15,7 +15,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-11-20 — Mutagens for alchemists
 
-Added Mutagenesis, a Level 1 Technique that lets an alchemist make and drink Mutagens: quick brews that give you, for one fight, something you don't normally carry, like the protection of heavy armor. Also made Reformulate's change wear off at the end of the encounter, so it can't turn one material's goods into another's for good.
+Added Mutagenesis, a Level 1 Technique that lets an alchemist brew Mutagens only they can drink: an hour of something they don't normally carry, starting with Tough Hide, the protection of heavy armor without the Might for it. Also made Reformulate's change wear off at the end of the encounter, so it can't turn one material's goods into another's for good.
 
 ### 2026-11-19 — Alchemists get cheaper bottles and a way to change their minds
 

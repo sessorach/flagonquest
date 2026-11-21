@@ -11213,5 +11213,50 @@
     "levels": [
       1
     ]
+  },
+  {
+    "id": "I260",
+    "name": "Tough Hide",
+    "category": "Potion",
+    "slot": null,
+    "tags": "Mutagen",
+    "level": 2,
+    "description": "Your skin thickens and greys over like old leather stretched on bone, and the next blow lands on something closer to a shield.",
+    "effects": "When consumed, you count as wearing Heavy Armor, gaining all of its stat adjustments, and any armor you're actually wearing grants you no benefit.",
+    "cost": "4 Gold",
+    "value_per_level": null,
+    "school": "Alchemy",
+    "skill_total": "Mixology 6",
+    "total_materials": 2,
+    "main_materials": "Leather",
+    "optional_materials": "Medicinal",
+    "crafting_notes": "A Mutagen: needs Mutagenesis to make, and only its maker can drink it.",
+    "physical_resist": null,
+    "fire_resist": null,
+    "frost_resist": null,
+    "brilliant_resist": null,
+    "shadow_resist": null,
+    "speed": null,
+    "parry_defense": null,
+    "dodge_defense": null,
+    "vital_defense": null,
+    "mental_defense": null,
+    "instinct_defense": null,
+    "shallow_health": null,
+    "deep_health": null,
+    "accuracy": null,
+    "damage": null,
+    "weapon_defense": null,
+    "range": null,
+    "relevant_skills": "Mixology",
+    "might_requirement": null,
+    "held_slots": null,
+    "supplement": "Base Game",
+    "material_types": null,
+    "patch": "1.2",
+    "base_item_options": [],
+    "levels": [
+      2
+    ]
   }
 ]

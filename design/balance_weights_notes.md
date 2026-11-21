@@ -9587,6 +9587,35 @@ stats outside your usual loadout. Structure, per the designer:
   consumable is about one use of a Technique of its Level, Level x 3;
   a Mutagen can sit a little above that.
 
+## Mutagens: one hour, and Tough Hide (2026-11-21)
+
+**One hour (designer).** Lasting the encounter meant paying 1 AP in the
+fight it was meant to help; at an hour you drink it when trouble's
+coming. An hour usually covers one fight (about ten minutes, and the
+day's two are rarely that close), so a Mutagen still prices as about
+one use; covering two now and then is the reward for planning. Each
+Mutagen copies an existing buff and doesn't stack with it, said on the
+Mutagen itself.
+
+**Tough Hide (I260), Level 2, 4 Gold, Mixology 6, Leather (Optional
+Medicinal).** You count as wearing Heavy Armor (+3 Physical Resist, -1
+Dodge, -1 Speed) and worn armor grants nothing. Leather because the
+hide comes from a hide and no consumable used it; Bone is the usual
+toughness/healing Potion type. Against a Level 2's 6, per fight:
+
+| Otherwise wearing | Table weights | Measured, Health left | Measured, days lost |
+|---|---|---|---|
+| No armor | 8.7 (145%) | 12.0-15.0 (200-250%) | 7.9-9.3 (132-156%) |
+| Light Armor | 3.7 (62%) | 7.0-9.2 (117-153%) | 4.2-5.6 (71-94%) |
+| Medium Armor | 2.5 (41%) | 3.1-5.6 (52-93%) | 1.4-3.3 (23-56%) |
+
+Measured per point (stat_ladder, Levels 1-3, one PC): Resist 4.9-5.9 /
+3.5-3.7, Dodge 1.0-2.2 / 0.8-1.4, Speed 0.3-1.9 / 0.4-2.3. Dodge and
+Speed cost less than the table's 3.75 and 2.54, so it's worth more
+than the table says. Level 2 is right for a Light Armor wearer, its
+intended user; strong for the unarmored (mostly casters; monks lose
+their unarmored Styles). The designer kept Level 2.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

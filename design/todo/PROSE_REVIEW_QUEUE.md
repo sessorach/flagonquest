@@ -242,7 +242,6 @@ things off in order.
   "Interrupts: one use per trigger is a general rule now".
 - **`#### [Mutagen]`** (glossary, new, after [Potion]) — a Potion only a
   creature who knows Mutagenesis can make, and only its maker can drink
-  (designer's change, 2026-11-20); lasts for the
-  encounter; one at a time. The designer approved the structure in chat
+  (designer's change, 2026-11-20); lasts 1 hour (designer, 2026-11-21); one at a time. The designer approved the structure in chat
   (2026-11-20); this exact wording is mine. Commit "Mutagens: the
   Mutagenesis Technique and the [Mutagen] keyword".

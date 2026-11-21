@@ -97,7 +97,7 @@
   },
   {
     "term": "Mutagen",
-    "description": "A Mutagen is a Potion that only a creature who knows Mutagenesis can make, and only the creature who made it can drink. Its effects last for the encounter, and you can only be under one Mutagen at a time - drinking another ends the first."
+    "description": "A Mutagen is a Potion that only a creature who knows Mutagenesis can make, and only the creature who made it can drink. Its effects last for 1 hour, and you can only be under one Mutagen at a time - drinking another ends the first."
   },
   {
     "term": "Duplicate",
