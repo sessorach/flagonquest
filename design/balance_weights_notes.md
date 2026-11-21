@@ -9656,6 +9656,20 @@ rulebook never says what missing a Might requirement does. The designer
 noted some of these could later become ordinary Potions anyone can
 drink.
 
+**Three more (2026-11-21).**
+- **Bestial Claws (I270), Level 2, Bone:** the Unarmed weapon gets
+  Accuracy +1 and Damage 3 + [Body or Cunning] (1H Light Melee's
+  numbers) while staying Unarmed and Brawl. One Accuracy for one Damage
+  per attack: +1 on the table (Damage 2, Accuracy 1), +1.1 to +1.8 on
+  the base-stat test's Damage of 2.1-2.8 flips. 4-6 attacks a fight is
+  4-8 for someone who fights unarmed anyway; priced at that best case.
+- **Bitter Blood (I271), Level 1, Medicinal:** Poison attacks against
+  you have Bad Luck (2.2 a flip when poison attacks come, which is when
+  you'd drink it). Prevents, doesn't treat, so it stays off Medicine.
+- **Chameleon Skin (I272), Level 1, Leather:** Good Luck on Stealth
+  flips to hide while you stay still. A weaker, hour-long cousin of
+  Part of the Scenery.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn
