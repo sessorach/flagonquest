@@ -9635,6 +9635,27 @@ their unarmored Styles). The designer kept Level 2.
   flips" (Canopy Creeper's), cut for the same reason: a Mutagen patches
   a shortfall, it doesn't make you as good as a specialist.
 
+**Five more (2026-11-21), all accepted as drafted.**
+- **Quickened Blood (I265), Level 2, Fire:** the first move each turn
+  costs no AP; Hasted has no effect while it lasts. A free move on the
+  turns you'd move anyway, about half, ~4-6 a fight (a free move is
+  worth less than an AP of attacking). Written as the free move itself,
+  so it doesn't depend on the pending Hasted decision.
+- **Barkskin (I266), Level 1, Wood:** Protected once at the start of
+  each turn if you have none. ~1-2 hits a fight absorbed: 3-6 at the
+  table's 3 a stack, 1-2 on the measured Average. A small Earthen
+  Draught.
+- **Bull's Sinew (I267), Cat's Balance (I268), Keen Nose (I269),
+  Level 1:** Good Luck on Might flips other than attacks; on
+  Acrobatics flips to keep your footing; on Awareness flips to notice
+  creatures. Story effects; each helps the Skill's own flip, so none
+  stands in for it.
+
+Held back: Iron Grip (meet any weapon's Might requirement), since the
+rulebook never says what missing a Might requirement does. The designer
+noted some of these could later become ordinary Potions anyone can
+drink.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

@@ -434,6 +434,14 @@ smiths. A passive around Level 3. The designer's reservation: combining
 things is the smith's trick, so it's less the alchemist's own than
 Mutagens.
 
+## Mutagens: still to look at (2026-11-21)
+
+- **Some Mutagens could be split out into ordinary Potions** anyone can
+  drink (designer). Gills (breathe water) is the obvious one.
+- **Iron Grip:** meet the Might requirement of any weapon for an hour,
+  Tough Hide's idea for weapons. Needs the rulebook to say what missing
+  a Might requirement does; it's only a badge on the sheet today.
+
 ## Downtime Meditation Techniques
 
 Meditation Techniques that aren't martial: meditate for ten minutes or
