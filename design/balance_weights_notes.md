@@ -9616,6 +9616,25 @@ than the table says. Level 2 is right for a Light Armor wearer, its
 intended user; strong for the unarmored (mostly casters; monks lose
 their unarmored Styles). The designer kept Level 2.
 
+**Four more (2026-11-21).**
+- **Elemental Hide (I261), Level 2:** +2 Resist to a chosen element for
+  1 hour, not stacking with Ward of that type, so it can't push anyone
+  toward immunity alongside armor and Essence. Main Type is the opposite
+  element, like every single-element Resist item (Elemental-Attuned
+  Tincture, Elemental-Resistant Armor, Elemental Warding Band). Worth
+  1-2 against a mixed group, up to ~10 when most of a fight's damage is
+  that element (5 a point, like Physical Resist); brewed for the fight
+  you expect, so priced between at Level 2.
+- **Night Eyes (I262), Level 1, Shadow:** darkness gives no Cover
+  against your attacks or flips to see. Story effect.
+- **Gills (I263), Level 1, Medicinal:** breathe water. Drafted with
+  "swim at full Speed", cut by the designer: the Athletics budget for
+  swimming is that Skill's core.
+- **Spider Grip (I264), Level 1, Bone:** climb as though you had a
+  Climber's Kit, using only your hands. Drafted as "full Speed without
+  flips" (Canopy Creeper's), cut for the same reason: a Mutagen patches
+  a shortfall, it doesn't make you as good as a specialist.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn
