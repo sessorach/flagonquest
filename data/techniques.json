@@ -258,7 +258,7 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "Your maximum jump distance is doubled in both directions. When falling, you may reduce damage taken by your Athletics Skill Total instead of another stat.",
+    "effects": "You can jump twice as far: when you jump, you may spend up to your full Athletics Skill Total from a move action, not half of it. When you fall, you may reduce the distance by half your Athletics Skill Total in place of half your Acrobatics Skill Total.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Athletics 3",
@@ -273,7 +273,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",

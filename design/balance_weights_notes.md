@@ -9670,6 +9670,16 @@ drink.
   flips to hide while you stay still. A weaker, hour-long cousin of
   Part of the Scenery.
 
+## Athletics review (2026-11-22)
+
+- **Bound Across Mountains (T007):** "Maximum jump distance doubled"
+  predated the shared climb/jump/swim budget (half your Athletics Skill
+  Total a move action, and never more ground than your Speed). Now a
+  jump may spend the full Skill Total; the Speed limit stands. The fall
+  half lets half your Athletics Skill Total replace half your
+  Acrobatics Skill Total (it said the full Athletics total, against
+  "another stat"); the designer kept the swap as a special case.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn
