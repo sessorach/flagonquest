@@ -6566,6 +6566,7 @@ function App() {
   const availableNames = !browseView && availableOnly
     ? new Set(build.map(e => techniques.find(t => t.id === e.id)?.name).filter(Boolean))
     : null;
+  const knownIds = new Set(build.map(e => e.id));
   const visible = useMemo(() => techniques.filter(t => {
     // A disabled supplement's techniques drop out of the browse/search
     // list, same as items/backgrounds — but never out of buildEntries
@@ -6587,6 +6588,13 @@ function App() {
     if (cardsOnly && !t.use_cards) return false;
     if (updatedOnly && (!currentPatch || t.patch !== currentPatch)) return false;
     if (availableNames && meetsPrereqCheck(t, statPoints, skillPoints, availableNames) === false) return false;
+    // A Technique already in the build can only be taken again if it's
+    // Encounter (another copy is another use) or Duplicate, so anything
+    // else drops out of the list once learned. Browse mode has no build.
+    if (!browseView && knownIds.has(t.id)) {
+      const tags = splitCSV(t.tags);
+      if (!tags.includes("Encounter") && !tags.includes("Duplicate")) return false;
+    }
     if (skillFilters.length > 0) {
       const techSkills = splitCSV(t.relevant_skills);
       if (!skillFilters.some(s => techSkills.includes(s))) return false;
