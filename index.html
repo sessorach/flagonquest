@@ -6182,6 +6182,7 @@ function App() {
   const [healingOnly, setHealingOnly] = useState(false);
   const [cardsOnly,   setCardsOnly]   = useState(false);
   const [updatedOnly, setUpdatedOnly] = useState(false);
+  const [availableOnly, setAvailableOnly] = useState(false);
   const [advancedOpen, setAdvancedOpen] = useState(false);
 
   // ── Character slots ────────────────────────────────────────────
@@ -6558,6 +6559,13 @@ function App() {
 
   // ── Filtered technique list ────────────────────────────────────
   // useMemo = only recalculate when one of the listed deps changes.
+  // "Show available" hides only a definite Not met. A technique whose
+  // prereqs can't be checked (no Prereq Check, a Level range, a choice
+  // not yet made) stays, since meetsPrereqCheck won't guess there.
+  // Built here, not from knownTechNames, which is declared further down.
+  const availableNames = !browseView && availableOnly
+    ? new Set(build.map(e => techniques.find(t => t.id === e.id)?.name).filter(Boolean))
+    : null;
   const visible = useMemo(() => techniques.filter(t => {
     // A disabled supplement's techniques drop out of the browse/search
     // list, same as items/backgrounds — but never out of buildEntries
@@ -6578,6 +6586,7 @@ function App() {
     if (healingOnly && !t.healing) return false;
     if (cardsOnly && !t.use_cards) return false;
     if (updatedOnly && (!currentPatch || t.patch !== currentPatch)) return false;
+    if (availableNames && meetsPrereqCheck(t, statPoints, skillPoints, availableNames) === false) return false;
     if (skillFilters.length > 0) {
       const techSkills = splitCSV(t.relevant_skills);
       if (!skillFilters.some(s => techSkills.includes(s))) return false;
@@ -6609,7 +6618,7 @@ function App() {
   }).sort((a, b) => {
     const diff = (a.level_min ?? Infinity) - (b.level_min ?? Infinity);
     return diff !== 0 ? diff : a.name.localeCompare(b.name);
-  }), [techniques, search, skillFilters, tagFilters, levelMin, levelMax, healingOnly, cardsOnly, updatedOnly, currentPatch, enabledSupplements, browseView, browseSups]);
+  }), [techniques, search, skillFilters, tagFilters, levelMin, levelMax, healingOnly, cardsOnly, updatedOnly, currentPatch, enabledSupplements, browseView, browseSups, availableOnly, build, statPoints, skillPoints]);
 
   // ── Build entries paired with their technique object ────────────
   const buildEntries = useMemo(() =>
@@ -8097,6 +8106,19 @@ function App() {
               {advancedOpen ? "▲" : "▼"} Advanced
             </button>
           </div>
+
+          {/* A character-only filter, so it's hidden in Browse mode, which
+              has no character to check prereqs against. */}
+          {!browseView && (
+            <label style={{ display:"flex", alignItems:"center", gap:6, cursor:"pointer", fontSize:15, color:TEXT.muted, marginBottom:10 }}>
+              <input
+                type="checkbox"
+                checked={availableOnly}
+                onChange={e => setAvailableOnly(e.target.checked)}
+              />
+              Show available
+            </label>
+          )}
 
           {/* Advanced filters — level range, healing, card use, related skills, tags */}
           {advancedOpen && (
