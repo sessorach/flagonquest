@@ -365,7 +365,7 @@ When an attack or other effect deals damage to you, you reduce that damage by an
 
 You have two types of Health - Shallow Health and Deep Health. Whenever you lose Health, you lose Shallow first and then subtract from your Deep Health. Whenever you heal Health, for each Health restored you may choose which type to recover, unless the effect specifies one type.
 
-While you are missing all of your Shallow Health, you are Wounded - you suffer Bad Luck to all flips, and -2 to all Defenses and Speed.
+While you are missing all of your Shallow Health, you are Wounded - you suffer Bad Luck to all flips, and -2 to all Defenses.
 
 When you run out of Deep Health then you have become Downed. While Downed, you cannot take any actions or do anything. You cannot lose any further Health and are not at risk of dying immediately, but this may change depending on the circumstances. While Downed, if a character would heal Shallow Health, the first point of that healing may instead restore one Deep Health.
 
