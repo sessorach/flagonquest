@@ -299,7 +299,7 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "While your hands are free, you climb at your full Speed without flips, as though it were open ground. You can climb any surface with some texture, and while not moving you can hold your place on one with only your feet.",
+    "effects": "While your hands are free, you climb at your full Speed without flips, ignoring any limit from your Athletics. You can climb any surface with some texture, and while not moving you can hold your place on one with only your feet.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Athletics 3",
@@ -598,7 +598,7 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "You may swim or move through water at your full Speed. While swimming, you may jump out of water as though it were solid ground. You have Good Luck twice on flips to hold your breath.",
+    "effects": "You swim at your full Speed, ignoring any limit from your Athletics. While swimming, you can jump out of the water as though it were solid ground. You have Good Luck twice on flips to hold your breath.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Athletics 3",
@@ -613,7 +613,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.2",
     "prereq_check": [
       {
         "type": "skill",

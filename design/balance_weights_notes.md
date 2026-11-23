@@ -9680,9 +9680,13 @@ drink.
   Acrobatics Skill Total (it said the full Athletics total, against
   "another stat"); the designer kept the swap as a special case.
 - **Canopy Creeper (T008):** same rules, reworded so "full Speed" plainly
-  means climbing costs nothing extra ("as though it were open ground").
+  means climbing costs nothing extra: "ignoring any limit from your
+  Athletics" (the designer's wording; "as though it were open ground"
+  was tried first).
   An Athletics Technique may lift Athletics' own limit; a Mutagen may
   not (Spider Grip).
+- **Trout Seeming (T015):** same rules, worded to match Canopy Creeper:
+  "You swim at your full Speed, ignoring any limit from your Athletics."
 
 ## Turn-order Styles in the simulator (2026-10-06)
 
