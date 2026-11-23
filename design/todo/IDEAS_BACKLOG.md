@@ -293,6 +293,14 @@ cut, not just backfilled at a point in time.
   Bottles as theirs, so Mixology doesn't need another. The "add an
   effect on the fly" idea itself is still wanted, without a card cost.
 
+- **Earthen Mantle Approach** (T182, Level 3 Guardian Style, cut
+  2026-11-23) — "+2 to Fire, Frost, Brilliant, and Shadow Resist."
+  Cut by the designer: Warding Circle already covers elemental defense
+  as a Style, and a flat bonus to all four elements stacks with Robes,
+  Essence, Ward and Elemental Hide toward immunity, which would need
+  "doesn't stack with" clauses on everything. Consolidate on what
+  exists instead of adding more base elemental Resist.
+
 ## Style coverage by archetype (2026-10-05)
 
 Per the designer: each combat archetype should have a few **early**
@@ -307,7 +315,7 @@ A Style tagged with several archetypes counts for each.
 | Archetype | Early (L1-2) | Late (L3-4) | Needs |
 |---|---|---|---|
 | Monk | 6 | 5 | — |
-| Guardian | 9 | 2 | — |
+| Guardian | 9 | 1 (Crashing Wave Approach) | Earthen Mantle cut 2026-11-23 |
 | Duelist | 8 | 2 (Storm of Blades, Exploit the Opening) | done for this pass |
 | Rogue | 4 | 2 (Disciple, Doubleshot) | — |
 | Archer | 4 | 2 (Suppressing Fire, Doubleshot) | done for this pass |

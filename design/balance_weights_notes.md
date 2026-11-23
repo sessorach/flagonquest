@@ -9687,6 +9687,12 @@ drink.
   not (Spider Grip).
 - **Trout Seeming (T015):** same rules, worded to match Canopy Creeper:
   "You swim at your full Speed, ignoring any limit from your Athletics."
+- **Earthen Mantle Approach (T182): cut.** +2 to all four elemental
+  Resists as a Level 3 Style was worth about 3-9 a fight (the base-stat
+  test's 1.4-4.4 per point across all four) against 10.8, and stacked
+  toward immunity with the Robes, Essence, Ward and Elemental Hide. The
+  designer would rather not keep adding flat elemental Resist. Its sim
+  setup went with it; old optimizer runs in hall_of_fame/ still name it.
 
 ## Turn-order Styles in the simulator (2026-10-06)
 

@@ -213,7 +213,7 @@ for _tid, _name in (("T129", "Disciple of the Flowing Hand"), ("T134", "Lion Sch
                     ("T171", "Tiger School - Rending Claws"), ("T172", "Demon School - Hands of Defilement"),
                     ("T173", "Snake School - Infinite Coiling"), ("T174", "Bear School - Furious Swipes"),
                     ("T176", "Drunken Brawling"), ("T177", "Doubleshot"), ("T180", "Earthen Fist Posture"),
-                    ("T182", "Earthen Mantle Approach"), ("T184", "Crashing Wave Approach"),
+                    ("T184", "Crashing Wave Approach"),
                     ("T185", "Deadeye's Shadow"), ("T187", "Aura of Death"), ("T195", "Forward!"),
                     ("T196", "Lead by Example"), ("T198", "Commander's Gambit"), ("T199", "Intimidating Presence"),
                     ("T200", "Dread Reputation"), ("T202", "Grasping Earth"), ("T203", "Twin Spell"),
@@ -373,13 +373,6 @@ def _crashing_wave(pc, c):
         if not getattr(c, 'repeat', False):
             tq.cs._gain(pc, 'protected', 1)
             c.notes.append("Protected +1 (Crashing Wave Approach)")
-
-
-@setup_for("Earthen Mantle Approach")
-def _earthen_mantle(name, pc, s):
-    # T182: "+2 bonus to Fire, Frost, Brilliant, and Shadow Resist" - the
-    # sim's one elemental Resist.
-    pc['elemres'] += 2
 
 
 @hooks.on('hit_riders', "Deadeye's Shadow", order=33)
