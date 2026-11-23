@@ -384,7 +384,7 @@ def _pressure_points(pc, c):
         return 0
     p = max(pool, key=_missing)
     _pay_card(pc)
-    value, _ = cs._pc_flip(pc, mod, 11, pc.get('good_luck', 0), cs.tactics.pc_wounded(pc))
+    value, _ = cs._pc_flip(pc, mod, 11, pc.get('good_luck', 0), cs.tactics.wounded_bad_luck(pc))
     total = mod + value
     healed = 0
     if total >= 11:

@@ -194,6 +194,13 @@ def pc_wounded(unit):
     return bool(T.WOUNDED_RULES) and sync_wounded(unit)
 
 
+def wounded_bad_luck(unit):
+    """Wounded's Bad Luck on a PC's own flips (T.WOUNDED_BAD_LUCK). The
+    state is synced either way, so turning the penalty off changes
+    nothing else."""
+    return pc_wounded(unit) and bool(T.WOUNDED_BAD_LUCK)
+
+
 def needs_healing(unit):
     """When a heal is worth spending on `unit`: Wounded, with the
     Wounded rules on; otherwise the older half-Health stand-in."""
@@ -525,7 +532,7 @@ def _speed(unit):
     if g is not None and g['health'] > 0 and unit['health'] > 0:
         return 0
     hasted = unit.get('hasted', 0) if T.HASTED_RULE == 'base' else 0
-    return max(0, unit['speed'] + hasted - slow(unit) - (2 if pc_wounded(unit) else 0))
+    return max(0, unit['speed'] + hasted - slow(unit) - (T.WOUNDED_SPEED if pc_wounded(unit) else 0))
 
 
 def move_approach(unit, target, reach):

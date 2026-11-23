@@ -746,7 +746,7 @@ def _try_challenge(pc, pcs, enemies, movement_on, log=None):
     defense = target['mental'] - target.get('vulnerable', 0)
     if cs.T.CARDS:
         good = cs._raise_spirits(pc, pcs, defense - pc['skill_totals']['Presence'], True)
-        value, pool = cs._pc_flip(pc, pc['skill_totals']['Presence'], defense, good, cs.tactics.pc_wounded(pc), cs.BIG,
+        value, pool = cs._pc_flip(pc, pc['skill_totals']['Presence'], defense, good, cs.tactics.wounded_bad_luck(pc), cs.BIG,
                                allies=pcs)
     else:
         value, pool = cs.flip(), []
@@ -811,7 +811,7 @@ def _try_exert_pressure(pc, pcs, enemies, movement_on, ap=1, log=None):
         defense = target['mental'] - target.get('vulnerable', 0)
         if cs.T.CARDS:
             good = cs._raise_spirits(pc, pcs, defense - pc['skill_totals']['Presence'], True)
-            value, flipped = cs._pc_flip(pc, pc['skill_totals']['Presence'], defense, good, cs.tactics.pc_wounded(pc), cs.BIG,
+            value, flipped = cs._pc_flip(pc, pc['skill_totals']['Presence'], defense, good, cs.tactics.wounded_bad_luck(pc), cs.BIG,
                                       allies=pcs)
         else:
             value, flipped = cs.flip(), []

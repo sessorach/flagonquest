@@ -539,7 +539,7 @@ def pc_defense_for(target, opp_def):
     enemy_defense_for_pc_attack."""
     vulnerable = tactics.def_pen(target, 'Vital')
     harried = tactics.def_pen(target, 'Dodge')
-    wounded = 2 if tactics.pc_wounded(target) else 0  # Wounded: -2 to all Defenses
+    wounded = T.WOUNDED_DEFENSE if tactics.pc_wounded(target) else 0  # Wounded: -2 to all Defenses
     dodge = target['dodge'] - tactics.slow_dodge(target)
     if opp_def == 'Parry/Dodge':
         return max(target['parry'], dodge) - harried - wounded
@@ -741,7 +741,7 @@ def _pc_status_bad_luck(pc, target):
     that creature's still up. Wounded: Bad Luck on all flips."""
     fr = pc.get('frightened_by') if pc.get('frightened', 0) > 0 else None
     ta = pc.get('taunted_by') if pc.get('taunted', 0) > 0 else None
-    srcs = [tactics.pc_wounded(pc), fr is not None and fr is target,
+    srcs = [tactics.wounded_bad_luck(pc), fr is not None and fr is target,
             ta is not None and ta['health'] > 0 and ta is not target, tactics.crip_bad_luck(pc)]
     if T.CRIPPLED_RULE == 'badluck_spend' and pc.get('crippled', 0) > 0:
         pc['crippled'] -= 1

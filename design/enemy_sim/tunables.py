@@ -296,6 +296,11 @@ FURIOUS_RAGE_STACKS = 1
 # half-Health trigger for heals.
 BASE_SHALLOW_HEALTH = 5
 WOUNDED_RULES = True
+# Each of Wounded's three penalties on its own (2026-11-23), for
+# measuring what each costs; the defaults are the rule as written.
+WOUNDED_DEFENSE = 2
+WOUNDED_SPEED = 2
+WOUNDED_BAD_LUCK = True
 
 
 # ---- Line of sight (2026-10-08) ----
