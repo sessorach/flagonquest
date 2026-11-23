@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-23 — A read through Athletics, and a Show available toggle
+
+The Techniques tab on the live site now has a Show available toggle that lists only what your character meets the prereqs for. On this branch, started reading through the Athletics Techniques: Bound Across Mountains and Canopy Creeper now match the current jumping and climbing rules.
+
 ### 2026-11-20 — Mutagens for alchemists
 
 Added Mutagenesis, a Level 1 Technique that lets an alchemist brew Mutagens only they can drink: an hour of something they don't normally carry. There are thirteen so far, from Tough Hide (heavy armor without the Might for it) and Quickened Blood (a free move every turn) and Bestial Claws to small utilities like Night Eyes and Gills. Also made Reformulate's change wear off at the end of the encounter, so it can't turn one material's goods into another's for good.
