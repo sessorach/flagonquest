@@ -6559,7 +6559,7 @@ function App() {
 
   // ── Filtered technique list ────────────────────────────────────
   // useMemo = only recalculate when one of the listed deps changes.
-  // "Show available" hides only a definite Not met. A technique whose
+  // "Meet prereqs" hides only a definite Not met. A technique whose
   // prereqs can't be checked (no Prereq Check, a Level range, a choice
   // not yet made) stays, since meetsPrereqCheck won't guess there.
   // Built here, not from knownTechNames, which is declared further down.
@@ -8111,24 +8111,11 @@ function App() {
               style={{ flex:"1 1 200px", minWidth:150 }}
             />
             <button onClick={() => setAdvancedOpen(o => !o)} style={actionBtn()}>
-              {advancedOpen ? "▲" : "▼"} Advanced
+              {advancedOpen ? "▲" : "▼"} Filters
             </button>
           </div>
 
-          {/* A character-only filter, so it's hidden in Browse mode, which
-              has no character to check prereqs against. */}
-          {!browseView && (
-            <label style={{ display:"flex", alignItems:"center", gap:6, cursor:"pointer", fontSize:15, color:TEXT.muted, marginBottom:10 }}>
-              <input
-                type="checkbox"
-                checked={availableOnly}
-                onChange={e => setAvailableOnly(e.target.checked)}
-              />
-              Show available
-            </label>
-          )}
-
-          {/* Advanced filters — level range, healing, card use, related skills, tags */}
+          {/* Filters — meet prereqs, level range, healing, card use, related skills, tags */}
           {advancedOpen && (
             <div style={{
               display: "flex", flexDirection: "column", gap: 12,
@@ -8136,6 +8123,18 @@ function App() {
               background: "#12161f", border: "0.5px solid #2d3555",
               borderRadius: 8, padding: "10px 14px", marginBottom: 12,
             }}>
+              {/* Character-only, so it's hidden in Browse mode, which has
+                  no character to check prereqs against. */}
+              {!browseView && (
+                <label style={{ display:"flex", alignItems:"center", gap:6, cursor:"pointer" }}>
+                  <input
+                    type="checkbox"
+                    checked={availableOnly}
+                    onChange={e => setAvailableOnly(e.target.checked)}
+                  />
+                  Meet prereqs
+                </label>
+              )}
               <div style={{ display: "flex", alignItems: "center", gap: 18, flexWrap: "wrap" }}>
                 {/* Level range controls */}
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
