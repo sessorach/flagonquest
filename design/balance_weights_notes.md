@@ -9694,6 +9694,39 @@ drink.
   designer would rather not keep adding flat elemental Resist. Its sim
   setup went with it; old optimizer runs in hall_of_fame/ still name it.
 
+## What Wounded's penalties cost (2026-11-23)
+
+The designer's table forgot Wounded's -2 Speed and found the penalties
+brutal. Measured with `experiments/wounded/wounded_check.py` on the
+stat_ladder days (every middle party at the Level, the manual's
+encounters, paired seeds, 200 days a mix; on-level and a hard day with
+one more attacker). Each penalty has its own switch (WOUNDED_DEFENSE,
+WOUNDED_SPEED, WOUNDED_BAD_LUCK; defaults are the rule as written).
+Raw output: results/wounded/wounded_check_2026-11-23.txt.
+
+Days lost, as written / with that penalty removed (Levels 1, 2, 3):
+
+| | On-level | Hard day |
+|---|---|---|
+| As written | 8.8 / 6.6 / 10.8% | 39.7 / 30.2 / 53.7% |
+| No penalties at all | 6.5 / 5.4 / 9.1% | 33.3 / 26.7 / 49.7% |
+| No -2 Defenses | 8.0 / 6.0 / 9.6% | 36.7 / 28.5 / 51.2% |
+| No Bad Luck | 8.3 / 6.2 / 10.4% | 38.5 / 29.2 / 52.9% |
+| No -2 Speed | 8.7 / 6.5 / 10.6% | 39.2 / 30.2 / 53.4% |
+| -1 Defenses, no Speed | 8.0 / 6.3 / 10.1% | 37.6 / 29.2 / 52.2% |
+
+Health left moves the same way (on-level 27.7 / 30.3 / 29.1 as
+written, 28.4 / 30.7 / 29.7 with no penalties).
+
+- Wounded as written adds about 1.2-2.3 points of days lost on-level
+  (a fifth to a third more lost days) and 3.5-6.4 on a hard day. A
+  death spiral, but a moderate one.
+- The -2 to Defenses is most of it, then Bad Luck. The -2 Speed
+  measures at about nothing.
+- Caveat on Speed: the sim's PCs rarely need to get away, so it can't
+  see what the table feels, which is that a Wounded character can't
+  retreat to safety.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn
