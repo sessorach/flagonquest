@@ -289,17 +289,19 @@ FURIOUS_RAGE_STACKS = 1
 # ---- Wounded (2026-10-08) ----
 # rulebook.md: you lose Shallow Health first, then Deep; while all your
 # Shallow Health is gone you're Wounded (Bad Luck on all flips, -2 to all
-# Defenses and Speed). Every sample PC has the base 5 Shallow (Toughened
+# Defenses; -2 Speed too until 2026-11-23). Every sample PC has the base 5 Shallow (Toughened
 # Body adds Deep). The sim keeps one `health` number and tracks Shallow
 # alongside it (tactics.sync_wounded). WOUNDED_RULES off still tracks it
 # for the calibration counts, but applies no penalties and keeps the old
 # half-Health trigger for heals.
 BASE_SHALLOW_HEALTH = 5
 WOUNDED_RULES = True
-# Each of Wounded's three penalties on its own (2026-11-23), for
-# measuring what each costs; the defaults are the rule as written.
+# Each of Wounded's penalties on its own (2026-11-23), for measuring
+# what each costs; the defaults are the rule as written. The designer
+# cut the -2 Speed on 2026-11-23, so WOUNDED_SPEED is 0 (2 reproduces
+# older numbers).
 WOUNDED_DEFENSE = 2
-WOUNDED_SPEED = 2
+WOUNDED_SPEED = 0
 WOUNDED_BAD_LUCK = True
 
 

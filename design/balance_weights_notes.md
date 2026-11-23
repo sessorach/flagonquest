@@ -9727,6 +9727,10 @@ written, 28.4 / 30.7 / 29.7 with no penalties).
   see what the table feels, which is that a Wounded character can't
   retreat to safety.
 
+**Decision (designer, 2026-11-23): the -2 Speed is cut.** Wounded is
+Bad Luck on all flips and -2 to all Defenses, on main and here. The
+sim's WOUNDED_SPEED is now 0.
+
 ## Turn-order Styles in the simulator (2026-10-06)
 
 **Simulator fix first.** The round loop walked a snapshot of the turn

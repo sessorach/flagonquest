@@ -245,3 +245,6 @@ things off in order.
   (designer's change, 2026-11-20); lasts 1 hour (designer, 2026-11-21); one at a time. The designer approved the structure in chat
   (2026-11-20); this exact wording is mine. Commit "Mutagens: the
   Mutagenesis Technique and the [Mutagen] keyword".
+- **`#### Wounded`** (glossary) and the rulebook's Health section —
+  "-2 to all Defenses and Speed" is now "-2 to all Defenses" (designer,
+  2026-11-23). Made on main and merged here.

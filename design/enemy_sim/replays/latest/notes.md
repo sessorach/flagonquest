@@ -1,12 +1,12 @@
-# Latest replays (2026-11-19)
+# Latest replays (2026-11-23)
 
-Mighty Mixologist scales with Mixology; Bottomless Bottles makes 3 Gold a card
+Wounded no longer lowers Speed (designer); Mutagens and Athletics wording don't touch the sim
 
 ## partyS_L1_vs_L1_manual1.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Manual 1 (Blast Mage@1, Glaive Dancer@1, Glaive Dancer@1, Glaive Dancer@1)
 - This fight (seed 8): party won in 6 rounds, 78% party HP left
-- Matchup average over 1000 fights: 97.4% wins, 5.8 rounds, 78% HP left on a win
+- Matchup average over 1000 fights: 98.2% wins, 5.8 rounds, 78% HP left on a win
 
 ## partyU_L1_vs_L1_manual2.html
 - Party: Browndog, Ashleigh, Sable, Beornhard
@@ -30,27 +30,27 @@ Mighty Mixologist scales with Mixology; Bottomless Bottles makes 3 Gold a card
 - Party: Hilde (Bleed), Felix (Bleed), Jackal (Bleed), Beornhard (Bleed)
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 30): party won in 6 rounds, 75% party HP left
-- Matchup average over 1000 fights: 83.2% wins, 5.5 rounds, 56% HP left on a win
+- Matchup average over 1000 fights: 83.8% wins, 5.6 rounds, 56% HP left on a win
 
 ## cash_party_L1_vs_L1_frontline.html
 - Party: Hilde (Bleed), Felix (Cash), Jackal (Bleed), Beornhard (Cash)
 - Enemies: Level 1 Frontline (Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 2): party won in 6 rounds, 55% party HP left
-- Matchup average over 1000 fights: 76.0% wins, 5.9 rounds, 62% HP left on a win
+- Matchup average over 1000 fights: 75.8% wins, 5.8 rounds, 62% HP left on a win
 - Picked from fights with cashed above 0
 
 ## bleed_party_L1_vs_L1_warband.html
 - Party: Hilde (Bleed), Felix (Bleed), Jackal (Bleed), Beornhard (Bleed)
 - Enemies: Level 1 Warband (Brute, Skulking Footpad, Skulking Footpad, Warpriest)
 - This fight (seed 14): party won in 7 rounds, 55% party HP left
-- Matchup average over 1000 fights: 96.6% wins, 6.9 rounds, 73% HP left on a win
+- Matchup average over 1000 fights: 96.8% wins, 6.7 rounds, 74% HP left on a win
 - Picked from fights with pc_bleed_taken above 0
 
 ## partyA_L1_vs_chief_frontline.html
 - Party: Hilde, Browndog, Carrick, Sable
 - Enemies: Level 1 Chief's Frontline (Brute Chief, Brute, Brute, Grave Caller, Grave Caller)
 - This fight (seed 10): party won in 7 rounds, 65% party HP left
-- Matchup average over 1000 fights: 87.6% wins, 6.9 rounds, 68% HP left on a win
+- Matchup average over 1000 fights: 87.9% wins, 6.9 rounds, 69% HP left on a win
 
 ## partyB_L3_vs_L3_frontline.html
 - Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)
@@ -81,13 +81,13 @@ Mighty Mixologist scales with Mixology; Bottomless Bottles makes 3 Gold a card
 - Party: Browndog (L3), Hanforth (L3), Hilde (L3), Beornhard (L3)
 - Enemies: Level 3 Frontline (Brute (L3), Brute (L3), Grave Caller (L3), Grave Caller (L3))
 - This fight (seed 2): party won in 3 rounds, 94% party HP left
-- Matchup average over 1000 fights: 99.8% wins, 2.9 rounds, 82% HP left on a win
+- Matchup average over 1000 fights: 100.0% wins, 2.9 rounds, 82% HP left on a win
 
 ## manual_L1_brutes_archers.html
 - Party: Enith, Felix, Jackal, Hanforth
 - Enemies: Level 1 Manual: brutes and archers (Brute@1, Brute@1, Marsh Archer@1, Hunting Hound@1)
 - This fight (seed 2): party won in 5 rounds, 100% party HP left
-- Matchup average over 1000 fights: 98.8% wins, 5.4 rounds, 84% HP left on a win
+- Matchup average over 1000 fights: 98.6% wins, 5.4 rounds, 83% HP left on a win
 
 ## manual_L3_ogre_leads.html
 - Party: Hilde (L3), Browndog (L3), Jackal (L3), Beornhard (L3)

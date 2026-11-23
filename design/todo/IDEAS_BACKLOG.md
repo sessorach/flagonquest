@@ -450,6 +450,19 @@ Mutagens.
   Tough Hide's idea for weapons. Needs the rulebook to say what missing
   a Might requirement does; it's only a badge on the sheet today.
 
+## Acrobatics seeds (2026-11-23)
+
+From the Athletics brainstorm; the designer felt these suit Acrobatics:
+
+- **Freerunner:** low obstacles you can vault (fences, tables, carts)
+  don't count as Difficult Terrain for you. Rooftop chases, market
+  sprints.
+- **Catch Yourself:** when a failed flip would make you fall, you can
+  grab hold and stop instead.
+
+Athletics itself is fine for now (designer): it has a specialist
+Technique for each of climbing, jumping and swimming.
+
 ## Downtime Meditation Techniques
 
 Meditation Techniques that aren't martial: meditate for ten minutes or
