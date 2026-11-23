@@ -249,7 +249,7 @@ Bad Luck works the same as Good Luck, except once all cards are flipped you must
 
 #### Wounded
 
-While you are missing all of your Shallow Health, you are Wounded — you suffer Bad Luck to all flips, and -2 to all Defenses and Speed.
+While you are missing all of your Shallow Health, you are Wounded — you suffer Bad Luck to all flips, and -2 to all Defenses.
 
 #### Downed
 
