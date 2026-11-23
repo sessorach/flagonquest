@@ -9679,6 +9679,10 @@ drink.
   half lets half your Athletics Skill Total replace half your
   Acrobatics Skill Total (it said the full Athletics total, against
   "another stat"); the designer kept the swap as a special case.
+- **Canopy Creeper (T008):** same rules, reworded so "full Speed" plainly
+  means climbing costs nothing extra ("as though it were open ground").
+  An Athletics Technique may lift Athletics' own limit; a Mutagen may
+  not (Spider Grip).
 
 ## Turn-order Styles in the simulator (2026-10-06)
 
