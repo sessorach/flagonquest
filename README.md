@@ -15,7 +15,7 @@ full log. See `git log` for the commit-by-commit detail.
 
 ### 2026-11-23 — A read through Athletics, and a Show available toggle
 
-The Techniques tab on the live site now has a Show available toggle that lists only what your character meets the prereqs for. On this branch, started reading through the Athletics Techniques: Bound Across Mountains and Canopy Creeper now match the current jumping and climbing rules.
+The Techniques tab on the live site now has a Show available toggle that lists only what your character meets the prereqs for, and stops listing a Technique you already know unless it can be taken again. On this branch, started reading through the Athletics Techniques: Bound Across Mountains, Canopy Creeper and Trout Seeming now match the current jumping, climbing and swimming rules.
 
 ### 2026-11-20 — Mutagens for alchemists
 
