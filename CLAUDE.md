@@ -1165,6 +1165,12 @@ Two recurring environment quirks worth knowing:
   changes, settle it, then show the next. A table of five at once is
   harder for them to respond to. A short list of seed ideas to pick
   from is still fine.
+- **Before drafting any Technique, check it doesn't gatekeep**
+  (designer, 2026-11-24, DESIGNER_NOTES standing rule). If players
+  could reasonably attempt the thing with a Skill check, the Technique
+  must improve it, not permit it; and if the base rules don't cover it
+  yet, propose the general rule first. Hidden Compartment and Disarm
+  and Reset were drafted as permissions before this was said.
 - **In any Technique review, check its suits** (designer, 2026-11-16).
   A suit named on the card (a `[Suit]` bonus, "if you discarded a
   Spade") should match the governing suit of the Skill it's tied to,
