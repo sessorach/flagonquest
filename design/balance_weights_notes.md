@@ -11919,3 +11919,16 @@ Priced in Health lost per hit, after the hit: a point of damage over the target'
 
 Same average as a flat 6, but heavy armor no longer walks away clean, which the designer wanted (iron jaws: armor turns the bite, you still bleed). Started from Legbreaker (L2 Grenade, 8 Physical + Push 3): being caught is worth more than a Push, so the harm came down to about 6's worth. The pure-Bleeding version is held for a needle or blade trap if one wants armor not to matter.
 
+## Poisons under the scene-long proposal (2026-11-24, sim)
+
+`experiments/poisons/poison_check.py`, results in `results/poisons/poison_check_2026-11-24.txt`. The proposal: a poisoned weapon stays poisoned for the scene; each time it takes Health off a creature not already suffering the Poison, the Poison attacks Vital Defense at 3 + Level, and its stacks last the fight (Bloody's Bleeding decays normally). Scored like effect_check (Level 1 mixes, enemy Health x1.75, 300 fights per mix, paired seeds, Health ladder), carried by Hilde, Carrick and Sable in turn. Value per fight, against a Target of 3 a Level:
+
+| Poison | L1 pre-poisoned | L1, 2 AP in the fight | L2 pre-poisoned | L2, 2 AP |
+|---|---|---|---|---|
+| Crippling [Level] | 1.1 | -4.5 | 3.7 | -2.1 |
+| Slowing [Level] | 1.1 | -4.8 | 2.6 | -3.3 |
+| Bloody [twice Level] | 1.6 | -4.0 | 4.0 | -1.7 |
+| Vulnerability [twice Level], all-Vital party | 9.3 | 1.8 | 19.5 | 11.6 |
+
+Even lasting the scene, the stack-a-Level Poisons come in at about half their Target pre-poisoned, so the scene-long change doesn't need a price rise. Coating in the fight costs about the 5.5 that 2 AP is worth and leaves them below zero (Carrick, a Skirmisher with spare AP, loses least). Enemy Vital Defense averages 11.4 at Level 1, so a Level 1 Poison lands about half the time it's exposed. Vulnerability is the outlier: lasting Vulnerable stacks are huge for a party attacking Vital, and worth about nothing to one that doesn't (party A's weapons don't). Level 2 Poisons were measured against Level 1 enemies, which flatters them a little.
+
