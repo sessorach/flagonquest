@@ -10184,13 +10184,13 @@
   {
     "id": "I238",
     "name": "Tripwire Bells",
-    "category": "Pack/Gear",
+    "category": "Trap",
     "slot": null,
     "tags": null,
     "level": 1,
     "description": "A short line strung with small bells, meant to be rigged low across a doorway or corridor to announce anyone who trips over it.",
-    "effects": null,
-    "cost": "1 Gold",
+    "effects": "The wire can be anchored between two points up to 4 meters apart. When the Trap triggers, it makes no attack. Instead, its bells ring loudly enough to be heard about 100 meters away.",
+    "cost": "2 Gold",
     "value_per_level": null,
     "school": null,
     "skill_total": null,
@@ -10220,7 +10220,7 @@
     "held_slots": null,
     "supplement": "Base Game",
     "material_types": null,
-    "patch": "1.1",
+    "patch": "1.2",
     "base_item_options": [],
     "levels": [
       1

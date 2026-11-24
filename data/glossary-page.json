@@ -221,7 +221,7 @@
     "level": 4,
     "title": "[Trap]",
     "supplement": "Base Game",
-    "body": "A Trap triggers when a creature disturbs it, making an attack against that creature’s Vigilant Defense. Unless the Trap says otherwise:\n\n- Spot: the difficulty to notice it is 7 + the Stealth Skill Total of whoever set it.\n- Attack: its Accuracy is 3 + its Level.\n- Disarm: the difficulty to disarm it is 7 + twice its Level, using Craft. On a failure, the Trap triggers.\n\nSetting a Trap takes a minute. It’s used up when it triggers; a disarmed Trap can be picked up and set again."
+    "body": "A Trap triggers when a creature disturbs it, making an attack against that creature’s Vigilant Defense. Unless the Trap says otherwise:\n\n- Spot: the difficulty to notice it is 7 + the Stealth Skill Total of whoever set it.\n- Attack: its Accuracy is 3 + its Level.\n- Disarm: the difficulty to disarm it is 7 + twice its Level, using Craft. On a failure, the Trap triggers.\n\nSetting a Trap takes a minute. After it triggers or is disarmed, it can be picked up and set again."
   },
   {
     "id": "common-effects",

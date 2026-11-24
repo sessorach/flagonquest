@@ -550,6 +550,28 @@
     "applies_to": "Category:Masterwork"
   },
   {
+    "id": "CR075",
+    "name": "Trap (Smithing)",
+    "description": "A Trap, rigged so it stays hidden and triggers when disturbed.",
+    "school": "Smithing",
+    "skill_total": "Craft [4/6/8/9/10 by Level]",
+    "total_materials": 2,
+    "main_materials": "Metal",
+    "optional_materials": "Cloth, Leather",
+    "applies_to": "Category:Trap"
+  },
+  {
+    "id": "CR076",
+    "name": "Trap (Carving)",
+    "description": "A Trap, rigged so it stays hidden and triggers when disturbed.",
+    "school": "Carving",
+    "skill_total": "Craft [4/6/8/9/10 by Level]",
+    "total_materials": 2,
+    "main_materials": "Wood or Bone",
+    "optional_materials": "Cloth, Leather",
+    "applies_to": "Category:Trap"
+  },
+  {
     "id": "CR054",
     "name": "Rope",
     "description": "A sturdy coil of rope.",
@@ -647,17 +669,6 @@
     "main_materials": "Metal",
     "optional_materials": "None",
     "applies_to": "Name:Lantern"
-  },
-  {
-    "id": "CR063",
-    "name": "Tripwire Bells",
-    "description": "A simple worked-metal tool - no special technique required, just steel and elbow grease.",
-    "school": "Smithing",
-    "skill_total": "Craft 3",
-    "total_materials": 1,
-    "main_materials": "Metal",
-    "optional_materials": "None",
-    "applies_to": "Name:Tripwire Bells"
   },
   {
     "id": "CR064",

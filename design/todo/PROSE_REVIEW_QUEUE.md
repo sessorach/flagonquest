@@ -251,6 +251,7 @@ things off in order.
 - **`#### [Trap]`** (glossary, new, after [Subtle]) — a Trap triggers
   when disturbed and attacks Vigilant Defense; spot 7 + the setter's
   Stealth Skill Total, Accuracy 3 + Level, disarm 7 + twice Level with
-  Craft (a failure triggers it); a minute to set. Structure and numbers
+  Craft (a failure triggers it); a minute to set; can be set again
+  after triggering or being disarmed (designer, 2026-11-24). Structure and numbers
   are the designer's (2026-11-24); wording mine. Commit "Traps: the
   [Trap] keyword".

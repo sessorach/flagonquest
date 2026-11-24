@@ -154,7 +154,7 @@ A Trap triggers when a creature disturbs it, making an attack against that creat
 - Attack: its Accuracy is 3 + its Level.
 - Disarm: the difficulty to disarm it is 7 + twice its Level, using Craft. On a failure, the Trap triggers.
 
-Setting a Trap takes a minute. It’s used up when it triggers; a disarmed Trap can be picked up and set again.
+Setting a Trap takes a minute. After it triggers or is disarmed, it can be picked up and set again.
 
 # Common Effects
 
