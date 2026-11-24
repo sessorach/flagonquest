@@ -252,6 +252,7 @@ things off in order.
   when disturbed and attacks Vigilant Defense; spot 7 + the setter's
   Stealth Skill Total, Accuracy 3 + Level, disarm 7 + twice Level with
   Craft (a failure triggers it); a minute to set; can be set again
-  after triggering or being disarmed (designer, 2026-11-24). Structure and numbers
+  after triggering or being disarmed (designer, 2026-11-24). Expanded
+  to full sentences with the flat-footed intro at the designer's ask. Structure and numbers
   are the designer's (2026-11-24); wording mine. Commit "Traps: the
   [Trap] keyword".
