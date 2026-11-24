@@ -146,6 +146,16 @@ You may enter or leave a Style at the start of your turn, before anything else h
 
 Others cannot tell when this ability is being used, discern its effects, or take Interrupt actions in response to it, regardless of success or failure. This does not extend to immediate results of the ability, such as damage or effects suffered by a person after the fact, but their source or cause might not be obvious. Effectively, a Subtle version of an action, such as a weapon attack or social statement, will appear in every way to be a generic action of that kind until its results happen.
 
+#### [Trap]
+
+A Trap triggers when a creature disturbs it, making an attack against that creature’s Vigilant Defense. Unless the Trap says otherwise:
+
+- Spot: the difficulty to notice it is 7 + the Stealth Skill Total of whoever set it.
+- Attack: its Accuracy is 3 + its Level.
+- Disarm: the difficulty to disarm it is 7 + twice its Level, using Craft. On a failure, the Trap triggers.
+
+Setting a Trap takes a minute. It’s used up when it triggers; a disarmed Trap can be picked up and set again.
+
 # Common Effects
 
 #### Bleeding [Fleeting]

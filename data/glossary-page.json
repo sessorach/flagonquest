@@ -217,6 +217,13 @@
     "body": "Others cannot tell when this ability is being used, discern its effects, or take Interrupt actions in response to it, regardless of success or failure. This does not extend to immediate results of the ability, such as damage or effects suffered by a person after the fact, but their source or cause might not be obvious. Effectively, a Subtle version of an action, such as a weapon attack or social statement, will appear in every way to be a generic action of that kind until its results happen."
   },
   {
+    "id": "trap",
+    "level": 4,
+    "title": "[Trap]",
+    "supplement": "Base Game",
+    "body": "A Trap triggers when a creature disturbs it, making an attack against that creature’s Vigilant Defense. Unless the Trap says otherwise:\n\n- Spot: the difficulty to notice it is 7 + the Stealth Skill Total of whoever set it.\n- Attack: its Accuracy is 3 + its Level.\n- Disarm: the difficulty to disarm it is 7 + twice its Level, using Craft. On a failure, the Trap triggers.\n\nSetting a Trap takes a minute. It’s used up when it triggers; a disarmed Trap can be picked up and set again."
+  },
+  {
     "id": "common-effects",
     "level": 1,
     "title": "Common Effects",

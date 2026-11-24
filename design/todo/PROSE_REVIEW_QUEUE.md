@@ -248,3 +248,9 @@ things off in order.
 - **`#### Wounded`** (glossary) and the rulebook's Health section —
   "-2 to all Defenses and Speed" is now "-2 to all Defenses" (designer,
   2026-11-23). Made on main and merged here.
+- **`#### [Trap]`** (glossary, new, after [Subtle]) — a Trap triggers
+  when disturbed and attacks Vigilant Defense; spot 7 + the setter's
+  Stealth Skill Total, Accuracy 3 + Level, disarm 7 + twice Level with
+  Craft (a failure triggers it); a minute to set. Structure and numbers
+  are the designer's (2026-11-24); wording mine. Commit "Traps: the
+  [Trap] keyword".
