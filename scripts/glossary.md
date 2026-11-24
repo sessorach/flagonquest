@@ -72,7 +72,9 @@ A Summoned creature may only make a normal attack once during its turn.
 
 #### Teleport
 
-When you teleport you disappear from your current location and reappear at your destination without moving through any other spaces. To Teleport you must be able to clearly see your destination, but don’t otherwise need a clear path to get there.
+When you Teleport, you disappear from your current location and reappear in another space without passing through any in between. You need to be able to clearly see the space you’re going to - not the ground under it, just the space itself - but you don’t need a clear path there. If that space is in the air, you fall from it as normal.
+
+Teleporting isn’t moving, so something that stops you from moving doesn’t stop you from Teleporting, and anything holding you in place - a grapple, a Snare - is left behind. You bring everything you’re wearing or carrying, except anything you choose to leave behind, and you may bring any willing creatures you’re carrying with you.
 
 #### Vigor
 

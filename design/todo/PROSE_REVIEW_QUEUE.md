@@ -256,3 +256,9 @@ things off in order.
   to full sentences with the flat-footed intro at the designer's ask. Structure and numbers
   are the designer's (2026-11-24); wording mine. Commit "Traps: the
   [Trap] keyword".
+- **`#### Teleport`** (glossary) — expanded: see the space, not the
+  ground (a space in the air means you fall); teleporting isn't moving,
+  so grapples and Snares are left behind; you bring what you wear or
+  carry, minus anything you leave, plus willing creatures you carry
+  (designer, 2026-11-24, carrying only). Wording approved in chat.
+  Commit "Teleport: what it leaves behind and what it brings".

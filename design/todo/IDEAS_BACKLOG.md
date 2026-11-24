@@ -450,6 +450,10 @@ Mutagens.
   Tough Hide's idea for weapons. Needs the rulebook to say what missing
   a Might requirement does; it's only a badge on the sheet today.
 
+## More teleports, for the spell review (2026-11-24)
+
+Only a handful of things Teleport today. The Teleport keyword now spells out that it isn't movement, leaves grapples and Snares behind, and brings willing creatures you carry. At the spell review, add a couple more teleport options and price them around those uses: slipping a Snare or a grapple, pulling an ally out of trouble.
+
 ## Acrobatics seeds (2026-11-23)
 
 From the Athletics brainstorm; the designer felt these suit Acrobatics:
