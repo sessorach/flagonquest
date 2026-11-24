@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-24 — Traps, and version 1.3
+
+Traps are a new kind of item: each has a spot difficulty, an attack against Vigilant Defense and a disarm difficulty, and can be set again after it goes off. The first five are Tripwire Bells, the Grenade Rig, the Snare, the Bear Trap and the Needle Lock, and the Teleport rules now say what a teleport leaves behind and what it takes along. Everything on this branch since the last site update is now tagged version 1.3.
+
 ### 2026-11-23 — A read through Athletics, and a Show available toggle
 
 The Techniques tab on the live site now has a Meet prereqs filter that lists only what your character can take, and stops listing a Technique you already know unless it can be taken again. Wounded no longer lowers Speed: it's Bad Luck on all flips and -2 to all Defenses, after the simulator showed the Speed penalty changed almost nothing but felt punishing at the table. On this branch, started reading through the Athletics Techniques: Bound Across Mountains, Canopy Creeper and Trout Seeming now match the current jumping, climbing and swimming rules. Earthen Mantle Approach was cut, since flat elemental Resist kept stacking toward immunity.
