@@ -11905,3 +11905,17 @@ three Levels.
 
 Not yet tested this way: conditions, Techniques, and AP (the sim sets
 AP for everyone at once).
+
+## Bear Trap (I275, Level 2, 2026-11-24)
+
+Priced in Health lost per hit, after the hit: a point of damage over the target's Physical Resist is 1 Health, a Bleeding stack about 1 (Bleeding goes around Resist; full linear on a PC, the tapered value(n) curve against enemies). At the pricing placeholder Resist 4:
+
+| Version | Resist 2 | Resist 4 | Resist 7 | Value at 4 |
+|---|---|---|---|---|
+| 6 Physical | 4 | 2 | 0 | 2 |
+| 5 Physical + 1 Bleeding | 4 | 2 | 1 | 2 |
+| 4 Physical + 2 Bleeding (taken) | 4 | 2 | 2 | 2 |
+| 3 Bleeding only | 3 | 3 | 3 | 2.5 (3 on a PC) |
+
+Same average as a flat 6, but heavy armor no longer walks away clean, which the designer wanted (iron jaws: armor turns the bite, you still bleed). Started from Legbreaker (L2 Grenade, 8 Physical + Push 3): being caught is worth more than a Push, so the harm came down to about 6's worth. The pure-Bleeding version is held for a needle or blade trap if one wants armor not to matter.
+
