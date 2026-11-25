@@ -11944,3 +11944,13 @@ Building Poisons to Target with no AP (2026-11-25). The designer's alternative: 
 
 Lasting control stacks compound, so twice-Level lands on Target at Level 1 and runs about 40% over at Level 2. [Level + 1] would fit both for Crippling: 2 stacks measured 3.3 at L1; 3 stacks at L2 sits between the 2-stack (3.7) and 4-stack (8.5) runs, about 6, interpolated, not measured. Bloody at three times its Level is on Target at both.
 
+Beast Venom (T108, Level 2 Encounter, 1 AP spell against Vital) under the new Poisons (2026-11-25, `--spell`, `results/poisons/beast_venom_2026-11-25.txt`): cast on the carrier's first turn at the biggest threat, with the carrier's own Skill Total standing in for Theurgy, the stacks lasting the fight; the suit bonus isn't modeled. Value per fight, Target 6:
+
+| Poison Level | Crippling | Slowing |
+|---|---|---|
+| 3 (as written: 4 stacks) | 2.9 | 4.4 |
+| 4 (5 stacks) | 4.4 | 6.2 |
+| 5 (6 stacks) | 5.9 | 6.4 |
+
+Hilde (a 2H Diver) loses value to the 1 AP; Carrick and Sable, who have AP to spare, get 6-9 at Level 4. Slowing tops out around 5 stacks.
+

@@ -24,11 +24,14 @@ import effect_check as ec
 
 CARRIERS = ["Hilde", "Carrick", "Sable"]
 # name: (effect key, stacks at Level L, lasting?)
+# name: (effect key, stacks at Level L, lasting?), as the items read
+# since 2026-11-25. The first runs (2026-11-24) used the old strengths:
+# Crippling and Slowing L, Vulnerability and Bloody 2L (--per-level).
 POISONS = {
-    "Crippling": ("crippled", lambda L: L, True),
-    "Slowing": ("slowed", lambda L: L, True),
-    "Vulnerability": ("vulnerable", lambda L: 2 * L, True),
-    "Bloody": ("bleeding", lambda L: 2 * L, False),
+    "Crippling": ("crippled", lambda L: L + 1, True),
+    "Slowing": ("slowed", lambda L: L + 1, True),
+    "Vulnerability": ("vulnerable", lambda L: L, True),
+    "Bloody": ("bleeding", lambda L: 3 * L, False),
 }
 
 
@@ -46,6 +49,13 @@ def _coat(pc, turn):
     if not s or pc.get("_coated"):
         return 0
     pc["_coated"] = True
+    if s[2] == "spell":
+        # Beast Venom: a 1 AP spell at the biggest threat against Vital,
+        # at the carrier's own Skill Total, on its first turn; no wounding.
+        tg = cs._aim_target(turn.enemies, turn.pcs)
+        if tg is not None:
+            _land(tg, s, cs.flip() + pc["skill_total"])
+        return 1
     if s[2] == "ap":
         pc["poison_ap"] = pc.get("poison_ap", 0) + 2
         return 2
@@ -64,16 +74,23 @@ def _expose(e, ctx):
         stacks = lambda L, k=k: round(k * L)
     if e.get(key, 0) > 0 and e.get("_poison_" + key):
         return  # already suffering it
-    pc["poison_exposures"] = pc.get("poison_exposures", 0) + 1
-    defense = e["bodily"] - tactics.def_pen(e, "Vital")
-    if cs.flip() + 3 + L < defense:
+    if s[2] == "spell":
+        return
+    _land(e, s, cs.flip() + 3 + L)
+
+
+def _land(e, s, roll):
+    name, L, _, k = s
+    key, stacks, lasting = POISONS[name]
+    if k is not None:
+        stacks = lambda L, k=k: round(k * L)
+    if roll < e["bodily"] - tactics.def_pen(e, "Vital"):
         return
     n = stacks(L)
     cs._gain(e, key, n)
     e["_poison_" + key] = True
     if lasting:
         e["curse_" + key] = max(e.get("curse_" + key, 0), n)
-    pc["poison_hits"] = pc.get("poison_hits", 0) + 1
 
 
 def main():
@@ -83,11 +100,14 @@ def main():
     ap.add_argument("-L", type=int, action="append", help="Poison Levels (default 1 and 2)")
     ap.add_argument("--per-level", action="append", default=[],
                     help="NAME=k: stacks are k times the Level (repeatable); only the already-poisoned case")
+    ap.add_argument("--spell", help="Poisons (comma-separated) delivered Beast Venom's way instead")
     a = ap.parse_args()
     levels = a.L or [1, 2]
     ec.NAMES[:] = ec.NAMES  # party A: Hilde, Browndog, Carrick, Sable
     variants = [(f"{p} L{L} {m}", f"Poison:{p}:{L}:{m}") for p in POISONS for L in levels for m in ("pre", "ap")]
-    if a.per_level:
+    if a.spell:
+        variants = [(f"{p} L{L} spell", f"Poison:{p}:{L}:spell") for p in a.spell.split(",") for L in levels]
+    elif a.per_level:
         variants = [(f"{p} {k}xL L{L}", f"Poison:{p}:{L}:pre:{k}")
                     for p, k in (x.split("=") for x in a.per_level) for L in levels]
     cells = []

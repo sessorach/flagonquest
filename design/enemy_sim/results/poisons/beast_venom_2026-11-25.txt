@@ -1,0 +1,8 @@
+Enemy Health x1.75, 300 fights per mix, 8 mixes. Value per fight (THE TABEL units; Target for a Level L Technique is 3L).
+Poison                      Value    ±     Hilde   Carrick     Sable
+Crippling L3 spell           2.91  0.4     -1.37      6.12      3.97
+Slowing L3 spell             4.41  0.5     -0.54      7.05      6.71
+Crippling L4 spell           4.37  0.5      0.09      7.53      5.50
+Crippling L5 spell           5.87  0.5      1.37      8.98      7.26
+Slowing L4 spell             6.18  0.5      0.58      8.65      9.30
+Slowing L5 spell             6.43  0.5      0.75      9.03      9.51

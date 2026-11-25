@@ -126,7 +126,7 @@ A Poison has to get into a creature’s body to work. A creature is exposed to i
 
 Preparing a weapon or piece of ammunition with a Poison takes a minute. It holds until the end of the first fight it’s used in, or until you get a full night’s rest. A weapon can only hold one Poison at a time.
 
-Stacks a Poison gives are poison stacks: they don’t decay normally, and instead 1 stack of each comes off every hour.
+Stacks a Poison gives are poison stacks: they don’t decay normally, and instead 1 stack of each comes off every hour. Only an effect that removes poison stacks can take them off - one that removes Crippled doesn’t touch Crippled from a Poison.
 
 #### [Potion]
 

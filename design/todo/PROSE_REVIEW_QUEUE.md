@@ -266,6 +266,7 @@ things off in order.
   or drinking it, or something saying so), attack at 3 + Level against
   Vital, no re-exposure while suffering it; preparing takes a minute and
   holds until the end of the first fight or a night's rest; poison
-  stacks come off hourly. Approved in chat 2026-11-25. Commit "Poisons:
+  stacks come off hourly, and only an effect that removes poison stacks
+  can take them off (designer, 2026-11-25). Approved in chat 2026-11-25. Commit "Poisons:
   prepared ahead, one keyword, strength by Level".
 

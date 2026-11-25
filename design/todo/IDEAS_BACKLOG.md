@@ -496,9 +496,8 @@ usable if a slot wants one:
 
 Old Growth Digs Deep (T165) clears named Common Effects from yourself and shouldn't
 touch Poisons. The 2026-11-25 [Poison] keyword names poison stacks but
-no longer says nothing else can remove them, so as written its Crippled
-or Slowed would clear poison stacks too. Decide at the Poison Technique
-review.
+now says only an effect that removes poison stacks can take them off
+(designer, 2026-11-25), so its list can't touch them. Settled.
 
 Also look again at, after the 2026-11-25 Poison rework: Corrupted Blood
 (T090) and Beast Venom (T108) now work off Level, and Level 3 Crippling
