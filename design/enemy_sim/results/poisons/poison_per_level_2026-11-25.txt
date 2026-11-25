@@ -1,0 +1,12 @@
+Enemy Health x1.75, 300 fights per mix, 8 mixes. Value per fight (THE TABEL units; Target for a Level L Technique is 3L).
+Poison                      Value    ±     Hilde   Carrick     Sable
+Crippling 2xL L1             3.34  0.3      1.92      3.54      4.57
+Crippling 2xL L2             8.48  0.3      6.26      8.28     10.89
+Slowing 2xL L1               2.39  0.3      0.37      2.43      4.36
+Slowing 2xL L2               7.30  0.4      3.62      6.70     11.57
+Bloody 3xL L1                2.56  0.3      1.11      2.60      3.97
+Bloody 3xL L2                5.79  0.3      3.85      5.39      8.14
+Bloody 4xL L1                3.49  0.3      1.93      3.52      5.02
+Bloody 4xL L2                7.27  0.3      5.11      6.79      9.91
+Vulnerability 1xL L1         4.98  0.5      4.97      3.95      6.01
+Vulnerability 1xL L2        10.60  0.5      9.73      8.57     13.52

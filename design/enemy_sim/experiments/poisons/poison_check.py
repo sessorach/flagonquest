@@ -35,8 +35,8 @@ POISONS = {
 def _spec(pc):
     for p in pc.get("passives", ()):
         if p.startswith("Poison:"):
-            _, name, level, mode = p.split(":")
-            return name, int(level), mode
+            _, name, level, mode, *k = p.split(":")
+            return name, int(level), mode, float(k[0]) if k else None
     return None
 
 
@@ -58,8 +58,10 @@ def _expose(e, ctx):
     s = _spec(pc)
     if not s or not pc.get("_coated") or e["health"] <= 0:
         return
-    name, L, _ = s
+    name, L, _, k = s
     key, stacks, lasting = POISONS[name]
+    if k is not None:
+        stacks = lambda L, k=k: round(k * L)
     if e.get(key, 0) > 0 and e.get("_poison_" + key):
         return  # already suffering it
     pc["poison_exposures"] = pc.get("poison_exposures", 0) + 1
@@ -79,10 +81,15 @@ def main():
     ap.add_argument("-n", type=int, default=300, help="fights per mix")
     ap.add_argument("-m", type=float, default=1.75, help="enemy Health multiplier")
     ap.add_argument("-L", type=int, action="append", help="Poison Levels (default 1 and 2)")
+    ap.add_argument("--per-level", action="append", default=[],
+                    help="NAME=k: stacks are k times the Level (repeatable); only the already-poisoned case")
     a = ap.parse_args()
     levels = a.L or [1, 2]
     ec.NAMES[:] = ec.NAMES  # party A: Hilde, Browndog, Carrick, Sable
     variants = [(f"{p} L{L} {m}", f"Poison:{p}:{L}:{m}") for p in POISONS for L in levels for m in ("pre", "ap")]
+    if a.per_level:
+        variants = [(f"{p} {k}xL L{L}", f"Poison:{p}:{L}:pre:{k}")
+                    for p, k in (x.split("=") for x in a.per_level) for L in levels]
     cells = []
     for pname, vs in (("A", [v for v in variants if "Vulnerability" not in v[0]]),
                       ("AV", [v for v in variants if "Vulnerability" in v[0]])):

@@ -11932,3 +11932,15 @@ Same average as a flat 6, but heavy armor no longer walks away clean, which the 
 
 Even lasting the scene, the stack-a-Level Poisons come in at about half their Target pre-poisoned, so the scene-long change doesn't need a price rise. Coating in the fight costs about the 5.5 that 2 AP is worth and leaves them below zero (Carrick, a Skirmisher with spare AP, loses least). Enemy Vital Defense averages 11.4 at Level 1, so a Level 1 Poison lands about half the time it's exposed. Vulnerability is the outlier: lasting Vulnerable stacks are huge for a party attacking Vital, and worth about nothing to one that doesn't (party A's weapons don't). Level 2 Poisons were measured against Level 1 enemies, which flatters them a little.
 
+Building Poisons to Target with no AP (2026-11-25). The designer's alternative: a Poison is prepared on a weapon ahead of time and holds until the weapon's first fight (lasting that fight) or a night's rest, with no AP cost. That is the pre-poisoned case above. Stronger versions, same run settings (`--per-level`, `results/poisons/poison_per_level_2026-11-25.txt`), Target 3 at Level 1 and 6 at Level 2:
+
+| Poison | L1 | L2 |
+|---|---|---|
+| Crippling [twice Level] | 3.3 | 8.5 |
+| Slowing [twice Level] | 2.4 | 7.3 |
+| Bloody [three times Level] | 2.6 | 5.8 |
+| Bloody [four times Level] | 3.5 | 7.3 |
+| Vulnerability [Level], all-Vital party | 5.0 | 10.6 |
+
+Lasting control stacks compound, so twice-Level lands on Target at Level 1 and runs about 40% over at Level 2. [Level + 1] would fit both for Crippling: 2 stacks measured 3.3 at L1; 3 stacks at L2 sits between the 2-stack (3.7) and 4-stack (8.5) runs, about 6, interpolated, not measured. Bloody at three times its Level is on Target at both.
+
