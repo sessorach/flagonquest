@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-25 — Poisons, tidied
+
+Poisons now work one way: prepare a weapon ahead of time and it stays poisoned through its next fight, with every Poison's strength set by its Level instead of a separate Potency and Concentration. The seven Poisons are each their own item now, tuned against the simulator, and the Techniques and items that use them were rewritten to match.
+
 ### 2026-11-24 — Traps, and version 1.3
 
 Traps are a new kind of item: each has a spot difficulty, an attack against Vigilant Defense and a disarm difficulty, and can be set again after it goes off. The first five are Tripwire Bells, the Grenade Rig, the Snare, the Bear Trap and the Needle Lock, and the Teleport rules now say what a teleport leaves behind and what it takes along. Everything on this branch since the last site update is now tagged version 1.3.

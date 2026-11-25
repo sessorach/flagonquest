@@ -262,3 +262,10 @@ things off in order.
   carry, minus anything you leave, plus willing creatures you carry
   (designer, 2026-11-24, carrying only). Wording approved in chat.
   Commit "Teleport: what it leaves behind and what it brings".
+- **`#### [Poison]`** (glossary, rewritten) — exposure (a wound, eating
+  or drinking it, or something saying so), attack at 3 + Level against
+  Vital, no re-exposure while suffering it; preparing takes a minute and
+  holds until the end of the first fight or a night's rest; poison
+  stacks come off hourly. Approved in chat 2026-11-25. Commit "Poisons:
+  prepared ahead, one keyword, strength by Level".
+

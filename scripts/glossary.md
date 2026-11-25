@@ -122,11 +122,11 @@ To use a weapon or other item as an Implement, you must be holding or wearing it
 
 #### [Poison]
 
-If an attack with a poisoned weapon successfully causes a creature to lose Health, that creature is exposed to the Poison. Make an attack, adding the Poison’s Concentration, against the target’s Vital Defense. If it hits, the target suffers the Poison’s effects. This is known as a poison attack, which occasionally has special interactions with some abilities and items.
+A Poison has to get into a creature’s body to work. A creature is exposed to it when a poisoned weapon or piece of ammunition makes it lose Health, when it eats or drinks it, or when something else says so. The Poison then makes an attack against the creature’s Vital Defense, with an Accuracy of 3 + its Level. If it hits, the creature suffers the Poison’s effects. A creature already suffering a Poison’s effects can’t be exposed to that Poison again.
 
-A Poison takes 2 AP to apply to a weapon or piece of ammunition. Weapons and ammunition remain poisoned until they expose a creature to the Poison or the wielder gets a full night’s rest, and can only have one Poison at a time.
+Preparing a weapon or piece of ammunition with a Poison takes a minute. It holds until the end of the first fight it’s used in, or until you get a full night’s rest. A weapon can only hold one Poison at a time.
 
-Effects applied by Poisons do not expire normally. Instead, every hour 1 stack of each Poison effect is removed, and these stacks may not be removed any other way.
+Stacks a Poison gives are poison stacks: they don’t decay normally, and instead 1 stack of each comes off every hour.
 
 #### [Potion]
 

@@ -711,7 +711,7 @@
     "max_copies": null,
     "bonus_points": null,
     "description": null,
-    "effects": "Remove 1 stack of Bleeding from the target. Remove 1 stack of each Poison effect affecting the target.",
+    "effects": "Remove 1 stack of Bleeding and 1 poison stack from the target.",
     "prereq": null
   },
   {

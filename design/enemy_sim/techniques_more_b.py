@@ -34,7 +34,7 @@ DEFERRED.update({
     "T101": "summoned creatures",
     "T103": "summoned creatures",
     "T106": "bringing a Downed PC back (the sim never revives one)",
-    "T108": "Poison and Potency rules (in neither the glossary nor the sim)",
+    "T108": "lasting poison stacks (the sim has no hourly decay)",
     "T112": "barricades that block movement as well as giving Cover",
     "T114": "summoned creatures",
     "T115": "weather that gives everyone Cover, starting three rounds after the cast",

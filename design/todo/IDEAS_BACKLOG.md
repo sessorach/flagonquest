@@ -495,12 +495,21 @@ usable if a slot wants one:
 ## Check when reviewing Poison Techniques
 
 Old Growth Digs Deep (T165) clears named Common Effects from yourself and shouldn't
-touch Poisons. Confirm the Poison rules say only specific effects clear
-a Poison, so a list like its own can't be read as including them.
+touch Poisons. The 2026-11-25 [Poison] keyword names poison stacks but
+no longer says nothing else can remove them, so as written its Crippled
+or Slowed would clear poison stacks too. Decide at the Poison Technique
+review.
+
+Also look again at, after the 2026-11-25 Poison rework: Corrupted Blood
+(T090) and Beast Venom (T108) now work off Level, and Level 3 Crippling
+is 4 lasting stacks, up from 3; Venomous Weapon (I094) lost its
+once-per-encounter trigger and now works under the keyword (every
+creature it wounds, its first fight of the day); Lay On Hands removes up
+to 2 poison stacks (was 1 of each Poison effect).
 
 Also re-check **Mighty Mixologist (T035)** once the Poison review is
-done (designer, 2026-11-18): its Concentration floor is the alchemist's
-poison accuracy, and the Grenade bonus was reworked the same day.
+done (designer, 2026-11-18): its Accuracy floor (was Concentration) is the
+alchemist's poison accuracy, and the Grenade bonus was reworked the same day.
 
 ## Social Techniques: what's left after the 2026-10-04 rework
 
