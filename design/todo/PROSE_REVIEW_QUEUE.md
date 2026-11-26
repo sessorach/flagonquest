@@ -269,4 +269,9 @@ things off in order.
   stacks come off hourly, and only an effect that removes poison stacks
   can take them off (designer, 2026-11-25). Approved in chat 2026-11-25. Commit "Poisons:
   prepared ahead, one keyword, strength by Level".
+- **`#### [Trap]`** (glossary) — a new closing paragraph: mundane objects
+  (a door, a wagon wheel) can be rigged as Traps under the same rules,
+  and might fall over, fall apart or stop working when they trigger.
+  The designer's shape and examples, 2026-11-26; the sentences are mine.
+  Commit "Traps: sabotage is rigging an object as a Trap".
 

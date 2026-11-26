@@ -158,6 +158,8 @@ A Trap is rigged to catch someone flat-footed - a creature that sees it coming c
 
 Setting a Trap takes a minute. After it triggers or is disarmed, it can be picked up and set again.
 
+Mundane objects, such as a door or a wagon wheel, can be rigged as Traps too, following the same rules. When one triggers, it might fall over, fall apart, or simply stop working.
+
 # Common Effects
 
 #### Bleeding [Fleeting]
