@@ -11954,3 +11954,4 @@ Beast Venom (T108, Level 2 Encounter, 1 AP spell against Vital) under the new Po
 
 Hilde (a 2H Diver) loses value to the 1 AP; Carrick and Sable, who have AP to spare, get 6-9 at Level 4. Slowing tops out around 5 stacks.
 
+Beast Venom set to Level 4 Poisons (designer, 2026-11-26).

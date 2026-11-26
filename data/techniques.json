@@ -5079,7 +5079,7 @@
     "action": "1 AP",
     "cost": null,
     "target": "A creature within [Theurgy Skill Total] meters",
-    "effects": "Choose Crippling, Slowing, or Psychosis Poison. Make a Theurgy spell attack against the target's Vital Defense. If it hits, the target suffers the effects of that Poison at Level 3, +[Clubs] Levels for Crippling, +[Spades] for Slowing, or +[Hearts] for Psychosis.",
+    "effects": "Choose Crippling, Slowing, or Psychosis Poison. Make a Theurgy spell attack against the target's Vital Defense. If it hits, the target suffers the effects of that Poison at Level 4, +[Clubs] Levels for Crippling, +[Spades] for Slowing, or +[Hearts] for Psychosis.",
     "builder_notes": null,
     "special": null,
     "prereqs": "Theurgy 3, Survival 2",

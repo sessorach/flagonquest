@@ -504,6 +504,14 @@ stay a clean decision record.
   decided: a dozen-plus items/techniques already phrase it that way,
   zero use the "until the end of" wording, so this is naming the
   existing convention, not introducing a new one.
+- **Go easy on special punctuation in prose** (designer, 2026-11-26).
+  Use dashes, colons, semicolons and parentheses only where they help
+  the structure; otherwise write plain sentences. My draft "they don’t
+  decay normally, and instead...: Only an effect that removes poison
+  stacks can take them off - one that removes Crippled doesn’t..." became
+  "A Poison’s effects also carry the Poison tag, and instead of decaying
+  normally 1 stack of each comes off every hour. Only an effect that
+  specifically removes poison stacks can take them off."
 - **Rules text is as concise as it can be while still getting the
   point across** (per the designer). Two specifics:
   - **Damage type:** an attack only ever deals one type of damage, and
