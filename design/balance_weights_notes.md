@@ -11955,3 +11955,6 @@ Beast Venom (T108, Level 2 Encounter, 1 AP spell against Vital) under the new Po
 Hilde (a 2H Diver) loses value to the 1 AP; Carrick and Sable, who have AP to spare, get 6-9 at Level 4. Slowing tops out around 5 stacks.
 
 Beast Venom set to Level 4 Poisons (designer, 2026-11-26).
+
+Corrupted Blood (T090, Level 3, 2 AP) reworked (designer, 2026-11-26): cost is 1 Health only (the card and its suit bonus go), and the Poison is Level [half Meditation Skill Total, rounded up] at Accuracy [Meditation Skill Total], made before a fight. Estimated with each Poison Level worth 3 a fight (as the Level 1-2 runs tuned them, not measured at Level 3) and 1 Health at 4: Meditation 6 gives Level 3 (9 - 4 = 5, -4 vs Target 9), 7-8 give Level 4 (12 - 4 = 8, -1), 9 gives Level 5 (+2).
+
