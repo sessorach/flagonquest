@@ -10792,5 +10792,55 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T230",
+    "name": "Wax Impression",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": null,
+    "description": "A glance at the ring on the jailer's belt is all it takes.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "If you get a close look at a key, a signet ring, a seal, or anything else that could be copied from an impression, you can make a working copy of it later without needing the impression. Getting the look takes a few moments and no check. Making the copy takes an hour and a Tinker's Kit, and a Craft check with Good Luck. For a key, the difficulty is the difficulty to pick the lock it opens; for anything else, the GM sets it the same way, by its quality and detail. On a success, the copy works just like the original. On a failure, the copy doesn't work, and you need another close look at the original before you can try again.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Stealth 2, Craft 2",
+    "relevant_skills": "Stealth, Craft",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.3",
+    "prereq_check": [
+      {
+        "type": "skill",
+        "options": [
+          "Stealth"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Craft"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
