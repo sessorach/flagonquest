@@ -1179,6 +1179,16 @@ Two recurring environment quirks worth knowing:
   must improve it, not permit it; and if the base rules don't cover it
   yet, propose the general rule first. Hidden Compartment and Disarm
   and Reset were drafted as permissions before this was said.
+- **Every Technique draft names its checks** (designer, 2026-11-26,
+  the thing they most want to avoid). For each check it calls for, say
+  which Skill and what the difficulty is, or say there's no check; a GM
+  who's never met the designer should run it the way it was meant.
+  Before showing a draft, ask: could a GM read this and tell the player
+  "no, that's not how it works"? "Good Luck on the flip" with no flip
+  named was the slip on Wax Impression's first draft. The designer
+  often talks through ideas by voice note; take the broad principles
+  in those messages into DESIGNER_NOTES and here, not just the
+  Technique at hand.
 - **In any Technique review, check its suits** (designer, 2026-11-16).
   A suit named on the card (a `[Suit]` bonus, "if you discarded a
   Spade") should match the governing suit of the Skill it's tied to,
