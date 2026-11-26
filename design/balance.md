@@ -1455,13 +1455,7 @@ next-biggest). Working through it lowest-Level to highest.
   Hunter's Blade (both bypass the Non-Lethal Attacks Bad Luck penalty,
   just triggered differently — one on a declared non-lethal attack,
   this one automatically on any Down).
-- **Venomous Weapon** (`I094`, L1-5) — "creates" one Basic Poison dose
-  per encounter, auto-exposed for 0 AP. Per the designer, all seven
-  Poison flavors are treated as interchangeably "worth" the same
-  (they cost the same to craft) rather than pricing off whichever's
-  mathematically strongest — Crippling Poison's own already-"naturally
-  balanced" formula (`Value = 3×Level`) stands in as the flat baseline.
-  **Net = 0 at every Level**, an exact fit.
+- **Venomous Weapon** (`I094`, L1-5) — always prepared with a Poison chosen at creation, at its own Level (reworked 2026-11-25 with the Poison keyword). One Level-L Poison a fight, which the sim-tuned Poisons put at Level × 3: Net 0 at every Level.
 - **Elemental Bloodletter** (`I181`, L2) — cut. Priced both components
   fully: permanent elemental damage conversion is a real `+15` on its
   own, but the damage→Bleeding clause is a structural `−92` once
