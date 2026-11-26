@@ -11958,3 +11958,7 @@ Beast Venom set to Level 4 Poisons (designer, 2026-11-26).
 
 Corrupted Blood (T090, Level 3, 2 AP) reworked (designer, 2026-11-26): cost is 1 Health only (the card and its suit bonus go), and the Poison is Level [half Meditation Skill Total, rounded up] at Accuracy [Meditation Skill Total], made before a fight. Estimated with each Poison Level worth 3 a fight (as the Level 1-2 runs tuned them, not measured at Level 3) and 1 Health at 4: Meditation 6 gives Level 3 (9 - 4 = 5, -4 vs Target 9), 7-8 give Level 4 (12 - 4 = 8, -1), 9 gives Level 5 (+2).
 
+## Saboteur (T229, Level 2, 2026-11-26)
+
+Set a Trap for 4 AP; spend 1 AP to trigger a Trap you set that you can see, choosing a target within 3 meters of it. Worked out, not simulated. Grenade Rigs: a Rig fires a Grenade for 1 AP against a thrown Grenade's 2, so at most it doubles how fast the day's Grenades go (about 3 a fight from Bottomless Bottles); accuracy 3 + Level against Vigilant is about even with a thrown Grenade (enemy Vigilant averages half a point under Dodge). The edge case is reusable damaging Traps on prepared ground: six Bear Traps, a minute each, are six 1 AP attacks a fight that each catch a creature, roughly 6 a trigger at 50% = 18 against Target 6. Held back by prep time (GM's call), the 3-meter reach and one trigger per set. Accepted under "reward cleverness and risk" (designer, 2026-11-26); if it becomes the standard plan, shrink the reach to adjacent before adding any cap.
+
