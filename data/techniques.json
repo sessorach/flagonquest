@@ -10942,5 +10942,60 @@
     ],
     "feature_budget": null,
     "choice_effects": null
+  },
+  {
+    "id": "T233",
+    "name": "Bare-Handed",
+    "level_min": 1,
+    "level_max": 1,
+    "tags": null,
+    "description": "Once you've learned to do without the workshop, the next step is doing without the tools.",
+    "condition": null,
+    "action": "Passive",
+    "cost": null,
+    "target": null,
+    "effects": "When you craft with Campfire Forge, you no longer need your School's tools, a campsite or a fire. Anywhere you could sit and work undisturbed for as long as it takes will do. You press heated metal into shape between your palms, draw thread straight from raw fiber, or coax a potion together by touch.",
+    "builder_notes": null,
+    "special": null,
+    "prereqs": "Campfire Forge, (Craft or Mixology) 3, Meditation 2",
+    "relevant_skills": "Craft, Mixology, Meditation",
+    "use_cards": null,
+    "healing": null,
+    "features": null,
+    "free_text": null,
+    "shallow_health_bonus": null,
+    "deep_health_bonus": null,
+    "fullness_bonus": null,
+    "fullness_threshold_bonus": null,
+    "supplement": "Base Game",
+    "excluded_by": null,
+    "patch": "1.3",
+    "prereq_check": [
+      {
+        "type": "technique",
+        "name": "Campfire Forge"
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Craft",
+          "Mixology"
+        ],
+        "threshold": {
+          "base": 3
+        }
+      },
+      {
+        "type": "skill",
+        "options": [
+          "Meditation"
+        ],
+        "threshold": {
+          "base": 2
+        }
+      }
+    ],
+    "feature_budget": null,
+    "choice_effects": null
   }
 ]
