@@ -870,7 +870,7 @@ Potion/Grenade you personally crafted), Inspirited Armaments
 Reactant Brewing (transmute one alchemical good you know into
 another), Saboteur (rig a disabled trap/device), Vessel of Belief
 (bank committed Soul/Focus in an item, released to whoever uses it),
-Philosopher's Metallurgy (convert materials up/down a Level).
+Philosopher's Metallurgy (convert materials down a Level only; never up, a standing rule since 2026-11-27).
 
 **Alcohol-cost techniques** — direct hits for the already-queued
 "Alcohol-cost Technique suite" below: Flamebreath (drink, breathe fire),
