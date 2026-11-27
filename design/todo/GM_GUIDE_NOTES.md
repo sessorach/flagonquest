@@ -10,6 +10,10 @@ eyes, a separate page, whatever that ends up being). Move a section out
 once it's actually been drafted somewhere real, rather than leaving a
 stale duplicate here.
 
+## Setting difficulties against NPCs: the players flip, the GM doesn't (2026-11-27)
+
+Per the designer: when a player's check would be "opposed" by an NPC (hiding something from the town guard, sneaking past a lookout), the player makes the check and the NPC is a fixed difficulty, about 8 + the NPC's Skill Total, the way Defenses are worked out. The GM doesn't flip. Not very perceptive guards might count as Awareness 3-4, so a player who clears 11-12 gets past them. The designer keeps this as GM guidance, not a rule: it's downstream of how checks already work. The rulebook's "Stealth and Being Aware" still describes opposed checks, so the two read differently for now.
+
 ## Planning loot: Materials vs. Gold
 
 Surfaced while reviewing whether Crafting Schools' XP cost pays off
