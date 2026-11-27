@@ -152,7 +152,7 @@ Others cannot tell when this ability is being used, discern its effects, or take
 
 A Trap is rigged to catch someone flat-footed - a creature that sees it coming can usually get out of the way, so a Trap’s attacks are against Vigilant Defense. A Trap triggers when a creature disturbs it. Unless the Trap says otherwise:
 
-- Spotting: the difficulty of the Awareness check to notice a Trap is 7 + the Stealth Skill Total of whoever set it.
+- Spotting: the difficulty of the Awareness check to notice a Trap is 8 + the Stealth Skill Total of whoever set it.
 - Attacking: if the Trap makes an attack, its Accuracy is 3 + its Level, against the target’s Vigilant Defense.
 - Disarming: the difficulty of the Craft check to disarm a Trap is 7 + twice its Level. On a failure, the Trap triggers.
 

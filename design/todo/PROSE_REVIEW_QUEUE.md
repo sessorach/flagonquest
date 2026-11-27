@@ -249,7 +249,8 @@ things off in order.
   "-2 to all Defenses and Speed" is now "-2 to all Defenses" (designer,
   2026-11-23). Made on main and merged here.
 - **`#### [Trap]`** (glossary, new, after [Subtle]) — a Trap triggers
-  when disturbed and attacks Vigilant Defense; spot 7 + the setter's
+  when disturbed and attacks Vigilant Defense; spot 8 (was 7 until
+  2026-11-27) + the setter's
   Stealth Skill Total, Accuracy 3 + Level, disarm 7 + twice Level with
   Craft (a failure triggers it); a minute to set; can be set again
   after triggering or being disarmed (designer, 2026-11-24). Expanded
