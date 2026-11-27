@@ -13,6 +13,10 @@ spreadsheets under `scripts/` and converted to the JSON the site reads via
 One entry per day, newest first — a quick skim of what happened, not a
 full log. See `git log` for the commit-by-commit detail.
 
+### 2026-11-27 — Rogue tools: Saboteur, Wax Impression, Hidden Compartment
+
+Three new Techniques for the Craft and Stealth rogue: Saboteur sets Traps in moments and springs them on cue, Wax Impression copies a key or seal from a close look, and Hidden Compartment builds hiding places into your gear. Mundane objects can now be rigged as Traps by anyone, Traps are a little harder to spot, and the Poison Techniques (Beast Venom, Corrupted Blood) were reworked for the new Poison rules.
+
 ### 2026-11-25 — Poisons, tidied
 
 Poisons now work one way: prepare a weapon ahead of time and it stays poisoned through its next fight, with every Poison's strength set by its Level instead of a separate Potency and Concentration. The seven Poisons are each their own item now, tuned against the simulator, and the Techniques and items that use them were rewritten to match.
