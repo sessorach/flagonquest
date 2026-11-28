@@ -579,6 +579,7 @@ def _second_wind(pc, c):
 # naming one stops with the reason, the same as an unknown one, but the
 # list says what each would need.
 DEFERRED = {
+    "T236": "Scraptrops: a carried material scattered as Caltrops (the sim has no Traps yet)",
     "T235": "Tune-Up: Good Luck on each of four PCs' first weapon attack, when there were ten minutes to prepare",
     "T206": "Warding Circle: a Ward stack a turn for the caster and allies within 3 meters; needs the element picked against the enemies' damage",
     "T207": "Wellspring: a second ally heals 1 Shallow Health per card discarded on a heal",

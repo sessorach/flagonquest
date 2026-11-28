@@ -867,8 +867,7 @@ first social flip with a stranger).
 
 **Craft/Mixology utility**: Immaculate Saucepan Methodology/Stately
 Tailoring (reflavor a dish/restyle a garment), Deploy Mounted Launcher
-(summon a temporary turret from materials), Scraptrops (scatter
-material caltrops), Essence Admixture/Catalytic Activation (buff a
+(summon a temporary turret from materials), Essence Admixture/Catalytic Activation (buff a
 Potion/Grenade you personally crafted), Inspirited Armaments
 (temporarily grant a Masterwork enhancement to gear you crafted),
 Reactant Brewing (transmute one alchemical good you know into
