@@ -454,6 +454,10 @@ Mutagens.
 
 Only a handful of things Teleport today. The Teleport keyword now spells out that it isn't movement, leaves grapples and Snares behind, and brings willing creatures you carry. At the spell review, add a couple more teleport options and price them around those uses: slipping a Snare or a grapple, pulling an ally out of trouble.
 
+## Backgrounds review, with School training in mind (2026-11-28)
+
+Kept Artisanal Training as is for now (designer, 2026-11-28). When Backgrounds get reviewed, look at how Schools are bought too. Options floated: one School per 2 points in its Skill (no card; needs a School picker on the Skill grid and a conversion for old characters, and Profession has the same shape); untrained recipes at +3 Skill Total (simplest, but lets a Craft 6 character build a cart untrained); or one Artisanal Training copy covering two related Schools.
+
 ## Acrobatics seeds (2026-11-23)
 
 From the Athletics brainstorm; the designer felt these suit Acrobatics:
