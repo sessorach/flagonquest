@@ -1952,7 +1952,7 @@
     "action": "Passive",
     "cost": null,
     "target": null,
-    "effects": "You may break down existing items into raw materials. Produces materials of Types matching the Base and Extra Materials of the item, split evenly (GM decides). If you created the item, you receive those exact material Types. All materials produced are of the item's Level.",
+    "effects": "With an hour's work, you can break an item down into materials worth its full price: as many as its price in Gold divided by its Level, rounded down, each of the item's Level. At least half are of its Main Types and the rest of its Optional Types, the same split it was made with; if you made the item yourself, you choose the split. A Level 1 gambeson worth 4 Gold becomes 4 Level 1 Cloth, and a Level 3 Masterwork worth 60 Gold becomes 20 Level 3 materials.",
     "builder_notes": null,
     "special": null,
     "prereqs": "(Craft, Mixology, or Survival) 3",
@@ -1967,7 +1967,7 @@
     "fullness_threshold_bonus": null,
     "supplement": "Base Game",
     "excluded_by": null,
-    "patch": null,
+    "patch": "1.3",
     "prereq_check": [
       {
         "type": "skill",
