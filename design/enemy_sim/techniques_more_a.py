@@ -36,7 +36,8 @@ OUT_OF_COMBAT.update({
     "T230": "Wax Impression (out of combat)",
     "T231": "Hidden Compartment (out of combat)",
     "T232": "Campfire Forge (out of combat)",
-    "T233": "Bare-Handed (out of combat)",
+    "T233": "Craftsman Needs No Tools (out of combat)",
+    "T234": "Fine Division (out of combat)",
     "T095": "Placeholder's Tender Telekinesis", "T096": "Placeholder's Wizardly Witchlight",
     # Follower (T059) is out of combat, so its knacks are too. Squire and
     # Magical Adept would touch a fight, through a follower the sim doesn't
